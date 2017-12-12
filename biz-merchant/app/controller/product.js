@@ -1,6 +1,6 @@
 'use strict';
 const rule = {
-		goodsId: {type: 'string', required: true, allowEmpty: false},
+		productId: {type: 'string', required: true, allowEmpty: false},
 		name: {type: 'string', required: true, allowEmpty: false},
 		jingle: {type: 'string', required: true, allowEmpty: false},
 		price: {type: 'bigdecimal', required: true, allowEmpty: false},
@@ -19,13 +19,21 @@ const rule = {
  * 显示列表
  * @param ctx
  */
+// exports.list = function* (ctx) {
+//     let params = this.request.query;
+//     params.createTime = -1;
+//     this.app.logger.info(params);
+//     let data = yield this.service.product.list(params);
+//     let productType = yield this.service.productType.listSelectJsonString();
+//     yield this.render("product/list.html", {data: data, params, productType});
+// };
 exports.list = function* (ctx) {
-    let params = this.request.query;
-    params.createTime = -1;
-    this.app.logger.info(params);
-    let data = yield this.service.goods.list(params);
-    let goodsType = yield this.service.goodsType.listSelectJsonString();
-    yield this.render("goods/list.html", {data: data, params, goodsType});
+    // let params = this.request.query;
+    // params.createTime = -1;
+    // this.app.logger.info(params);
+    // let data = yield this.service.product.list(params);
+    // let productType = yield this.service.productType.listSelectJsonString();
+    yield this.render("product/list.html");
 };
 
 /**
@@ -35,7 +43,7 @@ exports.list = function* (ctx) {
 exports.data = function* (ctx) {
     let params = this.request.body;
     this.app.logger.info(params);
-    let data = yield this.service.goods.list(params);
+    let data = yield this.service.product.list(params);
     this.app.logger.info(data);
     let list = data.list;
     let items = [];
@@ -43,7 +51,7 @@ exports.data = function* (ctx) {
     for (var i = 0; i < list.length; i++){
         let item = {
             id: list[i].id,
-            type: list[i].goodsType.name,
+            type: list[i].productType.name,
             name: list[i].name
         }
         items.push(item);
@@ -79,39 +87,70 @@ exports.delete = function* (ctx) {
     }
 
     this.app.logger.info(params);
-    let data = yield this.service.goods.delete(params);
+    let data = yield this.service.product.delete(params);
 
     this.body = data;
 };
 
+// exports.edit = function* (ctx) {
+//     let params = this.request.query;
+//     let id = params.id;
+//     console.log(this.request.ip);
+//     if (id == ''){
+//         return this.redirect('/error');
+//     }
+
+//     let productType = yield this.service.productType.listSelectJsonString();
+
+//     if (id){
+//         let data = yield this.service.product.get({id: id});
+
+//         let images = data.images;
+
+//         for (var i = 0; i < 4 - images.length; i++){//将数组长度补足为4
+//             images.push('');
+//         }
+
+//         yield this.render("product/edit.html", {data, params, "productType": productType});
+//         return;
+//     }
+
+//     let data = {
+//         taste: []
+//     };
+
+//     yield this.render("product/edit.html", {data, params, "productType": productType});
+    
+// };
+
 exports.edit = function* (ctx) {
-    let params = this.request.query;
-    let id = params.id;
-    console.log(this.request.ip);
-    if (id == ''){
-        return this.redirect('/error');
-    }
+    // let params = this.request.query;
+    // let id = params.id;
+    // console.log(this.request.ip);
+    // if (id == ''){
+    //     return this.redirect('/error');
+    // }
 
-    let goodsType = yield this.service.goodsType.listSelectJsonString();
+    // let productType = yield this.service.productType.listSelectJsonString();
 
-    if (id){
-        let data = yield this.service.goods.get({id: id});
+    // if (id){
+    //     let data = yield this.service.product.get({id: id});
 
-        let images = data.images;
+    //     let images = data.images;
 
-        for (var i = 0; i < 4 - images.length; i++){//将数组长度补足为4
-            images.push('');
-        }
+    //     for (var i = 0; i < 4 - images.length; i++){//将数组长度补足为4
+    //         images.push('');
+    //     }
 
-        yield this.render("goods/edit.html", {data, params, "goodsType": goodsType});
-        return;
-    }
+    //     yield this.render("product/edit.html", {data, params, "productType": productType});
+    //     return;
+    // }
 
-    let data = {
-        taste: []
-    };
+    // let data = {
+    //     taste: []
+    // };
 
-    yield this.render("goods/edit.html", {data, params, "goodsType": goodsType});
+    yield this.render("product/edit.html");
     
 };
 
@@ -136,7 +175,7 @@ exports.edit_ = function* (ctx) {
     this.logger.info(imgs);
     params.images = imgs;
 
-    let data = yield this.service.goods.edit(params);
+    let data = yield this.service.product.edit(params);
     yield this.body = data;
 };
 
@@ -148,9 +187,9 @@ exports.editEn = function* (ctx) {
         return this.redirect("/error", {message: "请先添加商品"});
     }
 
-    let data = yield this.service.goods.get({id: id, language: "en"});
+    let data = yield this.service.product.get({id: id, language: "en"});
 
-    yield this.render("goods/edit_en.html", {data, params});
+    yield this.render("product/edit_en.html", {data, params});
 
 };
 
@@ -166,7 +205,7 @@ exports.editEn_ = function* (ctx) {
 
 
     this.logger.info(params);
-    let data = yield this.service.goods.editLanguage(params);
+    let data = yield this.service.product.editLanguage(params);
     yield this.body = data;
 };
 
@@ -179,15 +218,15 @@ exports.recommend = function* (ctx) {
             return this.redirect('/error');
         }
 
-        let data = yield this.service.goods.get({id: id});
+        let data = yield this.service.product.get({id: id});
 
-        yield this.render("goods/recommend.html", {data, params});
+        yield this.render("product/recommend.html", {data, params});
     }else{//post
         const params = this.request.body;
         params.isRecommend = true;
         this.logger.info(params);
         //调用service中的login接口登录
-        yield this.service.goods.recommend(params);
+        yield this.service.product.recommend(params);
 
         //放回json数据
         this.body = {
@@ -209,15 +248,15 @@ exports.pre = function* (ctx) {
             return this.redirect('/error');
         }
 
-        let data = yield this.service.goods.get({id: id});
+        let data = yield this.service.product.get({id: id});
 
-        yield this.render("goods/pre.html", {data, params});
+        yield this.render("product/pre.html", {data, params});
     }else{//post
         const params = this.request.body;
         params.isPreShow = true;
         this.logger.info(params);
         //调用service中的login接口登录
-        yield this.service.goods.pre(params);
+        yield this.service.product.pre(params);
 
         //放回json数据
         this.body = {
@@ -233,7 +272,7 @@ exports.recommendCancel = function* (ctx) {
     this.logger.info(params);
     params.isRecommend = false;
     //调用service中的login接口登录
-    yield this.service.goods.recommend(params);
+    yield this.service.product.recommend(params);
 
     //放回json数据
     this.body = {
@@ -249,7 +288,7 @@ exports.preCancel = function* (ctx) {
     this.logger.info(params);
     //调用service中的login接口登录
     params.isPreShow = false;
-    yield this.service.goods.pre(params);
+    yield this.service.product.pre(params);
 
     //放回json数据
     this.body = {
@@ -270,32 +309,32 @@ exports.group = function* (ctx) {
 
 
 
-        let data = yield this.service.goods.get({id: id});
+        let data = yield this.service.product.get({id: id});
 
         //商品
-        let goods = [];
-        let list = yield this.service.goodsGroup.list({
-            goodsGroupId: id
+        let product = [];
+        let list = yield this.service.productGroup.list({
+            productGroupId: id
         });
 
         for (var i = 0; i < list.length; i++){
             var item = {
-                id: list[i].goodsId,
+                id: list[i].productId,
                 name: list[i].name,
                 type: list[i].typeName
             };
-            goods.push(item);
+            product.push(item);
         }
 
 
-        let goodsType = yield this.service.goodsType.listSelectJsonString();
+        let productType = yield this.service.productType.listSelectJsonString();
 
-        yield this.render("goods/group.html", {data,goodsType, goods, params});
+        yield this.render("product/group.html", {data,productType, product, params});
     }else{//post
         const params = this.request.body;
         this.logger.info(params);
         //调用service中的login接口登录
-        let data = yield this.service.goodsGroup.edit(params);
+        let data = yield this.service.productGroup.edit(params);
 
         //放回json数据
         this.body = data;

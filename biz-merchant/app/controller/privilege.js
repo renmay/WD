@@ -1,7 +1,10 @@
 'use strict';
 const rule = {
-		name: {type: 'string', required: true, allowEmpty: false}
-    };
+		name: {type: 'string', required: true, allowEmpty: false},
+		value: {type: 'string', required: true, allowEmpty: false},
+		condition: {type: 'string', required: true, allowEmpty: false},
+		sort: {type: 'intString', required: true, allowEmpty: false}
+	};
 
 /**
  * 显示列表
@@ -10,9 +13,8 @@ const rule = {
 exports.list = function* (ctx) {
     let params = this.request.query;
     this.app.logger.info(params);
-    let data = yield this.service.goodsType.list(params);
-    this.logger.info(data);
-    yield this.render("goodsType/list.html", {data: data, params});
+    let data = yield this.service.privilege.list(params);
+    yield this.render("privilege/list.html", {data: data, params});
 };
 
 
@@ -40,7 +42,7 @@ exports.delete = function* (ctx) {
     }
 
     this.app.logger.info(params);
-    let data = yield this.service.goodsType.delete(params);
+    let data = yield this.service.privilege.delete(params);
 
     this.body = data;
 };
@@ -54,11 +56,11 @@ exports.edit = function* (ctx) {
     }
 
     if (id){
-        let data = yield this.service.goodsType.get({id: id});
-        yield this.render("goodsType/edit.html", {data, params});
+        let data = yield this.service.privilege.get({id: id});
+        yield this.render("privilege/edit.html", {data, params});
         return;
     }
-    yield this.render("goodsType/edit.html", {params});
+    yield this.render("privilege/edit.html", {params});
     
 };
 
@@ -70,7 +72,31 @@ exports.edit = function* (ctx) {
 exports.edit_ = function* (ctx) {
     this.validate(rule);
     let params = this.request.body;
-    let data = yield this.service.goodsType.edit(params);
+    let data = yield this.service.privilege.edit(params);
+    yield this.body = data;
+};
+
+exports.send = function* (ctx) {
+    let params = this.request.query;
+    let id = params.id;
+
+    if (!id || id == ''){
+        return this.redirect('/error');
+    }
+
+    let data = yield this.service.privilege.get({id: id});
+    yield this.render("privilege/send.html", {data, params});
+};
+
+/**
+ * 编辑数据
+ * @param ctx
+ * @private
+ */
+exports.send_ = function* (ctx) {
+    //this.validate(rule);
+    let params = this.request.body;
+    let data = yield this.service.privilege.send(params);
     yield this.body = data;
 };
 

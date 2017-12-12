@@ -5,90 +5,53 @@ module.exports =  {
         {
             url: '/index',
             icon: 'fa fa-home',
-            name: '概况',
+            name: '首页',
             children: [
                 {
                     url: '/index',
-                    name: '销售概况'
+                    name: '消息通知'
                 },
                 {
                     url: '/order/config',
-                    name: '订单配置'
+                    name: '财务报表'
                 },
                 {
                     url: '/constellation',
-                    name: '星座设置'
+                    name: '待办事项'
                 }
             ]
         },
         {
-            url: '/goods',
+            url: '/product',
             icon: 'fa fa-bar-chart-o',
-            name: '商品',
+            name: '产品',
             children: [
                 {
-                    url: '/goods',
-                    name: '商品列表'
+                    url: '/product',
+                    name: '产品列表'
                 },
                 {
-                    url: '/goods/type',
-                    name: '菜品类型'
-                }
-            ]
-        },{
-            url: '/custom',
-            icon: 'fa fa-bar-chart-o',
-            name: '定制',
-            children: [
-                {
-                    url: '/custom',
-                    name: '定制列表'
-                },
-                {
-                    url: '/custom/category',
-                    name: '定制分类'
-                },
-                {
-                    url: '/custom/case',
-                    name: '定制案列'
+                    url: '/product/type',
+                    name: '产品类型'
                 }
             ]
         },
         {
-            url: '/member',
-            icon: 'fa fa-archive',
-            name: '会员',
-            children: [
-                {
-                    url: '/member',
-                    name: '会员列表'
-                },
-                {
-                    url: '/guestbook',
-                    name: '用户留言'
-                },
-                {
-                    url: '/join/us',
-                    name: '加入我们'
-                }
-            ]
-        },
-        {
-            url: '/seller',
+            url: '/merchant',
             icon: 'fa fa-bar-chart-o',
             name: '商户',
             children: [
                 {
-                    url: '/seller',
+                    url: '/merchant',
                     name: '店员'
                 },
                 {
-                    url: '/seller/menu',
-                    name: '用户权限'
+                    url: '/store',
+                    name: '店铺信息'
                 },
                 {
-                    url: '/chef',
-                    name: '厨师'
+                    url: '/printer',
+                    name: '打印机'
                 }
             ]
         },
@@ -128,13 +91,21 @@ module.exports =  {
             ]
         },
         {
-            url: '/privilege',
-            icon: 'fa fa-info-circle',
-            name: '营销',
+            url: '/merchant',
+            icon: 'fa fa-bar-chart-o',
+            name: '联盟',
             children: [
                 {
-                    url: '/privilege',
-                    name: '优惠卷'
+                    url: '/merchant',
+                    name: '店员'
+                },
+                {
+                    url: '/store',
+                    name: '店铺信息'
+                },
+                {
+                    url: '/printer',
+                    name: '打印机'
                 }
             ]
         }

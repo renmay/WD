@@ -1,0 +1,146 @@
+{% extends "_layout.html" %}
+
+{# 样式代码 #}
+{% block style %}
+<link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+{% endblock %}
+
+{# bodyd代码#}
+{% block body %}
+<div class="wrapper wrapper-content">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+
+            <div class="ibox-content">
+                <form action="" class="form-table form form-validate" method="post">
+                    <div class="panel panel-table">
+                        <div class="panel-heading">
+                            <a href="" class="btn btn-primary btn">添加分类</a>
+                        </div>
+                        <div class="panel-body table-responsive js-table">
+                            <table class="table table-hover">
+                                <thead class="navbar-inner">
+                                <tr>
+                                    <th>分类名称</th>
+                                    <th>最低消费金额（元）</th>
+                                    <th>排序</th>
+                                    <th>商品数</th>
+                                    <th>是否显示</th>
+                                    <th style="width:150px; text-align:right;">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <input type="hidden" name="ids[]" value="18">
+                                    <td><input type="text" name="title[]" class="form-control width-100" value="活动策划"></td>
+                                    <td><input type="text" name="min_fee[]" class="form-control width-100" value="0"></td>
+                                    <td><input type="text" name="displayorder[]" class="form-control width-100" value="4"></td>
+                                    <td>1</td>
+                                    <td>
+                                        <input type="checkbox" class="js-checkbox" data-href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=category&ta=status&do=web&m=we7_wmall&id=18&i=3" data-name="status" value="1" checked>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <a href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=index&ta=list&do=web&m=we7_wmall&cid=18&i=3" class="btn btn-default btn-sm" title="查看商品" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"> </i></a>
+                                        <a href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=index&ta=post&do=web&m=we7_wmall&cid=18&i=3" class="btn btn-default btn-sm" title="添加商品" data-toggle="tooltip" data-placement="top" ><i class="fa fa-plus"> </i></a>
+                                        <a href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=category&ta=del&do=web&m=we7_wmall&id=18&i=3" class="btn btn-default btn-sm js-remove" title="删除" data-toggle="tooltip" data-placement="top" data-confirm="删除后该分类下的商品也会删除，确定删除吗?"><i class="fa fa-times"> </i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <input type="hidden" name="ids[]" value="17">
+                                    <td><input type="text" name="title[]" class="form-control width-100" value="广告设计"></td>
+                                    <td><input type="text" name="min_fee[]" class="form-control width-100" value="0"></td>
+                                    <td><input type="text" name="displayorder[]" class="form-control width-100" value="3"></td>
+                                    <td>0</td>
+                                    <td>
+                                        <input type="checkbox" class="js-checkbox" data-href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=category&ta=status&do=web&m=we7_wmall&id=17&i=3" data-name="status" value="1" checked>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <a href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=index&ta=list&do=web&m=we7_wmall&cid=17&i=3" class="btn btn-default btn-sm" title="查看商品" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"> </i></a>
+                                        <a href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=index&ta=post&do=web&m=we7_wmall&cid=17&i=3" class="btn btn-default btn-sm" title="添加商品" data-toggle="tooltip" data-placement="top" ><i class="fa fa-plus"> </i></a>
+                                        <a href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=category&ta=del&do=web&m=we7_wmall&id=17&i=3" class="btn btn-default btn-sm js-remove" title="删除" data-toggle="tooltip" data-placement="top" data-confirm="删除后该分类下的商品也会删除，确定删除吗?"><i class="fa fa-times"> </i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <input type="hidden" name="ids[]" value="16">
+                                    <td><input type="text" name="title[]" class="form-control width-100" value="软件开发"></td>
+                                    <td><input type="text" name="min_fee[]" class="form-control width-100" value="0"></td>
+                                    <td><input type="text" name="displayorder[]" class="form-control width-100" value="2"></td>
+                                    <td>0</td>
+                                    <td>
+                                        <input type="checkbox" class="js-checkbox" data-href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=category&ta=status&do=web&m=we7_wmall&id=16&i=3" data-name="status" value="1" checked>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <a href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=index&ta=list&do=web&m=we7_wmall&cid=16&i=3" class="btn btn-default btn-sm" title="查看商品" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"> </i></a>
+                                        <a href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=index&ta=post&do=web&m=we7_wmall&cid=16&i=3" class="btn btn-default btn-sm" title="添加商品" data-toggle="tooltip" data-placement="top" ><i class="fa fa-plus"> </i></a>
+                                        <a href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=category&ta=del&do=web&m=we7_wmall&id=16&i=3" class="btn btn-default btn-sm js-remove" title="删除" data-toggle="tooltip" data-placement="top" data-confirm="删除后该分类下的商品也会删除，确定删除吗?"><i class="fa fa-times"> </i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <input type="hidden" name="ids[]" value="15">
+                                    <td><input type="text" name="title[]" class="form-control width-100" value="托管运营"></td>
+                                    <td><input type="text" name="min_fee[]" class="form-control width-100" value="0"></td>
+                                    <td><input type="text" name="displayorder[]" class="form-control width-100" value="1"></td>
+                                    <td>3</td>
+                                    <td>
+                                        <input type="checkbox" class="js-checkbox" data-href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=category&ta=status&do=web&m=we7_wmall&id=15&i=3" data-name="status" value="1" checked>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <a href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=index&ta=list&do=web&m=we7_wmall&cid=15&i=3" class="btn btn-default btn-sm" title="查看商品" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"> </i></a>
+                                        <a href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=index&ta=post&do=web&m=we7_wmall&cid=15&i=3" class="btn btn-default btn-sm" title="添加商品" data-toggle="tooltip" data-placement="top" ><i class="fa fa-plus"> </i></a>
+                                        <a href="./wmerchant.php?c=site&a=entry&ctrl=store&ac=product&op=category&ta=del&do=web&m=we7_wmall&id=15&i=3" class="btn btn-default btn-sm js-remove" title="删除" data-toggle="tooltip" data-placement="top" data-confirm="删除后该分类下的商品也会删除，确定删除吗?"><i class="fa fa-times"> </i></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="btn-region clearfix">
+                                <div class="pull-left">
+                                    <input type="submit" class="btn btn-primary btn-sm" value="提交修改">
+                                </div>
+                                <div class="pull-right">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+{% endblock %}
+
+{#js代码#}
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+    
+    $(function () {
+       $(".del").on("click", function () {
+           var url = $(this).data("href");
+           layer.confirm('你确定要删除?', {icon: 3, title:'提示'}, function(index){
+               $.ajax({
+                   url: url,
+                   dataType: 'json',
+                   type: 'post',
+                   success: function (data) {
+                       if (data.code == 200){
+                           window.location.reload();
+                       }
+                   }
+               });
+               layer.close(index);
+           });
+       }); 
+    });
+    
+    
+</script>
+
+{% endblock %}
