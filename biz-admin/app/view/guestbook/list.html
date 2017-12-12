@@ -1,0 +1,123 @@
+{% extends "_layout.html" %}
+{% import "component/pagination.njk" as pagination %}
+{% import "component/table.njk" as table %}
+{% import "component/search.njk" as search %}
+{% import "component/constant.njk" as constant %}
+
+{# 样式代码 #}
+{% block style %}
+
+{% endblock %}
+
+{# bodyd代码#}
+{% block body %}
+<div class="wrapper wrapper-content">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form class="page-search-form">
+                                {{ search.select('类型', 'type', [{
+                                    id: '1',
+                                    name: '问题'
+                                },{
+                                    id: '2',
+                                    name: '私人定制'
+                                },{
+                                    id: '3',
+                                    name: '企业定制'
+                                }], params.type) }}
+                                {{ search.select('状态', 'status', [{
+                                    id: '1',
+                                    name: '待处理'
+                                },{
+                                    id: '2',
+                                    name: '处理中'
+                                },{
+                                    id: '3',
+                                    name: '已处理'
+                                }], params.type) }}
+                                {{ search.text('电话', 'mobile', params.mobile, true) }}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="table-responsive">
+                   <form id="table-form">
+                   		<table class="table table-striped">
+                           <thead>
+                           <tr>
+                               	<th></th>
+								<th>类型</th>
+                                <th>状态</th>
+								<th>姓名</th>
+								<th>电话</th>
+								<th>电子邮箱</th>
+								<th>内容</th>
+								<th>创建时间</th>
+                               <th>操作</th>
+                           </tr>
+                           </thead>
+                           <tbody>
+                           {% for item in data.list %}
+                               <tr>
+                                   <td>
+                                       <input type="checkbox" value="{{ item.id }}" class="i-checks" name="check">
+                                   </td>
+                                   <td>{{ constant.guestbook_type(item.type) }}</td>
+                                   <td>
+                                       {% if item.status == 1 %}待处理
+                                           {% elif item.status == 2 %}处理中
+                                           {% elif item.status == 3 %}已处理
+                                           {% elif item.status == 0 %}刪除
+                                       {% else %}错误
+                                       {% endif %}
+                                   </td>
+
+   									<td>{{ctx.helper.show(item.name, 10)}}</td>
+   									<td>{{item.mobile}}</td>
+   									<td>{{item.email}}</td>
+   									<td>{{ctx.helper.show(item.content, 20)}}</td>
+   									<td>{{item.createTime}}</td>
+                                   <td data-id="{{ item.id }}">
+                                       <a href="/guestbook/edit?id={{item.id}}">查看</a>
+                                       {% if item.status == 1 %}
+                                       <a data-id="{{ item.id }}" class="ajax" data-href="/guestbook/processed">已处理</a>
+                                       {% endif %}
+                                       <a class="del" data-id="{{ item.id }}" data-href="/guestbook/delete">删除</a>
+                                   </td>
+                               </tr>
+                           {% else %}
+                               	暂无数据
+                           {% endfor %}
+                           </tbody>
+                       </table>
+                   </form>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="btn-region clearfix">
+                    <div class="pull-right">
+                        {{ pagination.pagination(data, params, '/guestbook') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+{% endblock %}
+
+{#js代码#}
+{% block js %}
+<script>
+
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,185 @@
+{% extends "_layout.html" %}
+{% import "component/forms.njk" as forms %}
+
+{# 样式代码 #}
+{% block style %}
+<link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+<style>
+.goods table {
+    color:#333333;
+    border-collapse: collapse;
+    border: 1px solid #e7eaec;
+    width: 100%;
+}
+.goods table td {
+    padding: 8px;
+    border: 1px solid #e7eaec;
+}
+
+
+</style>
+{% endblock %}
+
+{# bodyd代码#}
+{% block body %}
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加菜品</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t from" id="form" action="/goods/edit" method="post" data-href="/goods">
+                    	{{ forms.hidden('id', data.id) }}
+						{{ forms.text('商品名称', 'name', data.name, '请输入商品名称', 'required') }}
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">菜品类型</label>
+							<div class="col-sm-8">
+								<select class="form-control m-b" name="type">
+									<option value="1" {{ 'selected' if data.type == 1 }}>普通菜品</option>
+									<option value="2" {{ 'selected' if data.type == 2 }}>套餐</option>
+								</select>
+							</div>
+						</div>
+
+						{{ forms.select('菜品分类', 'goodsTypeId', goodsType, data.goodsType.id) }}
+
+						{{ forms.textarea('介绍概要', 'summary', data.summary, '请输入介绍概要', 'required') }}
+						{{ forms.textarea('菜品介绍', 'jingle', data.jingle, '请输入商品介绍', 'required') }}
+						{{ forms.text('销售价', 'price', data.price, '请输入商品销售价', 'required') }}
+						{{ forms.text('市场价', 'marketPrice', data.marketPrice, '请输入商品市场价', 'required') }}
+
+						{{ forms.number('餐具数', 'tableware', data.tableware, '请输入改商品赠送的餐具数', 'required') }}
+
+                        {{ forms.images(
+						    label = '菜品首图',
+						    fileList = [{
+						            name: 'image',
+						            value: data.image,
+						            url: ctx.helper.showImage(data.image, 160, 160, 'fixed'),
+						            text: '详情图'
+						        },{
+						            name: 'imageMobile',
+						            value: data.imageMobile,
+						            url: ctx.helper.showImage(data.imageMobile, 160, 160, 'fixed'),
+						            text: '套餐图片'
+						        }]
+						)}}
+
+						{{ forms.images(
+						    label = '菜品图片',
+						    fileList = [{
+						            name: 'images',
+						            value: data.images[0],
+						            url: ctx.helper.showImage(data.images[0], 160, 160, 'fixed')
+						        },
+						        {
+						            name: 'images',
+						            value: data.images[1],
+						            url: ctx.helper.showImage(data.images[1], 160, 160, 'fixed')
+						        },
+						        {
+						            name: 'images',
+						            value: data.images[2],
+						            url: ctx.helper.showImage(data.images[2], 160, 160, 'fixed')
+						        },
+						        {
+						            name: 'images',
+						            value: data.images[3],
+						            url: ctx.helper.showImage(data.images[3], 160, 160, 'fixed')
+						        }]
+						)}}
+
+                        {{ forms.text('视频地址', 'video', data.video, '输入视频介绍地址') }}
+
+						{{ forms.editer('详细信息', 'detail', data.detail) }}
+
+						{{ forms.editer('移动端详细信息', 'detailMobile', data.detailMobile, 4) }}
+
+
+                        {{ forms.submit() }}
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{#js代码#}
+{% block js %}
+<script>
+    $(function () {
+        var e = "";
+        $("#form").validate({
+            rules: {
+                name: "required",
+                jingle: "required",
+                price: "required",
+                promotionPrice: "required",
+                marketPrice: "required",
+                serial: "required",
+                spec: "required",
+                storage: "required",
+                createTime: "required",
+                specValue: "required",
+                alarm: "required",
+                sku: "required",
+                image: "required",
+                images: "required",
+            },
+            messages: {
+                name: {
+                    required: e + "请输入商品名称（+规格名称）"
+                },
+                jingle: {
+                    required: e + "请输入商品广告词"
+                },
+                price: {
+                    required: e + "请输入商品价格"
+                },
+                promotionPrice: {
+                    required: e + "请输入商品促销价格"
+                },
+                marketPrice: {
+                    required: e + "请输入市场价"
+                },
+                serial: {
+                    required: e + "请输入商家编号"
+                },
+                spec: {
+                    required: e + "请输入商品规格序列化"
+                },
+                storage: {
+                    required: e + "请输入商品库存"
+                },
+                createTime: {
+                    required: e + "请输入商品添加时间"
+                },
+                specValue: {
+                    required: e + "请输入商品规格序列化"
+                },
+                alarm: {
+                    required: e + "请输入预警值"
+                },
+                sku: {
+                    required: e + "请输入sku"
+                },
+                image: {
+                    required: e + "请输入商品首图"
+                },
+                images: {
+                    required: e + "请输入商品图片"
+                },
+            },
+            submitHandler: function() {
+              asyncSubmitForm($("#form"));
+            }
+        });
+
+    });
+</script>
+
+{% endblock %}

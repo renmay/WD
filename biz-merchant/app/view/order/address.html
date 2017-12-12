@@ -1,0 +1,134 @@
+{% extends "_layout.html" %}
+{% import "component/forms.njk" as forms %}
+
+{# 样式代码 #}
+{% block style %}
+<link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+{% endblock %}
+
+{# bodyd代码#}
+{% block body %}
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加支付订单</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t from" id="form" action="/order/deliver/address" method="post" data-href="/order/deliver">
+                    	{{ forms.hidden('id', data.id) }}
+						{{ forms.text('姓名', 'name', data.name, '请输入姓名', 'required') }}
+						{{ forms.radios('性别', 'sex', [{text: '男', value: 1}, {text: '女', value: 0}], data.sex) }}
+						{{ forms.text('手机号', 'mobile', data.mobile, '请输入手机号', 'required') }}
+
+						<div class="form-group">
+                            <label class="col-sm-2 control-label">所在地区</label>
+                            <div class="col-sm-8">
+                                <select class="form-control m-b" name="areaId">
+                                    {% for item in district.children %}
+                                        <option value="{{ item.id }}" {{ 'selected' if item.id == data.orderInfo.areaId else ''}}>{{ item.name }}{{ item.suffix }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">送餐时间</label>
+                            <div class="col-sm-8">
+                                <select class="form-control m-b" name="arriveTime">
+                                    <option value="10:30-11:00" {{ 'selected' if '10:30-11:00'== data.arriveTime else ''}}>10:30-11:00</option>
+                                    <option value="11:00-11:30" {{ 'selected' if '11:00-11:30'== data.arriveTime else ''}}>11:00-11:30</option>
+                                    <option value="11:30-12:00" {{ 'selected' if '11:30-12:00'== data.arriveTime else ''}}>11:30-12:00</option>
+                                    <option value="12:00-12:30" {{ 'selected' if '12:00-12:30'== data.arriveTime else ''}}>12:00-12:30</option>
+                                    <option value="12:30-13:00" {{ 'selected' if '12:30-13:00'== data.arriveTime else ''}}>12:30-13:00</option>
+                                    <option value="13:00-13:30" {{ 'selected' if '13:00-13:30'== data.arriveTime else ''}}>13:00-13:30</option>
+                                </select>
+                            </div>
+                        </div>
+
+						{{ forms.text('地址', 'areaInfo', data.orderInfo.areaInfo, '请输入地址', 'required') }}
+						{{ forms.text('详细地址', 'detail', data.orderInfo.detail, '请输入详细地址', 'required') }}
+						{{ forms.textarea('贺卡', 'message', data.message, '请输入手机号', '') }}
+                        {{ forms.textarea('备注', 'remark', data.remark, '请输入备注', '') }}
+                        {{ forms.submit() }}
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{#js代码#}
+{% block js %}
+<script>
+    $(function () {
+        var e = "";
+        $("#form").validate({
+            rules: {
+                orderId: "required",
+                payNo: "required",
+                outTradeNo: "required",
+                memberId: "required",
+                amount: "required",
+                status: "required",
+                createTime: "required",
+                finishTime: "required",
+                remark: "required",
+                payType: "required",
+                thirdPartyStatus: "required",
+                ip: "required",
+                params: "required",
+            },
+            messages: {
+                orderId: {
+                    required: e + "请输入订单id"
+                },
+                payNo: {
+                    required: e + "请输入订单号"
+                },
+                outTradeNo: {
+                    required: e + "请输入外部交易订单号"
+                },
+                memberId: {
+                    required: e + "请输入支付账户"
+                },
+                amount: {
+                    required: e + "请输入支付金额"
+                },
+                status: {
+                    required: e + "请输入付款单状态"
+                },
+                createTime: {
+                    required: e + "请输入创建时间"
+                },
+                finishTime: {
+                    required: e + "请输入结束时间"
+                },
+                remark: {
+                    required: e + "请输入付款单描述"
+                },
+                payType: {
+                    required: e + "请输入支付渠道"
+                },
+                thirdPartyStatus: {
+                    required: e + "请输入第三方返回的最终交易状态"
+                },
+                ip: {
+                    required: e + "请输入ip"
+                },
+                params: {
+                    required: e + "请输入参数"
+                },
+            },
+            submitHandler: function() {
+              asyncSubmitForm($("#form"));
+            }
+        });
+
+    });
+</script>
+
+{% endblock %}

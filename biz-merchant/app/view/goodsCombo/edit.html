@@ -1,0 +1,460 @@
+{% extends "_layout.html" %}
+{% import "component/forms.njk" as forms %}
+
+{# 样式代码 #}
+{% block style %}
+<link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+<style>
+ul, li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.date{
+    border: 1px solid #e7eaec;
+    text-align: left;
+    border-left: 0;
+    border-bottom: 0;
+}
+.date ul{
+    text-align: left;
+}
+.date ul li{
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    border: 1px solid #e7eaec;
+    border-right: 0;
+    border-top: 0;
+    padding:0;
+}
+
+.date ul li span{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.date ul li a{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    color: #ed5565;
+    font-size: 16px;
+    letter-spacing: 5px;
+    display: none;
+}
+
+.date ul li:hover span{
+    background: #fff;
+    opacity: 0.3;
+}
+
+.date ul li:hover a{
+    display: block;
+    cursor: pointer;
+}
+
+
+
+.clear{
+    clear: both;
+}
+.goods .title{
+    color: #23b7e5;
+    font-style: normal;
+}
+
+.goods table {
+    color:#333333;
+    border-collapse: collapse;
+    border: 1px solid #e7eaec;
+    width: 100%;
+}
+.goods table td {
+    padding: 8px;
+    border: 1px solid #e7eaec;
+}
+
+
+</style>
+{% endblock %}
+
+{# bodyd代码#}
+{% block body %}
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加商品套餐</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t from" id="form" action="/goods/combo/edit" method="post" data-href="/goods/combo">
+                    	{{ forms.hidden('id', data.id) }}
+
+                        {{ forms.text('套餐名称', 'name', data.name, '请输入名称', 'required') }}
+                        {{ forms.text('英文名称', 'nameEn', data.nameEn, '请输入英文名称', 'required') }}
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">市场价</label>
+                            <div class="col-sm-3">
+                                <input name="marketPrice" class="form-control large required" value="{{ data.marketPrice }}" type="text">
+                            </div>
+                            <label class="col-sm-2 control-label">销售价</label>
+                            <div class="col-sm-3">
+                                <input name="price" class="form-control large required" value="{{ data.price }}" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">套餐数量</label>
+                            <div class="col-sm-3">
+                                <input name="bookingNumber" class="form-control large" value="{{ data.bookingNumber }}" type="text">
+                            </div>
+                            <label class="col-sm-2 control-label">可预定数</label>
+                            <div class="col-sm-3">
+                                <input name="maxBookingNumber" class="form-control large" value="{{ data.maxBookingNumber }}" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">状态</label>
+                            <div class="col-sm-3">
+                                <select class="form-control m-b" name="status">
+                                    <option value="1" {{ 'selected' if data.status == 1 }}>上线</option>
+                                    <option value="0" {{ 'selected' if data.status == 0 }}>下架</option>
+                                </select>
+                            </div>
+                            <label class="col-sm-2 control-label">是否新品</label>
+                            <div class="col-sm-3">
+                                <select class="form-control m-b" name="isNew">
+                                    <option value="1" {{ 'selected' if data.isNew == 1 }}>是</option>
+                                    <option value="0" {{ 'selected' if data.isNew == 0 }}>否</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">套餐标签</label>
+                            <div class="col-sm-2">
+                                <input name="label" class="form-control large" value="{{ data.label }}" type="text" placeholder="中文">
+                            </div>
+                            <div class="col-sm-2">
+                                <input name="labelEn" class="form-control large" value="{{ data.labelEn }}" type="text" placeholder="英文">
+                            </div>
+                            <label class="col-sm-1 control-label">排序</label>
+                            <div class="col-sm-3">
+                                <input name="sort" class="form-control large" value="{{ data.sort }}" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group" >
+                            <label class="col-sm-2 control-label">开始预定时间：</label>
+                            <div class="col-sm-3">
+                                <input name="startBookingTime" value="{{ data.startBookingTime }}" class="form-control layer-date required" readonly
+                                placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, isclear: false, format: 'YYYY-MM-DD hh:mm:ss', min: '{{ ctx.helper.currentDate('YYYY-MM-DD')}}' })">
+                            </div>
+                            <label class="col-sm-2 control-label">结束预定时间：</label>
+                            <div class="col-sm-3">
+                                <input name="endBookingTime" value="{{ data.endBookingTime }}" class="form-control layer-date required" readonly
+                                placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, isclear: false, format: 'YYYY-MM-DD hh:mm:ss', min: '{{ ctx.helper.currentDate('YYYY-MM-DD')}}' })">
+                            </div>
+                        </div>
+
+                        {{ forms.images(
+						    label = '套餐图片',
+						    fileList = [{
+						            name: 'image',
+						            value: data.image,
+						            url: ctx.helper.showImage(data.image, 160, 160, 'fixed'),
+						            text: ''
+						        }]
+						)}}
+                        <div id="app">
+                    	<div class="form-group">
+                            <label class="col-sm-2 control-label">添加菜品</label>
+                            <div class="col-sm-2">
+                                <select v-model="goodsType" @change="change" class="form-control m-b" name="{{ name }}">
+                                    <option></option>
+                                    {% for item in goodsType %}
+                                        <option value="{{ item.value }}" {{ 'selected' if item.value == data.goodsType.id else ''}}>{{ item.text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <input v-model="name" name="" @change="change" class="form-control large" value="" type="text" placeholder="输入商品关键字查询">
+                            </div>
+					        <button class="btn btn-primary" type="button" @click="loadMore" v-if="!lastPage">加载更多</button>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-8" style="max-height: 500px; overflow: auto;">
+                            <div class="row goods">
+                                <table>
+                                <template v-for="(item, index) in goods">
+                                    <tr>
+                                        <td width="60"><i class="title">[${item.type}]</i></td>
+                                        <td>${item.name}</td>
+                                        <td width="50"> <a @click="add(index)">添加</a></td>
+                                    </tr>
+                                </template>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+
+                        <template  v-if="addGoods.length > 0">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">已添加的菜品</label>
+                            <div class="col-sm-8" style="max-height: 500px; overflow: auto;">
+                                <div class="row goods">
+                                    <table class="select-goods">
+                                    <template v-for="(item, index) in addGoods">
+                                        <tr>
+                                            <td width="60"><i class="title">[${item.type}]</i></td>
+                                            <td>${item.name}</td>
+                                            <td width="50"> <a @click="remove(index)">删除</a></td>
+                                            <input type="hidden" name="goodsList" v-model="item.id"/>
+                                        </tr>
+                                    </template>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        </template>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">可预定日期：</label>
+                            <div class="col-sm-3">
+                                <input id="bookingDate" name="" value="" class="form-control layer-date" readonly
+                                placeholder="YYYY-MM-DD" onclick="laydate({istime: false, format: 'YYYY-MM-DD', min: '{{ ctx.helper.currentDate('YYYY-MM-DD')}}' })">
+                            </div>
+                            <button class="btn btn-primary" type="button" @click="addDate">添加预定日期${date}</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-8">
+                                <div class="date row">
+                                     <ul class="">
+                                        <template v-for="(item, index) in allDate">
+                                            <li class="col-sm-2"><span>${item}</span><a @click="delDate(index)">删除</a></li>
+                                            <input type="hidden" name="bookingDate" v-model="item"/>
+                                        </template>
+                                        <template v-for="item in blankDate">
+                                            <li class="col-sm-2"></li>
+                                        </template>
+                                    </ul>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+
+                        {{ forms.submit() }}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{#js代码#}
+{% block js %}
+<script>
+var inputForm = new Vue({
+	el: '#app',
+	delimiters: ['${', '}'],
+	data: {
+	    lastPage: false,
+		pageNo: 1,
+		date: '',
+		allDate: {{ allDate | dump | safe}},
+		blankDate: [],  //用来将表格补充完整
+		goodsType: '',
+		ids: [],
+		addGoods: {{ goods | dump | safe }},
+		goods: []
+	},
+	created: function() {
+	    for (var i = 0; i < 6 - this.allDate.length % 6; i++){
+            this.blankDate.push(i);
+	    }
+	},
+	methods: {
+		send: function(event){
+			var loading = layer.load();
+			axios({
+				method: 'post',
+				url: '/admin/sms/sms/save',
+			  	data: {
+					template: $("#provide").val(),
+					planSendDate: $("#planSendDate").val(),
+					target: this.targetUser,
+					companys: this.checkedCompany
+				}
+			}).then(function(response){
+				layer.close(loading);
+				if (response.data.code == 200){
+					layer.msg('提交成功');
+					window.self.location.href="/admin/sms/sms";
+				}else{
+					layer.msg(response.data.message?response.data.message:'提交失败');
+				}
+			});
+		},
+		add: function(index) {//添加菜品
+            if (index > this.goods.length - 1){
+                layer.msg("数据有误，请刷新之后重试。");
+                return;
+            }
+
+            var goods = this.goods[index];
+            if (!goods){
+                layer.msg("数据有误，请刷新之后重试。");
+                return;
+            }
+
+            //判断商品是否已经添加
+            for (var i = 0; i < this.addGoods.length; i++){
+                if (goods.id == this.addGoods[i].id){
+                    layer.msg("商品已经存在");
+                    return;
+                }
+            }
+
+            //请空用户选择
+            this.goods.splice(index, 1);
+
+            this.addGoods.push(goods);
+		},
+        remove: function(index) {//删除菜品
+            this.addGoods.splice(index,1);
+        },
+        delDate: function(index) {
+            this.allDate.splice(index,1);
+
+            if (this.blankDate.length == 6){
+                for (var i = 0; i < 6; i++){
+                    this.blankDate.pop();
+                }
+            }
+
+             if (this.blankDate.length < 6){
+                this.blankDate.push(this.blankDate.length);
+            }
+
+        },
+		addDate: function(event) {//预定日期添加
+            var date = $("#bookingDate").val();
+
+            if ('' == date){
+                layer.msg("请选择预定日期");
+                return;
+            }
+
+            if (!contain(this.allDate, date)){
+                this.allDate.unshift(date);
+                if (this.blankDate.length > 1){
+                    this.blankDate.pop();
+                }else if (this.blankDate.length == 1){
+                    for (var i = 0; i < 5; i++){
+                        this.blankDate.push(i);
+                    }
+                }else{
+                    for (var i = 0; i < 6; i++){
+                        this.blankDate.push(i);
+                    }
+                }
+            }else{
+                layer.msg("改日期已经存在");
+            }
+		},
+		change: function(event) {//菜品类型数据改变 和 查询框数据改变
+		    this.reset();
+            this.loadData();
+		},
+		reset: function() {// 重置查询数据
+            this.lastPage = false;
+		    this.goods = [];
+		    this.ids = [];
+		    this.pageNo = 1;
+		},
+		loadMore: function() {//加载更多
+            if (inputForm.lastPage){
+                layer.msg("没有更多数据");
+                return;
+            }
+            this.loadData();
+		},
+		loadData: function(event){//加载数据
+		    if (this.goodsType == ''){
+		        layer.msg("请选择菜品类型");
+		        return;
+		    }
+		    if (this.lastPage){
+		        return;
+		    }
+		    axios({
+				method: 'post',
+				url: '/goods/data',
+			  	data: {
+					pageNo: this.pageNo,
+					"goodsType.id": this.goodsType,
+					name: this.name
+				}
+			}).then(function(response){
+				// 响应成功回调
+				var data = response.data;
+				if (data.code != 200){
+					layer.msg("请求出错");
+					return;
+				}
+				var list = data.data.list;
+				inputForm.lastPage = data.data.lastPage;
+
+				for (var i = 0; i < list.length; i++){
+				    if (!contain(inputForm.ids, list[i].id)){
+				        inputForm.ids.push(list[i].id);
+				        inputForm.goods.unshift(list[i]);
+				    }
+				}
+				inputForm.pageNo++;
+			});
+		}
+	}
+});
+
+
+
+$(function () {
+    $("#form").validate({
+        submitHandler: function() {
+          asyncSubmitForm($("#form"));
+        }
+    });
+
+});
+
+
+function contain(array, obj){
+    for (var i = 0; i < array.length; i++){
+        if (array[i] == obj)//如果要求数据类型也一致，这里可使用恒等号===
+            return true;
+    }
+    return false;
+}
+</script>
+
+{% endblock %}
