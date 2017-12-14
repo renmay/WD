@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="ibox-tools">
-                            <a href="/merchant/edit" class="btn btn-primary btn-xm">添加商家</a>
+                            <a href="/merchant/edit" class="btn btn-primary btn-xm">添加电源</a>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                            <thead>
                            <tr>
                                <th></th>
-                               <th>名称</th>
+                               <th>姓名</th>
                                <th>状态</th>
                                <th>用户名</th>
                                <th>手机号</th>
@@ -63,18 +63,18 @@
                                    <td>{{item.username}}</td>
                                    <td>{{item.mobile}}</td>
                                    <td>
-                                       {% if item.sex == 1 %}
+                                       {% if item.gender == 1 %}
                                            男
-                                       {% elif item.sex == 0 %}
+                                       {% elif item.gender == 0 %}
                                            女
                                        {% else %}
                                            未知
                                        {% endif %}
                                    </td>
                                    <td>
-                                       {% if item.type == 1 %}
+                                       {% if item.userType == 1 %}
                                            老板
-                                           {% elif item.type == 2 %}
+                                           {% elif item.userType == 2 %}
                                            员工
                                        {% else %}
                                            未知

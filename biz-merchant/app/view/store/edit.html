@@ -17,7 +17,7 @@
 
                 </div>
                 <div class="ibox-content">
-                    <form class="form-horizontal m-t from" id="form" action="/printer/edit" method="post" data-href="/printer">
+                    <form class="form-horizontal m-t from" id="form" action="/store/edit" method="post" data-href="/store">
                         {{ forms.hidden('id', data.id) }}
                         {{ forms.text('打印机名称', 'name', data.name, '请输入打印机名称', 'required') }}
                         {{ forms.text('编号(SN)', 'username', data.username, '请输入打印机编码', 'required') }}

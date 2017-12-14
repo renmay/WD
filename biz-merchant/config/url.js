@@ -9,8 +9,7 @@ module.exports =  {
     districtQuery: '/district/get',
     fundLog: '/fundLog',
     product: '/product',
-    productUpdate: '/product/update',
-    
+
     productLanguage: '/product/language',
     productType: '/product/type',
     productGroup: '/product/group',
@@ -26,8 +25,8 @@ module.exports =  {
     member: '/member',
     merchant: '/merchant',
     merchantMenu: '/merchant/menu',
-    merchantMobileIsExist: '/merchant/mobile/isexist',
-    merchantUsernameIsExist: '/merchant/username/isexist',
+    merchantMobileIsExist: '/mobile/isexist',
+    merchantUsernameIsExist: '/username/isexist',
     selleModifyPassword: '/merchant/update/password',
     sms: '/sms',
 

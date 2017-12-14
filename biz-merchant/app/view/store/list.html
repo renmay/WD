@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="ibox-tools">
-                            <a href="/printer/edit" class="btn btn-primary btn-xm">添加打印机</a>
+                            <a href="/store/edit" class="btn btn-primary btn-xm">添加打印机</a>
                         </div>
                     </div>
                 </div>
@@ -34,11 +34,12 @@
                            <thead>
                            <tr>
                               <th></th>
-                              <th>打印机名称</th>                        
-                              <th>编号(SN)</th>
-                              <th>状态</th>
-                              <th>在线</th>
-                              <th>操作</th>
+                              <th>店铺名称</th>
+                              <th>联系人</th>
+                              <th>联系电话</th>
+                              <th>地址</th>
+                               <th>备注</th>
+                               <th>操作</th>
                            </tr>
                            </thead>
                            <tbody>
@@ -48,42 +49,12 @@
                                        <input type="checkbox" value="{{ item.id }}" class="i-checks" name="check">
                                    </td>
                                    <td>{{item.name}}</td>
-                                   <td>
-                                       {% if item.status == 1 %}
-                                           正常
-                                           {% elif item.status == 2 %}
-                                           禁用
-                                       {% else %}
-                                           未知
-                                       {% endif %}
-                                   </td>
                                    <td>{{item.username}}</td>
                                    <td>{{item.mobile}}</td>
-                                   <td>
-                                       {% if item.sex == 1 %}
-                                           男
-                                       {% elif item.sex == 0 %}
-                                           女
-                                       {% else %}
-                                           未知
-                                       {% endif %}
-                                   </td>
-                                   <td>
-                                       {% if item.type == 1 %}
-                                           老板
-                                           {% elif item.type == 2 %}
-                                           员工
-                                       {% else %}
-                                           未知
-                                       {% endif %}
-
-                                   </td>
-                                   <td>{{item.lastLoginTime}}</td>
+                                   <td>{{item.address}}</td>
+                                   <td>{{item.remark}}</td>
                                    <td data-id="{{ item.id }}">
-                                       <a href="/printer/edit?id={{item.id}}">编辑</a>
-                                       {% if item.id != '1' %}
-                                           <a class="del" data-id="{{ item.id }}" data-href="/printer/delete">删除</a>
-                                       {% endif %}
+                                       <a href="/store/edit?id={{item.id}}">编辑</a>
                                    </td>
                                </tr>
                            {% else %}
@@ -96,10 +67,10 @@
                 <div class="hr-line-dashed"></div>
                 <div class="btn-region clearfix">
                     <div class="pull-left">
-                        <button href="" id="batch-del-btn" class="btn btn-danger btn-sm js-batch" data-url="/printer/delete" data-confirm="确定删除选中的打印机吗?" data-original-title="" title="">批量删除</button>
+                        <button href="" id="batch-del-btn" class="btn btn-danger btn-sm js-batch" data-url="/store/delete" data-confirm="确定删除选中的打印机吗?" data-original-title="" title="">批量删除</button>
                     </div>
                     <div class="pull-right">
-                        {{ pagination.pagination(data, params, '/printer') }}
+                        {{ pagination.pagination(data, params, '/store') }}
                     </div>
                 </div>
             </div>
