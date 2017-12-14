@@ -11,7 +11,7 @@ module.exports = app => {
          * @param params
          */
         async get(params) {
-            const result = await this.ctx.curl(this.app.urls('upload', params, this.config.api.conmonUrl), {
+            const result = await this.ctx.curl(this.app.urls('upload', params, this.config.api.common), {
                 method: 'get',
                 dataType: 'json'
             });

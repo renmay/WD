@@ -28,12 +28,13 @@ const rule = {
 //     yield this.render("product/list.html", {data: data, params, productType});
 // };
 exports.list = function* (ctx) {
-    // let params = this.request.query;
-    // params.createTime = -1;
-    // this.app.logger.info(params);
-    // let data = yield this.service.product.list(params);
-    // let productType = yield this.service.productType.listSelectJsonString();
-    yield this.render("product/list.html");
+
+    let params = this.request.query;
+    params.createTime = -1;
+    this.app.logger.info(params);
+    let data = yield this.service.product.list(params);
+    this.app.logger.info(data);
+    yield this.render("product/list.html", {data: data});
 };
 
 /**
@@ -122,38 +123,34 @@ exports.delete = function* (ctx) {
 //     yield this.render("product/edit.html", {data, params, "productType": productType});
     
 // };
-
 exports.edit = function* (ctx) {
-    // let params = this.request.query;
-    // let id = params.id;
-    // console.log(this.request.ip);
-    // if (id == ''){
-    //     return this.redirect('/error');
-    // }
+    let params = this.request.query;
+    let id = params.id;
+    console.log(this.request.ip);
+    if (id == ''){
+        return this.redirect('/error');
+    }
 
-    // let productType = yield this.service.productType.listSelectJsonString();
+    if (id){
+        let data = yield this.service.product.get({id: id});
 
-    // if (id){
-    //     let data = yield this.service.product.get({id: id});
+        let images = data.images;
 
-    //     let images = data.images;
+        for (var i = 0; i < 4 - images.length; i++){//将数组长度补足为4
+            images.push('');
+        }
 
-    //     for (var i = 0; i < 4 - images.length; i++){//将数组长度补足为4
-    //         images.push('');
-    //     }
+        yield this.render("product/edit.html", {data, params});
+        return;
+    }
 
-    //     yield this.render("product/edit.html", {data, params, "productType": productType});
-    //     return;
-    // }
+    let data = {
+        taste: []
+    };
 
-    // let data = {
-    //     taste: []
-    // };
-
-    yield this.render("product/edit.html");
+    yield this.render("product/edit.html", {data, params});
     
 };
-
 /**
  * 编辑数据
  * @param ctx
@@ -176,36 +173,6 @@ exports.edit_ = function* (ctx) {
     params.images = imgs;
 
     let data = yield this.service.product.edit(params);
-    yield this.body = data;
-};
-
-exports.editEn = function* (ctx) {
-    let params = this.request.query;
-    let id = params.id;
-    console.log(this.request.ip);
-    if (!id || id == ''){
-        return this.redirect("/error", {message: "请先添加商品"});
-    }
-
-    let data = yield this.service.product.get({id: id, language: "en"});
-
-    yield this.render("product/edit_en.html", {data, params});
-
-};
-
-/**
- * 编辑数据
- * @param ctx
- * @private
- */
-exports.editEn_ = function* (ctx) {
-    //this.validate(rule);
-    let params = this.request.body;
-    params.language = "en";
-
-
-    this.logger.info(params);
-    let data = yield this.service.product.editLanguage(params);
     yield this.body = data;
 };
 

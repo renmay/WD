@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = app => {
-    class ProductTypeTypeService extends app.Service {
+    class productTypeService extends app.Service {
         constructor(ctx) {
             super(ctx);
         }
@@ -11,7 +11,7 @@ module.exports = app => {
          * @param params
          */
         * get(params) {
-            const result = yield this.ctx.curl(this.app.urls('productTypeType.id', params), {
+            const result = yield this.ctx.curl(this.app.urls('productType.id', params), {
                 method: 'get',
                 dataType: 'json'
             });
@@ -33,7 +33,7 @@ module.exports = app => {
             /**
              * 请求后台接口
              */
-            const result = yield this.ctx.curl(this.app.urls('productTypeType'), {
+            const result = yield this.ctx.curl(this.app.urls('productType'), {
                 dataType: 'json',
                 data: params
             });
@@ -57,7 +57,7 @@ module.exports = app => {
             if (params.id && params.id != ''){
                 method = 'put';
             }
-            const result = yield this.ctx.curl(this.app.urls('productTypeType'), {
+            const result = yield this.ctx.curl(this.app.urls('productType'), {
                 method: method,
                 dataType: 'json',
                 data: params
@@ -70,7 +70,7 @@ module.exports = app => {
          * @param params
          */
         * delete(params) {
-            const result = yield this.ctx.curl(this.app.urls('productTypeType.id', params), {
+            const result = yield this.ctx.curl(this.app.urls('productType.id', params), {
                 method: 'delete',
                 dataType: 'json'
             });
@@ -81,7 +81,7 @@ module.exports = app => {
             /**
              * 请求后台接口
              */
-            const result = yield this.ctx.curl(this.app.urls('productTypeType') + "/all", {
+            const result = yield this.ctx.curl(this.app.urls('productType') + "/all", {
                 dataType: 'json',
                 data: params
             });
@@ -92,18 +92,18 @@ module.exports = app => {
                 throw new Error(data.message ? data.message : 'error');
             }
 
-            let productTypeType = [];
+            let productType = [];
 
             for (let i = 0; i < data.data.length; i++){
                 let item = {};
                 item.text = data.data[i].name;
                 item.value = data.data[i].id;
-                productTypeType.push(item);
+                productType.push(item);
             }
-            return productTypeType;
+            return productType;
         }
 
     }
 
-    return ProductTypeTypeService;
+    return productTypeService;
 };

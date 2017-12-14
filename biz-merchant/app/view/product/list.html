@@ -29,7 +29,7 @@
 
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    <span class="input-group-addon">菜品分类</span>
+                                    <span class="input-group-addon">产品分类</span>
                                     <select class="form-control m-b" name="productTypeId">
                                         <option value="">全部</option>
                                         {% for item in productType %}
@@ -56,11 +56,11 @@
                            <tr>
                                <th></th>
                                <th>图片</th>
-                               <th>菜品名称</th>
-                               <th>菜品类型</th>
-                               <th>菜品价格</th>
+                               <th>产品名称</th>
+                               <th>库存</th>
+                               <th>价格</th>
                                <th>是否推荐</th>
-                               <th>是否可预约</th>
+                               <th>是否新品</th>
                                <th>添加时间</th>
                                <th>操作</th>
                            </tr>
@@ -75,8 +75,8 @@
                                        <a href="/product/edit?id={{ item.id }}"><img alt="image" class="image" src="{{ ctx.helper.showImage(item.image, 50, 50, 'fixed') }}"></a>
                                    </td>
                                    <td width="260">{{ item.name }}</td>
-                                   <td>{{ item.productType.name }}</td>
-                                   <td>￥{{ item.price }}</td>
+                                   <td>{{ item.inventory }}</td>
+                                   <td>￥{{ item.fixPrice }}</td>
                                    <td>
                                        {% if item.isRecommend %}
                                        <span style="color: red;">是</span><a class="ajax" data-href="/product/recommend/cancel?id={{item.id}}">[关闭]</a>
@@ -93,11 +93,7 @@
                                    </td>
                                    <td>{{ item.createTime }}</td>
                                    <td data-id="{{ item.id }}">
-                                       {% if item.type == 2 %}
-                                       <a href="/product/group?id={{item.id}}">套餐编辑</a>
-                                       {% endif %}
                                        <a href="/product/edit?id={{item.id}}">编辑</a>
-                                       <a href="/product/edit/en?id={{item.id}}">英文信息</a>
                                        <a class="del" data-id="{{ item.id }}" data-href="/product/delete">删除</a>
                                    </td>
                                </tr>
@@ -129,7 +125,7 @@
 {% block js %}
 <script>
 
-
+ 
 </script>
 
 {% endblock %}

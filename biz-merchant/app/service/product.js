@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = app => {
-    class ProductTypeService extends app.Service {
+    class productService extends app.Service {
         constructor(ctx) {
             super(ctx);
         }
@@ -11,7 +11,7 @@ module.exports = app => {
          * @param params
          */
         * get(params) {
-            const result = yield this.ctx.curl(this.app.urls('productType.id', params), {
+            const result = yield this.ctx.curl(this.app.urls('product.id', params), {
                 method: 'get',
                 dataType: 'json',
                 data:{
@@ -36,7 +36,7 @@ module.exports = app => {
             /**
              * 请求后台接口
              */
-            const result = yield this.ctx.curl(this.app.urls('productType'), {
+            const result = yield this.ctx.curl(this.app.urls('product'), {
                 dataType: 'json',
                 data: params
             });
@@ -60,7 +60,7 @@ module.exports = app => {
             if (params.id && params.id != ''){
                 method = 'put';
             }
-            const result = yield this.ctx.curl(this.app.urls('productType'), {
+            const result = yield this.ctx.curl(this.app.urls('product'), {
                 method: method,
                 dataType: 'json',
                 data: params
@@ -69,7 +69,7 @@ module.exports = app => {
         }
 
         * editLanguage(params){
-            const result = yield this.ctx.curl(this.app.urls('productTypeLanguage'), {
+            const result = yield this.ctx.curl(this.app.urls('productLanguage'), {
                 method: 'post',
                 dataType: 'json',
                 data: params
@@ -82,7 +82,7 @@ module.exports = app => {
          * @param params
          */
         * delete(params) {
-            const result = yield this.ctx.curl(this.app.urls('productType.id', params), {
+            const result = yield this.ctx.curl(this.app.urls('product.id', params), {
                 method: 'delete',
                 dataType: 'json'
             });
@@ -91,5 +91,5 @@ module.exports = app => {
 
     }
 
-    return ProductTypeService;
+    return productService;
 };

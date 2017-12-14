@@ -33,7 +33,7 @@
                     <form class="form-horizontal m-t from" id="form" action="/product/edit" method="post" data-href="/product">
                     	{{ forms.hidden('id', data.id) }}
 
-						<div class="form-group">
+<!-- 						<div class="form-group">
 							<label class="col-sm-2 control-label">产品类型</label>
 							<div class="col-sm-8">
 								<select class="form-control m-b" name="type">
@@ -41,48 +41,27 @@
 									<option value="2" {{ 'selected' if data.type == 2 }}>套餐</option>
 								</select>
 							</div>
-						</div>
+						</div> -->
                         {{ forms.text('商品名称', 'name', data.name, '请输入商品名称', 'required') }}
 
-商品类型
-商品展示名称
-简单描述
-商品库存
-市场价
-统一价
-产品图片
+<!-- 						{{ forms.select('产品分类', 'productTypeId', productType, data.productType.id) }} -->
 
-标签JSON串
-是否推荐
-是否新品
-是否热销
-详情描述
-购买须知
-规格描述/费用说明
-售后描述/使用说明
-						{{ forms.select('产品分类', 'productTypeId', productType, data.productType.id) }}
+						{{ forms.textarea('简单描述', 'brief', data.brief, '请输入产品简单描述', 'required') }}
 
-						{{ forms.textarea('简单描述', 'summary', data.summary, '请输入产品简单描述', 'required') }}
-
-						{{ forms.text('销售价', 'price', data.price, '请输入商品销售价', 'required') }}
+						{{ forms.text('销售价', 'fixPrice', data.fixPrice, '请输入商品销售价', 'required') }}
 						{{ forms.text('市场价', 'marketPrice', data.marketPrice, '请输入商品市场价', 'required') }}
 
-                        {{ forms.number('买家须知', 'tableware', data.tableware, '请输入买家购买注意事项', 'required') }}                      
-                        {{ forms.number('规格描述', 'tableware', data.tableware, '请输入规格描述', 'required') }}                     
-                        {{ forms.number('售后描述', 'tableware', data.tableware, '请输入售后描述', 'required') }}
+                        {{ forms.number('买家须知', 'buyingIntro', data.buyingIntro, '请输入买家购买注意事项') }}
+                        {{ forms.number('规格描述', 'specDetailDescription', data.specDetailDescription, '请输入规格描述') }}
+                        {{ forms.number('售后描述', 'afterSaleService', data.afterSaleService, '请输入售后描述') }}
 
                         {{ forms.images(
 						    label = '产品首图',
 						    fileList = [{
 						            name: 'image',
-						            value: data.image,
-						            url: ctx.helper.showImage(data.image, 160, 160, 'fixed'),
+						            value: data.url,
+						            url: ctx.helper.showImage(data.url, 160, 160, 'fixed'),
 						            text: '详情图'
-						        },{
-						            name: 'imageMobile',
-						            value: data.imageMobile,
-						            url: ctx.helper.showImage(data.imageMobile, 160, 160, 'fixed'),
-						            text: '套餐图片'
 						        }]
 						)}}
 
@@ -110,7 +89,7 @@
 						        }]
 						)}}
 
-						{{ forms.editer('详情描述', 'detail', data.detail) }}
+						{{ forms.editer('详情描述', 'intro', data.intro) }}
 
                         {{ forms.submit() }}
                     </form>

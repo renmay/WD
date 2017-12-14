@@ -23,7 +23,7 @@ module.exports = app => {
     app.post('/login', 'login.login');
     app.get('/logout', 'login.logout');
 
-    // //product
+    //product
     app.get('/product', 'product.list');
     app.get('/product/edit', 'product.edit');
     app.post('/product/edit', 'product.edit_');
@@ -92,10 +92,6 @@ module.exports = app => {
     app.post('/merchant/mobile/exist', 'merchant.mobileIsExist');
     app.get('/merchant/modify/password', 'merchant.modifyPassword');
     app.post('/merchant/modify/password', 'merchant.modifyPassword_');
-    app.get('/merchant/info', 'merchant');
-    app.get('/merchant/account', 'merchant');
-    app.get('/merchant/printer', 'merchant');
-
     // //productCombo
     // app.get('/product/combo', 'productCombo.list');
     // app.get('/product/combo/edit', 'productCombo.edit');

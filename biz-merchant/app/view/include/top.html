@@ -6,12 +6,12 @@
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                    {{ ctx.session.member.username }}
+                    {{ ctx.session.member.loginInfo.username }}
                 </a>
                 <ul class="dropdown-menu dropdown-messages" style="width: 100px;">
                     <li class="m-t-xs">
                         <div class="text-center link-block" style="padding: 10px 0;">
-                            <a class="" data-toggle="modal" href="/seller/modify/password" data-target="#modifyPasswodModal" style="padding: 3px 10px;">
+                            <a class="" data-toggle="modal" href="/merchant/modify/password" data-target="#modifyPasswodModal" style="padding: 3px 10px;">
                                 <i class="fa fa-pencil"></i> <strong> 修改密码</strong>
                             </a>
                         </div>

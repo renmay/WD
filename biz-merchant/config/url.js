@@ -2,13 +2,15 @@
 
 module.exports =  {
     upload: '/common/file/upload',
-    login: '/merchant/login',
+    login: '/login',
     productCombo: '/product/combo',
     //区域信息
     district: '/district',
     districtQuery: '/district/get',
     fundLog: '/fundLog',
     product: '/product',
+    productUpdate: '/product/update',
+    
     productLanguage: '/product/language',
     productType: '/product/type',
     productGroup: '/product/group',

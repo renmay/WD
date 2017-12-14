@@ -6,7 +6,6 @@ module.exports = app => {
             let data = await this.service.upload.get();
             this.success(data);
         };
-
     }
     return UploadController;
 };

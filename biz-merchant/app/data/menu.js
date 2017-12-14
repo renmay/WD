@@ -91,7 +91,7 @@ module.exports =  {
             ]
         },
         {
-            url: '/merchant',
+            url: '/league',
             icon: 'fa fa-bar-chart-o',
             name: '联盟',
             children: [
