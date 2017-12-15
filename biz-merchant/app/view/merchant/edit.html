@@ -19,12 +19,12 @@
                 <div class="ibox-content">
                     <form class="form-horizontal m-t from" id="form" action="/merchant/edit" method="post" data-href="/merchant">
                     	{{ forms.hidden('id', data.id) }}
-						{{ forms.text('姓名', 'name', data.name, '请输入姓名', 'required') }}
+						{{ forms.text('姓名', 'linkName', data.linkName, '请输入姓名', 'required') }}
 						{{ forms.text('用户名', 'username', data.username, '请输入用户名', 'required') }}
 						{{ forms.text('手机号', 'mobile', data.mobile, '请输入手机号', 'required') }}
 						{{ forms.password('密码', 'password', '', '留空表示不修改') }}
 						{{ forms.radios('员工类型', 'userType', [{text: '管理员', value: 1}, {text: '员工', value: 2}], data.userType) }}
-						{{ forms.radios('性别', 'gender', [{text: '男', value: 1}, {text: '女', value: 0}], data.gender) }}
+						{{ forms.radios('性别', 'sex', [{text: '男', value: 1}, {text: '女', value: 0}], data.sex) }}
 
                         <!--{% if data.id != 1 %}-->
 						<!--<div class="form-group">-->
@@ -64,7 +64,7 @@
         var e = "";
         $("#form").validate({
             rules: {
-                name: "required",
+                linkName: "required",
                 username: {
                     required: true
                 },
@@ -72,11 +72,11 @@
                     required: true
                 },
                 userType: "required",
-                gender: "required",
+                sex: "required",
             },
             messages: {
-                name: {
-                    required: e + "请输入名称"
+                linkName: {
+                    required: e + "请输入姓名"
                 },
                 username: {
                     required: e + "请输入用户名",
@@ -88,7 +88,7 @@
                 userType: {
                     required: e + "请输入类型 1.管理员 2.员工 "
                 },
-                gender: {
+                sex: {
                     required: e + "请输入性别"
                 },
             },

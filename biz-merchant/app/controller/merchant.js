@@ -1,11 +1,11 @@
 'use strict';
 const rule = {
-		name: {type: 'string', required: true, allowEmpty: false},
+        linkName: {type: 'string', required: true, allowEmpty: false},
 		username: {type: 'string', required: true, allowEmpty: false},
 		mobile: {type: 'string', required: true, allowEmpty: false},
 		password: {type: 'string', required: false, allowEmpty: true},
-		userType: {type: 'integer', required: true, allowEmpty: false},
-		gender: {type: 'integer', required: true, allowEmpty: false},
+		userType: {type: 'string', required: true, allowEmpty: false},
+		sex: {type: 'string', required: true, allowEmpty: false},
 	};
 
 /**
@@ -19,6 +19,7 @@ exports.list = function* (ctx) {
     this.app.logger.info(data);
     yield this.render("merchant/list.html", {data: data, params});
 };
+
 
 // exports.list = function* (ctx) {
 //     let params = this.request.query;
@@ -92,6 +93,7 @@ exports.edit = function* (ctx) {
 
     if (id){
         let data = yield this.service.merchant.get({id: id});
+        console.log(data);
         yield this.render("merchant/edit.html", {data, params});
         return;
     }
