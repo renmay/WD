@@ -93,7 +93,6 @@ exports.edit = function* (ctx) {
 
     if (id){
         let data = yield this.service.merchant.get({id: id});
-        console.log(data);
         yield this.render("merchant/edit.html", {data, params});
         return;
     }

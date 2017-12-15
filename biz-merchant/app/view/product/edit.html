@@ -48,20 +48,20 @@
 
 						{{ forms.textarea('简单描述', 'brief', data.brief, '请输入产品简单描述', 'required') }}
 
-						{{ forms.text('销售价', 'fixPrice', data.fixPrice, '请输入商品销售价', 'required') }}
-						{{ forms.text('市场价', 'marketPrice', data.marketPrice, '请输入商品市场价', 'required') }}
+						{{ forms.number('销售价', 'fixPrice', data.fixPrice, '请输入商品销售价', 'required') }}
+						{{ forms.number('市场价', 'marketPrice', data.marketPrice, '请输入商品市场价', 'required') }}
 
-                        {{ forms.number('买家须知', 'buyingIntro', data.buyingIntro, '请输入买家购买注意事项') }}
-                        {{ forms.number('规格描述', 'specDetailDescription', data.specDetailDescription, '请输入规格描述') }}
-                        {{ forms.number('售后描述', 'afterSaleService', data.afterSaleService, '请输入售后描述') }}
+                        {{ forms.text('买家须知', 'buyingIntro', data.buyingIntro, '请输入买家购买注意事项') }}
+                        {{ forms.text('规格描述', 'specDetailDescription', data.specDetailDescription, '请输入规格描述') }}
+                        {{ forms.text('售后描述', 'afterSaleService', data.afterSaleService, '请输入售后描述') }}
 
                         {{ forms.images(
 						    label = '产品首图',
 						    fileList = [{
-						            name: 'image',
-						            value: data.url,
+						            name: 'imageId',
+						            value: data.imageId,
 						            url: ctx.helper.showImage(data.url, 160, 160, 'fixed'),
-						            text: '详情图'
+						            text: '标题图'
 						        }]
 						)}}
 

@@ -12,7 +12,9 @@ const rule = {
 		createTime: {type: 'date', required: true, allowEmpty: false},
 		specValue: {type: 'string', required: true, allowEmpty: false},
 		alarm: {type: 'integer', required: true, allowEmpty: false},
-		sku: {type: 'string', required: true, allowEmpty: false},
+        sku: {type: 'string', required: true, allowEmpty: false},
+        url: {type: 'string', required: true, allowEmpty: false},
+        images: {type: 'string', required: true, allowEmpty: false},
 	};
 
 /**
