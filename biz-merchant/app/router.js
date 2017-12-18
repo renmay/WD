@@ -35,9 +35,7 @@ module.exports = app => {
     // app.get('/product/group', 'product.group');
     // app.post('/product/group', 'product.group');
     //
-    // app.get('/product/recommend', 'product.recommend');
-    // app.post('/product/recommend', 'product.recommend');
-    // app.post('/product/recommend/cancel', 'product.recommendCancel');
+
     //
     // app.get('/product/pre', 'product.pre');
     // app.post('/product/pre', 'product.pre');
@@ -48,6 +46,9 @@ module.exports = app => {
     app.get('/product/type/edit', 'productType.edit');
     app.post('/product/type/edit', 'productType.edit_');
     app.post('/product/type/delete', 'productType.delete');
+    app.get('/product/recommend', 'product.recommend');
+    app.post('/product/recommend', 'product.recommend');
+    app.post('/product/recommend/cancel', 'product.recommendCancel');
     //
     // //member
     // app.get('/member', 'member.list');

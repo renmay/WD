@@ -58,8 +58,8 @@
                         {{ forms.images(
 						    label = '产品首图',
 						    fileList = [{
-						            name: 'imageId',
-						            value: data.imageId,
+						            name: 'url',
+						            value: data.url,
 						            url: ctx.helper.showImage(data.url, 160, 160, 'fixed'),
 						            text: '标题图'
 						        }]
@@ -82,11 +82,21 @@
 						            value: data.images[2],
 						            url: ctx.helper.showImage(data.images[2], 160, 160, 'fixed')
 						        },
-						        {
-						            name: 'images',
-						            value: data.images[3],
-						            url: ctx.helper.showImage(data.images[3], 160, 160, 'fixed')
-						        }]
+                        {
+                        name: 'images',
+                        value: data.images[3],
+                        url: ctx.helper.showImage(data.images[3], 160, 160, 'fixed')
+                        },
+                        {
+                        name: 'images',
+                        value: data.images[4],
+                        url: ctx.helper.showImage(data.images[3], 160, 160, 'fixed')
+                        },
+                        {
+                        name: 'images',
+                        value: data.images[5],
+                        url: ctx.helper.showImage(data.images[3], 160, 160, 'fixed')
+                        }]
 						)}}
 
 						{{ forms.editer('详情描述', 'intro', data.intro) }}

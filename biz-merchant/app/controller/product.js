@@ -32,7 +32,7 @@ const rule = {
 exports.list = function* (ctx) {
 
     let params = this.request.query;
-    params.createTime = -1;
+    params.productType = this.session.member.type;
     this.app.logger.info(params);
     let data = yield this.service.product.list(params);
     this.app.logger.info(data);
@@ -46,6 +46,8 @@ exports.list = function* (ctx) {
 exports.data = function* (ctx) {
     let params = this.request.body;
     this.app.logger.info(params);
+    params.productType = this.session.member.type;
+
     let data = yield this.service.product.list(params);
     this.app.logger.info(data);
     let list = data.list;
@@ -74,6 +76,7 @@ exports.data = function* (ctx) {
 exports.delete = function* (ctx) {
     let params = this.request.body;
     let id = params.id;
+    params.productType = this.session.member.type;
 
     if (!id){
         this.body = this.helper.res('请选择要删除的记录', 500);
@@ -132,12 +135,15 @@ exports.edit = function* (ctx) {
     if (id == ''){
         return this.redirect('/error');
     }
+    params.productType = this.session.member.type;
+
 
     if (id){
         let data = yield this.service.product.get({id: id});
 
-        let images = data.images;
-
+       let images = data.images.split(",");
+        this.app.logger.info(images);
+        data.images = images;
         for (var i = 0; i < 4 - images.length; i++){//将数组长度补足为4
             images.push('');
         }
@@ -161,6 +167,7 @@ exports.edit = function* (ctx) {
 exports.edit_ = function* (ctx) {
     //this.validate(rule);
     let params = this.request.body;
+    params.productType = this.session.member.type;
 
     let images = params.images;
     let imgs = new Array();
@@ -173,7 +180,7 @@ exports.edit_ = function* (ctx) {
 
     this.logger.info(imgs);
     params.images = imgs;
-
+    this.app.logger.info(params);
     let data = yield this.service.product.edit(params);
     yield this.body = data;
 };

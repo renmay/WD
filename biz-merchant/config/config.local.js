@@ -7,7 +7,7 @@ module.exports = app => {
         base: 'http://127.0.0.1:8080',
         common: 'http://common.zzyuu.com',
         static: '',
-        image: 'http://img.zzyuu.com'
+        image: 'http://img-test.zzyuu.com'
     };
 
     exports.static = {

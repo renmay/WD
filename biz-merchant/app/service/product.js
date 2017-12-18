@@ -18,7 +18,7 @@ module.exports = app => {
                     language: params.language
                 }
             });
-			this.app.logger.info(result.data);
+            this.app.logger.info(result.data);
             if (result.data.code != 200){
                 throw new Error(result.data.message ? result.data.message : 'error');
             }

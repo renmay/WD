@@ -9,6 +9,7 @@ module.exports =  {
     districtQuery: '/district/get',
     fundLog: '/fundLog',
     product: '/product',
+    productDelete: '/product/delete',
 
     productLanguage: '/product/language',
     productType: '/product/type',
