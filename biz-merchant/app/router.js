@@ -35,7 +35,11 @@ module.exports = app => {
     // app.get('/product/group', 'product.group');
     // app.post('/product/group', 'product.group');
     //
-
+    //member
+    app.get('/member', 'member.list');
+    app.get('/member/edit', 'member.edit');
+    app.post('/member/edit', 'member.edit_'); //如果是post方法修改数据 在后面加 '_' 区分
+    app.post('/member/delete', 'member.delete');
     //
     // app.get('/product/pre', 'product.pre');
     // app.post('/product/pre', 'product.pre');
@@ -50,12 +54,7 @@ module.exports = app => {
     app.post('/product/recommend', 'product.recommend');
     app.post('/product/recommend/cancel', 'product.recommendCancel');
     //
-    // //member
-    // app.get('/member', 'member.list');
-    // app.get('/member/edit', 'member.edit');
-    // app.post('/member/edit', 'member.edit_'); //如果是post方法修改数据 在后面加 '_' 区分
-    // app.post('/member/delete', 'member.delete');
-    //
+
     //order
     app.get('/order', 'order.list');
     // app.get('/order/remind', 'order.remind');

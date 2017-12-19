@@ -91,21 +91,13 @@ module.exports =  {
             ]
         },
         {
-            url: '/league',
+            url: '/member',
             icon: 'fa fa-bar-chart-o',
-            name: '联盟',
+            name: '会员',
             children: [
                 {
-                    url: '/merchant',
-                    name: '店员'
-                },
-                {
-                    url: '/store',
-                    name: '店铺信息'
-                },
-                {
-                    url: '/printer',
-                    name: '打印机'
+                    url: '/member',
+                    name: '会员'
                 }
             ]
         }
