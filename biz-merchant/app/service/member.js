@@ -10,12 +10,12 @@ module.exports = app => {
          * 获取数据
          * @param params
          */
-        * get(params) {
-            const result = yield this.ctx.curl(this.app.urls('member.id', params), {
+        async get(params) {
+            const result = await this.ctx.curl(this.app.urls('member.id', params), {
                 method: 'get',
                 dataType: 'json'
             });
-			this.app.logger.info(result.data);
+            this.app.logger.info(result.data);
             let data = result.data;
 
             if (data.code != 200){
@@ -31,12 +31,12 @@ module.exports = app => {
          * @param params
          * @returns {{}}
          */
-        * list(params) {
+        async list(params) {
             /**
              * 请求后台接口
              */
             params.orderByRegtime = -1;
-            const result = yield this.ctx.curl(this.app.urls('member'), {
+            const result = await this.ctx.curl(this.app.urls('member'), {
                 dataType: 'json',
                 data: params
             });
@@ -56,12 +56,12 @@ module.exports = app => {
          * @param params
          * @returns {{}}
          */
-        * edit(params) {
+        async edit(params) {
             let method = 'post';
             if (params.id && params.id != ''){
                 method = 'put';
             }
-            const result = yield this.ctx.curl(this.app.urls('member'), {
+            const result = await this.ctx.curl(this.app.urls('member'), {
                 method: method,
                 dataType: 'json',
                 data: params
@@ -73,8 +73,8 @@ module.exports = app => {
          * 删除
          * @param params
          */
-        * delete(params) {
-            const result = yield this.ctx.curl(this.app.urls('member.id', params), {
+        async delete(params) {
+            const result = await this.ctx.curl(this.app.urls('member.id', params), {
                 method: 'delete',
                 dataType: 'json'
             });

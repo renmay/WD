@@ -6,16 +6,17 @@ module.exports = app => {
             super(ctx);
         }
 
+
         /**
          * 获取数据
          * @param params
          */
-        * get(params) {
-            const result = yield this.ctx.curl(this.app.urls('merchant.id', params), {
+        async get(params) {
+            const result = await this.ctx.curl(this.app.urls('merchant.id', params), {
                 method: 'get',
                 dataType: 'json'
             });
-			this.app.logger.info(result.data);
+            this.app.logger.info(result.data);
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
@@ -29,11 +30,11 @@ module.exports = app => {
          * @param params
          * @returns {{}}
          */
-        * list(params) {
+        async list(params) {
             /**
              * 请求后台接口
              */
-            const result = yield this.ctx.curl(this.app.urls('merchant'), {
+            const result = await this.ctx.curl(this.app.urls('merchant'), {
                 dataType: 'json',
                 data: params
             });
@@ -52,12 +53,12 @@ module.exports = app => {
          * @param params
          * @returns {{}}
          */
-        * edit(params) {
+        async edit(params) {
             let method = 'post';
             if (params.id && params.id != ''){
                 method = 'put';
             }
-            const result = yield this.ctx.curl(this.app.urls('merchant'), {
+            const result = await this.ctx.curl(this.app.urls('merchant'), {
                 method: method,
                 dataType: 'json',
                 data: params
@@ -69,20 +70,20 @@ module.exports = app => {
          * 删除
          * @param params
          */
-        * delete(params) {
-            const result = yield this.ctx.curl(this.app.urls('merchant.id', params), {
+        async delete(params) {
+            const result = await this.ctx.curl(this.app.urls('merchant.id', params), {
                 method: 'delete',
                 dataType: 'json'
             });
             return result.data;
         }
 
-        * mobileIsExist(params) {
+        async mobileIsExist(params) {
 
             /**
              * 请求后台接口
              */
-            const result = yield this.ctx.curl(this.app.urls('merchantMobileIsExist'), {
+            const result = await this.ctx.curl(this.app.urls('merchantMobileIsExist'), {
                 method: 'post',
                 data: {
                     params
@@ -99,11 +100,11 @@ module.exports = app => {
             return data;
         }
 
-        * usernameIsExist(params) {
+        async usernameIsExist(params) {
             /**
              * 请求后台接口
              */
-            const result = yield this.ctx.curl(this.app.urls('merchantUsernameIsExist'), {
+            const result = await this.ctx.curl(this.app.urls('merchantUsernameIsExist'), {
                 method: 'post',
                 data: {
                     params
@@ -120,12 +121,12 @@ module.exports = app => {
             return data;
         }
 
-        * modifyPassword(params) {
+        async modifyPassword(params) {
             this.app.logger.info(params);
             /**
              * 请求后台接口
              */
-            const result = yield this.ctx.curl(this.app.urls('selleModifyPassword'), {
+            const result = await this.ctx.curl(this.app.urls('selleModifyPassword'), {
                 method: 'post',
                 data: params,
                 dataType: 'json',
@@ -140,12 +141,12 @@ module.exports = app => {
             return data;
         }
 
-        * menu(params) {
+        async menu(params) {
             this.app.logger.info(params);
             /**
              * 请求后台接口
              */
-            const result = yield this.ctx.curl(`${this.app.urls('merchantMenu')}/list`, {
+            const result = await this.ctx.curl(`${this.app.urls('merchantMenu')}/list`, {
                 method: 'get',
                 dataType: 'json',
             });
@@ -160,6 +161,5 @@ module.exports = app => {
 
 
     }
-
     return MerchantService;
 };

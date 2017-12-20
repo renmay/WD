@@ -10,8 +10,8 @@ module.exports = app => {
          * 获取数据
          * @param params
          */
-        * get(params) {
-            const result = yield this.ctx.curl(this.app.urls('product.id', params), {
+        async get(params) {
+            const result = await this.ctx.curl(this.app.urls('product.id', params), {
                 method: 'get',
                 dataType: 'json',
                 data:{
@@ -32,11 +32,11 @@ module.exports = app => {
          * @param params
          * @returns {{}}
          */
-        * list(params) {
+        async list(params) {
             /**
              * 请求后台接口
              */
-            const result = yield this.ctx.curl(this.app.urls('product'), {
+            const result = await this.ctx.curl(this.app.urls('product'), {
                 dataType: 'json',
                 data: params
             });
@@ -55,12 +55,12 @@ module.exports = app => {
          * @param params
          * @returns {{}}
          */
-        * edit(params) {
+        async edit(params) {
             let method = 'post';
             if (params.id && params.id != ''){
                 method = 'put';
             }
-            const result = yield this.ctx.curl(this.app.urls('product'), {
+            const result = await this.ctx.curl(this.app.urls('product'), {
                 method: method,
                 dataType: 'json',
                 data: params
@@ -68,8 +68,8 @@ module.exports = app => {
             return result.data;
         }
 
-        * editLanguage(params){
-            const result = yield this.ctx.curl(this.app.urls('productLanguage'), {
+        async editLanguage(params){
+            const result = await this.ctx.curl(this.app.urls('productLanguage'), {
                 method: 'post',
                 dataType: 'json',
                 data: params
@@ -81,8 +81,8 @@ module.exports = app => {
          * 删除
          * @param params
          */
-        * delete(params) {
-            const result = yield this.ctx.curl(this.app.urls('product.id', params), {
+        async delete(params) {
+            const result = await this.ctx.curl(this.app.urls('product.id', params), {
                 method: 'delete',
                 dataType: 'json'
             });
