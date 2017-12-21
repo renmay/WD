@@ -29,8 +29,8 @@ module.exports = app => {
     app.post('/product/edit', 'product.edit_');
     // app.get('/product/edit/en', 'product.editEn');
     // app.post('/product/edit/en', 'product.editEn_');
-    // app.post('/product/delete', 'product.delete');
-    // app.post('/product/data', 'product.data');
+    app.post('/product/delete', 'product.delete');
+    app.post('/product/data', 'product.data');
     //
     // app.get('/product/group', 'product.group');
     // app.post('/product/group', 'product.group');

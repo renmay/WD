@@ -25,12 +25,12 @@ module.exports = app => {
          * @param ctx
          */
         async list(ctx) {
-            let params = this.request.query;
-            params.productType = this.session.member.type;
+            let params = this.ctx.request.query;
+            params.productType = this.ctx.session.member.type;
             this.app.logger.info(params);
             let data = await this.service.product.list(params);
             this.app.logger.info(data);
-            await this.render("product/list.html", {data: data});
+            await this.ctx.render("product/list.html", {data: data});
         };
 
         /**
@@ -38,9 +38,9 @@ module.exports = app => {
          * @param ctx
          */
         async data(ctx) {
-            let params = this.request.body;
+            let params = this.ctx.request.body;
             this.app.logger.info(params);
-            params.productType = this.session.member.type;
+            params.productType = this.ctx.session.member.type;
 
             let data = await this.service.product.list(params);
             this.app.logger.info(data);
@@ -57,7 +57,7 @@ module.exports = app => {
             }
 
             data.list = items;
-            this.body = ctx.helper.res('', 200, {"lastPage": data.lastPage, "list": items});
+            this.ctx.body = this.ctx.helper.res('', 200, {"lastPage": data.lastPage, "list": items});
         };
 
 
@@ -67,20 +67,20 @@ module.exports = app => {
          * @param ctx
          */
         async delete(ctx) {
-            let params = this.request.body;
+            let params = this.ctx.request.body;
 
             let id = params.id;
-            params.productType = this.session.member.type;
+            params.productType = this.ctx.session.member.type;
 
             if (!id) {
-                this.body = this.helper.res('请选择要删除的记录', 500);
+                this.ctx.body = this.ctx.helper.res('请选择要删除的记录', 500);
                 return;
             }
 
             //判断是批量删除还是单个删除
             if (id instanceof Array) {
                 if (id.length > 10) {
-                    this.body = this.helper.res('删除的条数不能为0且同时不能多于10条', 500);
+                    this.ctx.body = this.ctx.helper.res('删除的条数不能为0且同时不能多于10条', 500);
                     return;
                 }
                 params.id = id.join(',');
@@ -89,17 +89,22 @@ module.exports = app => {
             this.app.logger.info(params);
             let data = await this.service.product.delete(params);
 
-            this.body = data;
+            this.ctx.body = data;
         };
 
+        /**
+         * 编辑数据
+         * @param ctx
+         * @returns {Promise.<*>}
+         */
         async edit(ctx) {
-            let params = this.request.query;
+            let params = this.ctx.request.query;
             let id = params.id;
-            console.log(this.request.ip);
+            console.log(this.ctx.request.ip);
             if (id == '') {
                 return this.redirect('/error');
             }
-            params.productType = this.session.member.type;
+            params.productType = this.ctx.session.member.type;
 
 
             if (id) {
@@ -112,7 +117,7 @@ module.exports = app => {
                     images.push('');
                 }
 
-                await this.render("product/edit.html", {data, params});
+                await this.ctx.render("product/edit.html", {data, params});
                 return;
             }
 
@@ -120,7 +125,7 @@ module.exports = app => {
                 taste: []
             };
 
-            await this.render("product/edit.html", {data, params});
+            await this.ctx.render("product/edit.html", {data, params});
 
         };
 
@@ -132,8 +137,8 @@ module.exports = app => {
 
         async edit_(ctx) {
             //this.validate(rule);
-            let params = this.request.body;
-            params.productType = this.session.member.type;
+            let params = this.ctx.request.body;
+            params.productType = this.ctx.session.member.type;
 
             let images = params.images;
             let imgs = new Array();
@@ -144,35 +149,35 @@ module.exports = app => {
                 }
             }
 
-            this.logger.info(imgs);
+            this.app.logger.info(imgs);
             params.images = imgs;
             this.app.logger.info(params);
             let data = await this.service.product.edit(params);
-            await this.body = data;
+            this.ctx.body = data;
         };
 
         async recommend(ctx) {
 
-            if ('GET' == this.request.method) {//get请求
-                let params = this.request.query;
+            if ('GET' == this.ctx.request.method) {//get请求
+                let params = this.ctx.request.query;
                 let id = params.id;
-                console.log(this.request.ip);
+                console.log(this.ctx.request.ip);
                 if (id == '') {
-                    return this.redirect('/error');
+                    return this.ctx.redirect('/error');
                 }
 
                 let data = await this.service.product.get({id: id});
 
                 await this.render("product/recommend.html", {data, params});
             } else {//post
-                const params = this.request.body;
+                const params = this.ctx.request.body;
                 params.isRecommend = true;
                 this.logger.info(params);
                 //调用service中的login接口登录
                 await this.service.product.recommend(params);
 
                 //放回json数据
-                this.body = {
+                this.ctx.body = {
                     code: 200,
                     message: 'success'
                 }
@@ -183,26 +188,26 @@ module.exports = app => {
 
         async pre(ctx) {
 
-            if ('GET' == this.request.method) {//get请求
-                let params = this.request.query;
+            if ('GET' == this.ctx.request.method) {//get请求
+                let params = this.ctx.request.query;
                 let id = params.id;
-                console.log(this.request.ip);
+                console.log(this.ctx.request.ip);
                 if (id == '') {
-                    return this.redirect('/error');
+                    return this.ctx.redirect('/error');
                 }
 
                 let data = await this.service.product.get({id: id});
 
-                await this.render("product/pre.html", {data, params});
+                await this.ctx.render("product/pre.html", {data, params});
             } else {//post
-                const params = this.request.body;
+                const params = this.ctx.request.body;
                 params.isPreShow = true;
-                this.logger.info(params);
+                this.app.logger.info(params);
                 //调用service中的login接口登录
                 await this.service.product.pre(params);
 
                 //放回json数据
-                this.body = {
+                this.ctx.body = {
                     code: 200,
                     message: 'success'
                 }
@@ -211,14 +216,14 @@ module.exports = app => {
         };
 
         async recommendCancel(ctx) {
-            const params = this.request.query;
+            const params = this.ctx.request.query;
             this.logger.info(params);
             params.isRecommend = false;
             //调用service中的login接口登录
             await this.service.product.recommend(params);
 
             //放回json数据
-            this.body = {
+            this.ctx.body = {
                 code: 200,
                 message: 'success'
             }
@@ -227,14 +232,14 @@ module.exports = app => {
 
 
         async preCancel(ctx) {
-            const params = this.request.query
+            const params = this.ctx.request.query
             this.logger.info(params);
             //调用service中的login接口登录
             params.isPreShow = false;
             await this.service.product.pre(params);
 
             //放回json数据
-            this.body = {
+            this.ctx.body = {
                 code: 200,
                 message: 'success'
             }
@@ -242,12 +247,12 @@ module.exports = app => {
         };
 
         async group(ctx) {
-            if ('GET' == this.request.method) {//get请求
-                let params = this.request.query;
+            if ('GET' == this.ctx.request.method) {//get请求
+                let params = this.ctx.request.query;
                 let id = params.id;
-                console.log(this.request.ip);
+                console.log(this.ctx.request.ip);
                 if (id == '') {
-                    return this.redirect('/error');
+                    return this.ctx.redirect('/error');
                 }
 
 
@@ -273,13 +278,13 @@ module.exports = app => {
 
                 await this.render("product/group.html", {data, productType, product, params});
             } else {//post
-                const params = this.request.body;
+                const params = this.ctx.request.body;
                 this.logger.info(params);
                 //调用service中的login接口登录
                 let data = await this.service.productGroup.edit(params);
 
                 //放回json数据
-                this.body = data;
+                this.ctx.body = data;
             }
 
         };

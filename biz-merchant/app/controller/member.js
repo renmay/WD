@@ -31,10 +31,10 @@ module.exports = app => {
          * @param ctx
          */
         async list(ctx) {
-            let params = this.request.query;
+            let params = this.ctx.request.query;
             this.app.logger.info(params);
             let data = await this.service.member.list(params);
-            await this.render("member/list.html", {data: data, params});
+            await this.ctx.render("member/list.html", {data: data, params});
         };
 
 
@@ -44,18 +44,18 @@ module.exports = app => {
          * @param ctx
          */
         async delete(ctx) {
-            let params = this.request.body;
+            let params = this.ctx.request.body;
             let id = params.id;
 
             if (!id) {
-                this.body = this.helper.res('请选择要删除的记录', 500);
+                this.body = this.ctx.helper.res('请选择要删除的记录', 500);
                 return;
             }
 
             //判断是批量删除还是单个删除
             if (id instanceof Array) {
                 if (id.length > 10) {
-                    this.body = this.helper.res('删除的条数不能为0且同时不能多于10条', 500);
+                    this.body = this.ctx.helper.res('删除的条数不能为0且同时不能多于10条', 500);
                     return;
                 }
                 params.id = id.join(',');
@@ -68,19 +68,19 @@ module.exports = app => {
         };
 
         async edit(ctx) {
-            let params = this.request.query;
+            let params = this.ctx.request.query;
             let id = params.id;
 
             if (id == '') {
-                return this.redirect('/error');
+                return this.ctx.redirect('/error');
             }
 
             if (id) {
                 let data = await this.service.member.get({id: id});
-                await this.render("member/edit.html", {data, params});
+                await this.ctx.render("member/edit.html", {data, params});
                 return;
             }
-            await this.render("member/edit.html", {params});
+            await this.ctx.render("member/edit.html", {params});
 
         };
 
@@ -91,9 +91,9 @@ module.exports = app => {
          */
         async edit_(ctx) {
             this.validate(rule);
-            let params = this.request.body;
+            let params = this.ctx.request.body;
             let data = await this.service.member.edit(params);
-            await this.body = data;
+            this.body = data;
         };
 
     }
