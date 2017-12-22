@@ -28,10 +28,10 @@
                             <div class="col-sm-3">
                                 <div class="input-group">
                                     <span class="input-group-addon">产品分类</span>
-                                    <select class="form-control m-b" name="productTypeId">
+                                    <select class="form-control m-b" name="productCategoryId">
                                         <option value="">全部</option>
-                                        {% for item in productType %}
-                                        <option value="{{ item.value }}" {{ 'selected' if item.value == params.productTypeId else ''}}>{{ item.text }}</option>
+                                        {% for item in productCategory %}
+                                        <option value="{{ item.value }}" {{ 'selected' if item.value == params.productCategoryId else ''}}>{{ item.text }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>

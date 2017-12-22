@@ -12,7 +12,7 @@ module.exports =  {
     productDelete: '/product/delete',
 
     productLanguage: '/product/language',
-    productType: '/product/type',
+    productCategory: '/product/category',
     productGroup: '/product/group',
     productBookingRemind: '/product/booking/remind',
     guestbook: '/guestbook',

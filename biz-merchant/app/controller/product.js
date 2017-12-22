@@ -27,10 +27,13 @@ module.exports = app => {
         async list(ctx) {
             let params = this.ctx.request.query;
             params.productType = this.ctx.session.member.type;
+            params.storeId = this.ctx.session.member.storeId;
             this.app.logger.info(params);
             let data = await this.service.product.list(params);
+            let productCategory = await this.service.productCategory.listSelectJsonString(params);
+
             this.app.logger.info(data);
-            await this.ctx.render("product/list.html", {data: data});
+            await this.ctx.render("product/list.html", {data: data,"productCategory":productCategory});
         };
 
         /**
@@ -100,13 +103,12 @@ module.exports = app => {
         async edit(ctx) {
             let params = this.ctx.request.query;
             let id = params.id;
-            console.log(this.ctx.request.ip);
             if (id == '') {
                 return this.redirect('/error');
             }
-            params.productType = this.ctx.session.member.type;
-
-
+            params.storeId = this.ctx.session.member.storeId;
+            params.id = null;
+            let productCategory = await this.service.productCategory.listSelectJsonString(params);
             if (id) {
                 let data = await this.service.product.get({id: id});
 
@@ -117,7 +119,7 @@ module.exports = app => {
                     images.push('');
                 }
 
-                await this.ctx.render("product/edit.html", {data, params});
+                await this.ctx.render("product/edit.html", {data, params,"productCategory":productCategory});
                 return;
             }
 
@@ -125,7 +127,7 @@ module.exports = app => {
                 taste: []
             };
 
-            await this.ctx.render("product/edit.html", {data, params});
+            await this.ctx.render("product/edit.html", {data, params,"productCategory":productCategory});
 
         };
 
@@ -139,6 +141,7 @@ module.exports = app => {
             //this.validate(rule);
             let params = this.ctx.request.body;
             params.productType = this.ctx.session.member.type;
+            params.storeId = this.ctx.session.member.storeId;
 
             let images = params.images;
             let imgs = new Array();
@@ -274,9 +277,9 @@ module.exports = app => {
                 }
 
 
-                let productType = await this.service.productType.listSelectJsonString();
+                let productCategory = await this.service.productCategory.listSelectJsonString();
 
-                await this.render("product/group.html", {data, productType, product, params});
+                await this.render("product/group.html", {data, productCategory, product, params});
             } else {//post
                 const params = this.ctx.request.body;
                 this.logger.info(params);

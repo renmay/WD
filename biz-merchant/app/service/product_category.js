@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = app => {
-    class productTypeService extends app.Service {
+    class ProductCategoryService extends app.Service {
         constructor(ctx) {
             super(ctx);
         }
@@ -10,13 +10,13 @@ module.exports = app => {
          * 获取数据
          * @param params
          */
-        * get(params) {
-            const result = yield this.ctx.curl(this.app.urls('productType.id', params), {
+        async get(params) {
+            const result = await this.ctx.curl(this.app.urls('productCategory.id', params), {
                 method: 'get',
                 dataType: 'json'
             });
-			this.app.logger.info(result.data);
-            if (result.data.code != 200){
+            this.app.logger.info(result.data);
+            if (result.data.code != 200) {
                 throw new Error(data.message ? data.message : 'error');
             }
 
@@ -29,18 +29,18 @@ module.exports = app => {
          * @param params
          * @returns {{}}
          */
-        * list(params) {
+        async list(params) {
             /**
              * 请求后台接口
              */
-            const result = yield this.ctx.curl(this.app.urls('productType'), {
+            const result = await this.ctx.curl(this.app.urls('productCategory'), {
                 dataType: 'json',
                 data: params
             });
 
             let data = result.data;
 
-            if (data.code != 200){
+            if (data.code != 200) {
                 throw new Error(data.message ? data.message : 'error');
             }
 
@@ -52,12 +52,12 @@ module.exports = app => {
          * @param params
          * @returns {{}}
          */
-        * edit(params) {
+        async edit(params) {
             let method = 'post';
-            if (params.id && params.id != ''){
+            if (params.id && params.id != '') {
                 method = 'put';
             }
-            const result = yield this.ctx.curl(this.app.urls('productType'), {
+            const result = await this.ctx.curl(this.app.urls('productCategory'), {
                 method: method,
                 dataType: 'json',
                 data: params
@@ -69,41 +69,46 @@ module.exports = app => {
          * 删除
          * @param params
          */
-        * delete(params) {
-            const result = yield this.ctx.curl(this.app.urls('productType.id', params), {
+        async delete(params) {
+            const result = await this.ctx.curl(this.app.urls('productCategory.id', params), {
                 method: 'delete',
                 dataType: 'json'
             });
             return result.data;
         }
 
-        * listSelectJsonString(params) {
+        /**
+         * 获取产品目录
+         * @param params
+         * @returns {Promise.<Array>}
+         */
+        async listSelectJsonString(params) {
             /**
              * 请求后台接口
              */
-            const result = yield this.ctx.curl(this.app.urls('productType') + "/all", {
+            const result = await this.ctx.curl(this.app.urls('productCategory'), {
                 dataType: 'json',
                 data: params
             });
 
             let data = result.data;
 
-            if (data.code != 200){
+            if (data.code != 200) {
                 throw new Error(data.message ? data.message : 'error');
             }
+            let productCategory = [];
 
-            let productType = [];
-
-            for (let i = 0; i < data.data.length; i++){
+            this.app.logger.info(data.data.list)
+            for (let i = 0; i < data.data.list.length; i++) {
                 let item = {};
-                item.text = data.data[i].name;
-                item.value = data.data[i].id;
-                productType.push(item);
+                item.text = data.data.list[i].name;
+                item.value = data.data.list[i].id;
+                productCategory.push(item);
             }
-            return productType;
+            return productCategory;
         }
 
     }
 
-    return productTypeService;
-};
+    return ProductCategoryService;
+}

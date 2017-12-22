@@ -27,10 +27,11 @@ module.exports = app => {
     app.get('/product', 'product.list');
     app.get('/product/edit', 'product.edit');
     app.post('/product/edit', 'product.edit_');
-    // app.get('/product/edit/en', 'product.editEn');
-    // app.post('/product/edit/en', 'product.editEn_');
     app.post('/product/delete', 'product.delete');
     app.post('/product/data', 'product.data');
+    app.get('/product/recommend', 'product.recommend');
+    app.post('/product/recommend', 'product.recommend');
+    app.post('/product/recommend/cancel', 'product.recommendCancel');
     //
     // app.get('/product/group', 'product.group');
     // app.post('/product/group', 'product.group');
@@ -45,14 +46,12 @@ module.exports = app => {
     // app.post('/product/pre', 'product.pre');
     // app.post('/product/pre/cancel', 'product.preCancel');
     //
-    //productType
-    app.get('/product/type', 'productType.list');
-    app.get('/product/type/edit', 'productType.edit');
-    app.post('/product/type/edit', 'productType.edit_');
-    app.post('/product/type/delete', 'productType.delete');
-    app.get('/product/recommend', 'product.recommend');
-    app.post('/product/recommend', 'product.recommend');
-    app.post('/product/recommend/cancel', 'product.recommendCancel');
+    //productCategory
+    app.get('/product/category', 'productCategory.list');
+    app.get('/product/category/edit', 'productCategory.edit');
+    app.post('/product/category/edit', 'productCategory.edit_');
+    app.post('/product/category/delete', 'productCategory.delete');
+
     //
 
     //order

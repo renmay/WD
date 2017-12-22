@@ -33,20 +33,21 @@
                     <form class="form-horizontal m-t from" id="form" action="/product/edit" method="post" data-href="/product">
                     	{{ forms.hidden('id', data.id) }}
 
-<!-- 						<div class="form-group">
-							<label class="col-sm-2 control-label">产品类型</label>
-							<div class="col-sm-8">
-								<select class="form-control m-b" name="type">
-									<option value="1" {{ 'selected' if data.type == 1 }}>单品</option>
-									<option value="2" {{ 'selected' if data.type == 2 }}>套餐</option>
-								</select>
-							</div>
-						</div> -->
+ 						<!--<div class="form-group">-->
+							<!--<label class="col-sm-2 control-label">产品类型</label>-->
+							<!--<div class="col-sm-8">-->
+								<!--<select class="form-control m-b" name="type">-->
+									<!--<option value="1" {{ 'selected' if data.type == 1 }}>单品</option>-->
+									<!--<option value="2" {{ 'selected' if data.type == 2 }}>套餐</option>-->
+								<!--</select>-->
+							<!--</div>-->
+						<!--</div>-->
                         {{ forms.text('商品名称', 'name', data.name, '请输入商品名称', 'required') }}
 
-<!-- 						{{ forms.select('产品分类', 'productTypeId', productType, data.productType.id) }} -->
+ 						{{ forms.select('商品分类', 'productCategoryId', productCategory, data.productCategoryId) }}
 
-						{{ forms.textarea('简单描述', 'brief', data.brief, '请输入产品简单描述', 'required') }}
+                        {{ forms.textarea('商品库存', 'inventory', data.inventory, '请输入商品库存', 'required') }}
+                        {{ forms.textarea('简单描述', 'brief', data.brief, '请输入产品简单描述', 'required') }}
 
 						{{ forms.number('销售价', 'fixPrice', data.fixPrice, '请输入商品销售价', 'required') }}
 						{{ forms.number('市场价', 'marketPrice', data.marketPrice, '请输入商品市场价', 'required') }}

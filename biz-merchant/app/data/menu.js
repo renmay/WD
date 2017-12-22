@@ -31,7 +31,7 @@ module.exports =  {
                     name: '产品列表'
                 },
                 {
-                    url: '/product/type',
+                    url: '/product/category',
                     name: '产品类型'
                 }
             ]

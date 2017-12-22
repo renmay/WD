@@ -18,7 +18,6 @@ module.exports = app => {
                 },
                 dataType: 'json',
             });
-
             let data = result.data;
 
             if (data.code != 200){
