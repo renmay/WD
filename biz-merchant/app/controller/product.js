@@ -118,13 +118,12 @@ module.exports = app => {
                 for (var i = 0; i < 4 - images.length; i++) {//将数组长度补足为4
                     images.push('');
                 }
-
                 await this.ctx.render("product/edit.html", {data, params,"productCategory":productCategory});
                 return;
             }
 
             let data = {
-                taste: []
+                "productType": this.ctx.session.member.productType
             };
 
             await this.ctx.render("product/edit.html", {data, params,"productCategory":productCategory});
