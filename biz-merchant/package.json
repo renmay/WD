@@ -1,12 +1,12 @@
 {
-  "name": "biz-admin",
+  "name": "biz-merchant",
   "version": "1.0.0",
   "description": "biz-admin",
   "private": true,
   "dependencies": {
-    "egg": "^2.0.0",
+    "egg": "^2.1.0",
     "egg-redis": "^1.0.2",
-    "egg-scripts": "^2.1.0",
+    "egg-scripts": "^2.5.0",
     "egg-session-redis": "^1.0.0",
     "egg-static": "^2.0.0",
     "egg-validate": "^1.0.0",

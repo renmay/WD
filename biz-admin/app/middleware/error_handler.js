@@ -7,29 +7,29 @@ const util = require('util');
  * @returns {sessionRedis}
  */
 module.exports = (options, app) => {
-    return function* errorHandler(next) {
+    return async function errorHandler(ctx, next) {
         try {
-            yield next;
+            await next();
         } catch (err) {
             // 注意：自定义的错误统一处理函数捕捉到错误后也要 `app.emit('error', err, this)`
             // 框架会统一监听，并打印对应的错误日志
-            this.app.emit('error', err, this);
+            app.emit('error', err, this);
 
             app.logger.info(err.message);
 
             // 自定义错误时异常返回的格式
             //要根据用户请求类型判断用要
-            if (this.acceptJSON){
+            if (ctx.acceptJSON){
                 //未登录
                 if ('Unauthorized' == err.message){
-                    return this.body = {
+                    return ctx.body = {
                         code: 401,
                         message: 'Unauthorized'
                     };
                 }else{
-                    return this.body = {
+                    return ctx.body = {
                         code: 500,
-                        data: this.app.config.env === 'prod' ? '' : this.request,
+                        data: app.config.env === 'prod' ? '' : ctx.request,
                         message: err.message ? err.message : '出错了',
                     };
                 }
@@ -37,36 +37,36 @@ module.exports = (options, app) => {
             }else{
                 //未登录
                 if ('Unauthorized' == err.message){
-                    return yield this.redirect('/login');
+                    return await ctx.redirect('/login');
                 }else{
                     const status = detectStatus(err);
                     const code = err.code || err.type;
-                    let message = detectErrorMessage(this, err);
+                    let message = detectErrorMessage(ctx, err);
                     if (code) {
                         message = `${message} (code: ${code})`;
                     }
                     if (isProd(app)) {
-                        this.status = 500;
-                        this.body = `<h2>Internal Server Error, real status: ${status}</h2>`;
+                        ctx.status = 500;
+                        ctx.body = `<h2>Internal Server Error, real status: ${status}</h2>`;
                         return;
                     }
                     const locals = {
                         title: err.name,
-                        url: this.url,
+                        url: ctx.url,
                         message,
                         errStack: err.stack,
-                        hostname: this.hostname,
-                        ip: this.ip,
-                        query: util.inspect(this.query),
-                        userAgent: this.header['user-agent'],
-                        accept: this.header.accept,
-                        cookie: util.inspect(this.header.cookie),
+                        hostname: ctx.hostname,
+                        ip: ctx.ip,
+                        query: util.inspect(ctx.query),
+                        userAgent: ctx.header['user-agent'],
+                        accept: ctx.header.accept,
+                        cookie: util.inspect(ctx.header.cookie),
                         session: '',
-                        coreName: this.app.poweredBy,
-                        baseDir: this.app.config.baseDir,
-                        config: util.inspect(this.app.config),
+                        coreName: app.poweredBy,
+                        baseDir: app.config.baseDir,
+                        config: util.inspect(app.config),
                     };
-                    return yield this.render('onerror_page.html', locals);
+                    return await ctx.render('onerror_page.html', locals);
                 }
 
             }

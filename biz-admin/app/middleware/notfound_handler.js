@@ -5,16 +5,16 @@
  * @returns {sessionRedis}
  */
 module.exports = (options, app) => {
-    return function* (next) {
-        yield next;
-        if (this.status === 404 && !this.body) {
-            if (this.acceptJSON){
-                this.body = {
+    return async function errorHandler(ctx, next) {
+        await next();
+        if (ctx.status === 404 && !ctx.body) {
+            if (ctx.acceptJSON){
+                ctx.body = {
                     coe: 404,
                     message: 'Not Found'
-            };
+                };
             }else{
-                this.redirect('/404');
+                ctx.redirect('/404');
             }
         }
     };
