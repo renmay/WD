@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="ibox-tools">
-                            <a href="/product/type/edit" class="btn btn-primary btn-xm">添加产品类型</a>
+                            <a href="/product/category/edit" class="btn btn-primary btn-xm">添加产品类型</a>
                         </div>
                     </div>
                 </div>
@@ -32,11 +32,11 @@
                    <form id="table-form">
                        {%
                            set columns = [{
-                               title: '名称',
-                               key: 'name'
+                               title: '图标',
+                               key: 'icon'
                            },{
                                title: '英文名',
-                               key: 'nameEn'
+                               key: 'name'
                             },{
                                title: '排序',
                                key: 'sort'
@@ -49,7 +49,7 @@
                            },{
                                title: '操作',
                                type: 'operate',
-                                url:'/product/type',
+                                url:'/product/category',
                                 btns: [
                                     'delete', 'edit'
                                 ]
@@ -61,10 +61,10 @@
                 <div class="hr-line-dashed"></div>
                 <div class="btn-region clearfix">
                     <div class="pull-left">
-                        <button href="" id="batch-del-btn" class="btn btn-danger btn-sm js-batch" data-url="/product/type/delete" data-confirm="确定删除选中的产品类型吗?" data-original-title="" title="">批量删除</button>
+                        <button href="" id="batch-del-btn" class="btn btn-danger btn-sm js-batch" data-url="/product/category/delete" data-confirm="确定删除选中的产品类型吗?" data-original-title="" title="">批量删除</button>
                     </div>
                     <div class="pull-right">
-                        {{ pagination.pagination(data, params, '/product/type') }}
+                        {{ pagination.pagination(data, params, '/product/category') }}
                     </div>
                 </div>
             </div>
