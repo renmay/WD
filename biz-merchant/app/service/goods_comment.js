@@ -11,7 +11,7 @@ module.exports = app => {
          * @param params
          */
         * get(params) {
-            const result = yield this.ctx.curl(this.app.urls('goodsComment.id', params), {
+            const result = yield this.ctx.fetch(this.app.urls('goodsComment.id', params), {
                 method: 'get',
                 dataType: 'json'
             });
@@ -35,7 +35,7 @@ module.exports = app => {
             /**
              * 请求后台接口
              */
-            const result = yield this.ctx.curl(this.app.urls('goodsComment'), {
+            const result = yield this.ctx.fetch(this.app.urls('goodsComment'), {
                 dataType: 'json',
                 data: params
             });
@@ -60,7 +60,7 @@ module.exports = app => {
             if (params.id && params.id != ''){
                 method = 'put';
             }
-            const result = yield this.ctx.curl(this.app.urls('goodsComment'), {
+            const result = yield this.ctx.fetch(this.app.urls('goodsComment'), {
                 method: method,
                 dataType: 'json',
                 data: params
@@ -73,7 +73,7 @@ module.exports = app => {
          * @param params
          */
         * delete(params) {
-            const result = yield this.ctx.curl(this.app.urls('goodsComment.id', params), {
+            const result = yield this.ctx.fetch(this.app.urls('goodsComment.id', params), {
                 method: 'delete',
                 dataType: 'json'
             });

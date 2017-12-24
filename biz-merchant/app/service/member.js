@@ -11,7 +11,7 @@ module.exports = app => {
          * @param params
          */
         async get(params) {
-            const result = await this.ctx.curl(this.app.urls('member.id', params), {
+            const result = await this.ctx.fetch(this.app.urls('member.id', params), {
                 method: 'get',
                 dataType: 'json'
             });
@@ -36,7 +36,7 @@ module.exports = app => {
              * 请求后台接口
              */
             params.orderByRegtime = -1;
-            const result = await this.ctx.curl(this.app.urls('member'), {
+            const result = await this.ctx.fetch(this.app.urls('member'), {
                 dataType: 'json',
                 data: params
             });
@@ -61,7 +61,7 @@ module.exports = app => {
             if (params.id && params.id != ''){
                 method = 'put';
             }
-            const result = await this.ctx.curl(this.app.urls('member'), {
+            const result = await this.ctx.fetch(this.app.urls('member'), {
                 method: method,
                 dataType: 'json',
                 data: params
@@ -74,7 +74,7 @@ module.exports = app => {
          * @param params
          */
         async delete(params) {
-            const result = await this.ctx.curl(this.app.urls('member.id', params), {
+            const result = await this.ctx.fetch(this.app.urls('member.id', params), {
                 method: 'delete',
                 dataType: 'json'
             });

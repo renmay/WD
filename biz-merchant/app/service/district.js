@@ -13,7 +13,7 @@ module.exports = app => {
          * @param params
          */
         async get(params) {
-            const result = await this.ctx.curl(this.app.urls('districtQuery'), {
+            const result = await this.ctx.fetch(this.app.urls('districtQuery'), {
                 dataType: 'json',
                 data: params
             });
@@ -38,7 +38,7 @@ module.exports = app => {
             /**
              * 请求后台接口
              */
-            const result = await this.ctx.curl(this.app.urls('district', params), {
+            const result = await this.ctx.fetch(this.app.urls('district', params), {
                 dataType: 'json'
             });
 
@@ -57,7 +57,7 @@ module.exports = app => {
          * @param params
          */
         async district(params){
-            const result = await this.ctx.curl(this.app.urls('district', params), {
+            const result = await this.ctx.fetch(this.app.urls('district', params), {
                 dataType: 'json'
             });
 

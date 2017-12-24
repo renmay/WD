@@ -17,6 +17,7 @@ module.exports = app => {
     // //发送验证码
     app.post('/send/code', 'sms.sendCode');
     app.post('/merchant/type', 'merchant.type');
+    app.get('/merchant/auth/info', 'merchant.info');
 
     // // 个人中心
     app.get('/member/info', 'member.info');

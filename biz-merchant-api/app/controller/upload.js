@@ -13,7 +13,7 @@ module.exports = app => {
         async sts() {
             let data = await this.service.upload.sts();
             if (data){
-                data.callback = 'http://common.zzyuu.com/common/file/callback';
+                data.Callback = 'http://common.zzyuu.com/common/file/callback';
             }
             this.success(data);
         };

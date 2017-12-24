@@ -4,7 +4,7 @@ module.exports =  {
     upload: '/common/file/upload',
     oss: '/oss',
     getUserInfo: '/user/get/{{id}}',   //参数使用{{params}}
-    user: '/user',
+    merchant: '/merchant',
 
     login: '/login',
     register: '/register',

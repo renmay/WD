@@ -12,7 +12,7 @@ module.exports = app => {
          * @returns {{}}
          */
         async send(params) {
-            const result = await this.ctx.curl(`${this.app.urls('sms')}/send`, {
+            const result = await this.ctx.fetch(`${this.app.urls('sms')}/send`, {
                 method: 'post',
                 dataType: 'json',
                 data: params

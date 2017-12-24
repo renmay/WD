@@ -12,7 +12,7 @@ module.exports = app => {
          * @param params
          */
         async get(params) {
-            const result = await this.ctx.curl(this.app.urls('merchant.id', params), {
+            const result = await this.ctx.fetch(this.app.urls('merchant.id', params), {
                 method: 'get',
                 dataType: 'json'
             });
@@ -34,7 +34,7 @@ module.exports = app => {
             /**
              * 请求后台接口
              */
-            const result = await this.ctx.curl(this.app.urls('merchant'), {
+            const result = await this.ctx.fetch(this.app.urls('merchant'), {
                 dataType: 'json',
                 data: params
             });
@@ -58,7 +58,7 @@ module.exports = app => {
             if (params.id && params.id != ''){
                 method = 'put';
             }
-            const result = await this.ctx.curl(this.app.urls('merchant'), {
+            const result = await this.ctx.fetch(this.app.urls('merchant'), {
                 method: method,
                 dataType: 'json',
                 data: params
@@ -71,7 +71,7 @@ module.exports = app => {
          * @param params
          */
         async delete(params) {
-            const result = await this.ctx.curl(this.app.urls('merchant.id', params), {
+            const result = await this.ctx.fetch(this.app.urls('merchant.id', params), {
                 method: 'delete',
                 dataType: 'json'
             });
@@ -83,7 +83,7 @@ module.exports = app => {
             /**
              * 请求后台接口
              */
-            const result = await this.ctx.curl(this.app.urls('merchantMobileIsExist'), {
+            const result = await this.ctx.fetch(this.app.urls('merchantMobileIsExist'), {
                 method: 'post',
                 data: {
                     params
@@ -104,7 +104,7 @@ module.exports = app => {
             /**
              * 请求后台接口
              */
-            const result = await this.ctx.curl(this.app.urls('merchantUsernameIsExist'), {
+            const result = await this.ctx.fetch(this.app.urls('merchantUsernameIsExist'), {
                 method: 'post',
                 data: {
                     params
@@ -126,7 +126,7 @@ module.exports = app => {
             /**
              * 请求后台接口
              */
-            const result = await this.ctx.curl(this.app.urls('selleModifyPassword'), {
+            const result = await this.ctx.fetch(this.app.urls('selleModifyPassword'), {
                 method: 'post',
                 data: params,
                 dataType: 'json',
@@ -146,7 +146,7 @@ module.exports = app => {
             /**
              * 请求后台接口
              */
-            const result = await this.ctx.curl(`${this.app.urls('merchantMenu')}/list`, {
+            const result = await this.ctx.fetch(`${this.app.urls('merchantMenu')}/list`, {
                 method: 'get',
                 dataType: 'json',
             });

@@ -26,6 +26,15 @@ module.exports = app => {
             this.success(data);
         }
 
+        /**
+         * 获取商家认证信息
+         * @returns {Promise.<void>}
+         */
+        async info() {
+            const data = await this.ctx.service.merchant.info();
+            this.success(data);
+        }
+
 
 
     }

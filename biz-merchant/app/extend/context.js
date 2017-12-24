@@ -12,7 +12,10 @@ exports.fetch = function(url, options = {}) {
     let _ctx = this;
 
     const token = this.session.token;
+    this.app.logger.info("******************************");
+    this.app.logger.info(this.session);
     this.app.logger.info(token);
+    this.app.logger.info("******************************");
     if (token){
         let headers = options.headers;
 
