@@ -11,7 +11,7 @@ module.exports = app => {
          * @param params
          */
         async get(params) {
-            const result = await this.ctx.curl(this.app.urls('productCategory.id', params), {
+            const result = await this.ctx.fetch(this.app.urls('productCategory.id', params), {
                 method: 'get',
                 dataType: 'json'
             });
@@ -33,7 +33,7 @@ module.exports = app => {
             /**
              * 请求后台接口
              */
-            const result = await this.ctx.curl(this.app.urls('productCategory'), {
+            const result = await this.ctx.fetch(this.app.urls('productCategory'), {
                 dataType: 'json',
                 data: params
             });
@@ -57,7 +57,7 @@ module.exports = app => {
             if (params.id && params.id != '') {
                 method = 'put';
             }
-            const result = await this.ctx.curl(this.app.urls('productCategory'), {
+            const result = await this.ctx.fetch(this.app.urls('productCategory'), {
                 method: method,
                 dataType: 'json',
                 data: params
@@ -70,7 +70,7 @@ module.exports = app => {
          * @param params
          */
         async delete(params) {
-            const result = await this.ctx.curl(this.app.urls('productCategory.id', params), {
+            const result = await this.ctx.fetch(this.app.urls('productCategory.id', params), {
                 method: 'delete',
                 dataType: 'json'
             });
@@ -86,7 +86,7 @@ module.exports = app => {
             /**
              * 请求后台接口
              */
-            const result = await this.ctx.curl(this.app.urls('productCategory'), {
+            const result = await this.ctx.fetch(this.app.urls('productCategory'), {
                 dataType: 'json',
                 data: params
             });
