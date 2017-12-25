@@ -95,7 +95,7 @@ module.exports = {
             return '/img/no-image.png';
         }
         let params = "x-oss-process=image/resize,m_"+scale+",w_"+width+",h_"+height;
-        return this.config.imageUrl + "/" + image + "?" + params;
+        return this.config.api.image + "/" + image + "?" + params;
     },
 
     /**

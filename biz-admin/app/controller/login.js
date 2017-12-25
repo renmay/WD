@@ -17,6 +17,7 @@ module.exports = app => {
                 //调用service中的login接口登录
                 const member = await this.service.login.login(params);
                 //将登陆成功的信息放入session中 后续验证用户登录中通过此信息判断用户是否登录
+                this.app.logger.info(member);
                 this.ctx.session.member = member;
 
                 //放回json数据
@@ -28,7 +29,7 @@ module.exports = app => {
         async logout() {
             //将登陆成功的信息放入session中 后续验证用户登录中通过此信息判断用户是否登录
             this.ctx.session.member = undefined;
-            this.redirect("/login");
+            this.ctx.redirect("/login");
         };
     }
     return LoginController;

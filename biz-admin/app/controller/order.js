@@ -7,14 +7,20 @@ const rule = {
  * 显示列表
  * @param ctx
  */
+// exports.list = function* (ctx) {
+//     let params = this.request.query;
+//     params.orderByBookingTime = -1;
+//     this.app.logger.info(params);
+//     let data = yield this.service.order.list(params);
+//     yield this.render("order/list.html", {data: data, params});
+// };
 exports.list = function* (ctx) {
-    let params = this.request.query;
-    params.orderByBookingTime = -1;
-    this.app.logger.info(params);
-    let data = yield this.service.order.list(params);
-    yield this.render("order/list.html", {data: data, params});
+    // let params = this.request.query;
+    // params.orderByBookingTime = -1;
+    // this.app.logger.info(params);
+    // let data = yield this.service.order.list(params);
+    yield this.render("order/list.html");
 };
-
 exports.remind = function* (ctx) {
     let params = this.request.query;
     params.status = 3;

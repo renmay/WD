@@ -27,7 +27,7 @@ var uploader = WebUploader.create({
 uploader.on( 'startUpload', function( block, data ) {
     if ('' == upload_config || upload_config.expire < new Date().getTime()){
         $.getJSON("/upload",function(json){
-            upload_config = json;
+            upload_config = json.data;
             setUploadParams(upload_config);
         });
     }else{
@@ -92,7 +92,7 @@ uploader.on( 'uploadComplete', function( file ) {
 });
 
 $.getJSON("/upload",function(json){
-    upload_config = json;
+    upload_config = json.data;
     setUploadParams(upload_config);
 });
 
@@ -123,6 +123,7 @@ function summernote_upload(config, files, editor, welEditable) {
     formData.append('url', config.url);
     formData.append('file',files[0]);
 
+    alert("host"+config.host);
     $.ajax({
         url : config.host,//后台文件上传接口
         type : 'POST',

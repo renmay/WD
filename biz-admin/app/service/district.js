@@ -67,14 +67,8 @@ module.exports = app => {
             if (data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
-
             return data.data;
         }
-
-
-
-
-
     }
 
     return DirtrictService;
