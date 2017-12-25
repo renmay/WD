@@ -36,7 +36,14 @@ module.exports =  {
     customCategory: '/custom/category',
     constellation: '/constellation',
 
-    chef: '/chef'
+    chef: '/chef',
+
+    systemModule : '/admin/module/system',
+
+    merchantAuthAudit: "/admin/merchant/auth",
+    merchantAuthAuditInfo: "/admin/merchant/auth/info",
+    merchantAuthAuditSuccess: "/admin/merchant/auth/success",
+    merchantAuthAuditFailure: "/admin/merchant/auth/failure"
 
 
 };

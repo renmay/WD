@@ -4,7 +4,7 @@ module.exports = app => {
     };
 
     exports.api = {
-        base: 'http://127.0.0.1:8082',
+        base: 'http://127.0.0.1:8080',
         common: 'http://common.zzyuu.com',
         static: '',
         image: 'http://img-test.zzyuu.com'

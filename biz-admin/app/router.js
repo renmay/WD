@@ -121,6 +121,8 @@ module.exports = app => {
     // app.get('/sms/send', 'sms.send');
     // app.post('/sms/send', 'sms.send');
 
-
+    //merchant auth audit
+    app.get('/merchant/auth', 'merchantAuth.list');
+    app.get('/merchant/auth/audit', 'merchantAuth.audit');
 
 };

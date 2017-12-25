@@ -1,0 +1,352 @@
+{% extends "_layout.html" %}
+{% import "component/forms.njk" as forms %}
+
+{# 样式代码 #}
+{% block style %}
+<link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+<style>
+    ul, li{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .date{
+        border: 1px solid #e7eaec;
+        text-align: left;
+        border-left: 0;
+        border-bottom: 0;
+    }
+    .date ul{
+        text-align: left;
+    }
+    .date ul li{
+        float: left;
+        height: 60px;
+        line-height: 60px;
+        border: 1px solid #e7eaec;
+        border-right: 0;
+        border-top: 0;
+        padding:0;
+    }
+
+    .date ul li span{
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .date ul li a{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        color: #ed5565;
+        font-size: 16px;
+        letter-spacing: 5px;
+        display: none;
+    }
+
+    .date ul li:hover span{
+        background: #fff;
+        opacity: 0.3;
+    }
+
+    .date ul li:hover a{
+        display: block;
+        cursor: pointer;
+    }
+
+
+
+    .clear{
+        clear: both;
+    }
+    .product .title{
+        color: #23b7e5;
+        font-style: normal;
+    }
+
+    .product table {
+        color:#333333;
+        border-collapse: collapse;
+        border: 1px solid #e7eaec;
+        width: 100%;
+    }
+    .product table td {
+        padding: 8px;
+        border: 1px solid #e7eaec;
+    }
+
+
+</style>
+{% endblock %}
+
+{# bodyd代码#}
+{% block body %}
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>套餐菜品编辑</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t from" id="form" action="/product/group" method="post" data-href="/product">
+                        {{ forms.hidden('productGroupId', params.id) }}
+                        {{ forms.label('名称', data.name) }}
+                        <div id="app">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">添加菜品</label>
+                                <div class="col-sm-2">
+                                    <select v-model="productType" @change="change" class="form-control m-b" name="{{ name }}">
+                                        <option></option>
+                                        {% for item in productType %}
+                                        <option value="{{ item.value }}">{{ item.text }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <input v-model="name" name="" @change="change" class="form-control large" value="" type="text" placeholder="输入商品关键字查询">
+                                </div>
+                                <button class="btn btn-primary" type="button" @click="loadMore" v-if="!lastPage">加载更多</button>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-8" style="max-height: 500px; overflow: auto;">
+                                    <div class="row product">
+                                        <table>
+                                            <template v-for="(item, index) in product">
+                                                <tr>
+                                                    <td width="60"><i class="title">[${item.type}]</i></td>
+                                                    <td>${item.name}</td>
+                                                    <td width="50"> <a @click="add(index)">添加</a></td>
+                                                </tr>
+                                            </template>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <template  v-if="addproduct.length > 0">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">已添加的菜品</label>
+                                    <div class="col-sm-8" style="max-height: 500px; overflow: auto;">
+                                        <div class="row product">
+                                            <table class="select-product">
+                                                <template v-for="(item, index) in addproduct">
+                                                    <tr>
+                                                        <td width="60"><i class="title">[${item.type}]</i></td>
+                                                        <td>${item.name}</td>
+                                                        <td width="50"> <a @click="remove(index)">删除</a></td>
+                                                        <input type="hidden" name="productId" v-model="item.id"/>
+                                                    </tr>
+                                                </template>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+
+
+                        </div>
+
+                        {{ forms.submit() }}
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{#js代码#}
+{% block js %}
+<script>
+    var app = new Vue({
+        el: '#app',
+        delimiters: ['${', '}'],
+        data: {
+            lastPage: false,
+            pageNo: 1,
+            name: '',
+            date: '',
+            blankDate: [],  //用来将表格补充完整
+            productType: '',
+            ids: [],
+            addproduct: {{ product | dump | safe }},
+            product: []
+        },
+        created: function() {
+        },
+    methods: {
+        add: function(index) {//添加菜品
+            if (index > this.product.length - 1){
+                layer.msg("数据有误，请刷新之后重试。");
+                return;
+            }
+
+            var product = this.product[index];
+            if (!product){
+                layer.msg("数据有误，请刷新之后重试。");
+                return;
+            }
+
+            //判断商品是否已经添加
+            for (var i = 0; i < this.addproduct.length; i++){
+                if (product.id == this.addproduct[i].id){
+                    layer.msg("商品已经存在");
+                    return;
+                }
+            }
+
+            //请空用户选择
+            this.product.splice(index, 1);
+
+            this.addproduct.push(product);
+        },
+        remove: function(index) {//删除菜品
+            this.addproduct.splice(index,1);
+        },
+        change: function(event) {//菜品类型数据改变 和 查询框数据改变
+            this.reset();
+            this.loadData();
+        },
+        reset: function() {// 重置查询数据
+            this.lastPage = false;
+            this.product = [];
+            this.ids = [];
+            this.pageNo = 1;
+        },
+        loadMore: function() {//加载更多
+            if (app.lastPage){
+                layer.msg("没有更多数据");
+                return;
+            }
+            this.loadData();
+        },
+        loadData: function(event){//加载数据
+            if (this.productType == ''){
+                layer.msg("请选择菜品类型");
+                return;
+            }
+            if (this.lastPage){
+                return;
+            }
+            axios({
+                method: 'post',
+                url: '/product/data',
+                data: {
+                    pageNo: app.pageNo,
+                    productTypeId: app.productType,
+                    name: app.name
+                }
+            }).then(function(response){
+                // 响应成功回调
+                var data = response.data;
+                if (data.code != 200){
+                    layer.msg("请求出错");
+                    return;
+                }
+                var list = data.data.list;
+                app.lastPage = data.data.lastPage;
+
+                for (var i = 0; i < list.length; i++){
+                    if (!contain(app.ids, list[i].id)){
+                        app.ids.push(list[i].id);
+                        app.product.unshift(list[i]);
+                    }
+                }
+                app.pageNo++;
+            });
+        }
+    }
+    });
+
+
+
+    $(function () {
+        var e = "";
+        $("#form").validate({
+            rules: {
+                name: "required",
+                jingle: "required",
+                price: "required",
+                promotionPrice: "required",
+                marketPrice: "required",
+                serial: "required",
+                spec: "required",
+                storage: "required",
+                createTime: "required",
+                specValue: "required",
+                alarm: "required",
+                sku: "required",
+                image: "required",
+                images: "required",
+            },
+            messages: {
+                name: {
+                    required: e + "请输入商品名称（+规格名称）"
+                },
+                jingle: {
+                    required: e + "请输入商品广告词"
+                },
+                price: {
+                    required: e + "请输入商品价格"
+                },
+                promotionPrice: {
+                    required: e + "请输入商品促销价格"
+                },
+                marketPrice: {
+                    required: e + "请输入市场价"
+                },
+                serial: {
+                    required: e + "请输入商家编号"
+                },
+                spec: {
+                    required: e + "请输入商品规格序列化"
+                },
+                storage: {
+                    required: e + "请输入商品库存"
+                },
+                createTime: {
+                    required: e + "请输入商品添加时间"
+                },
+                specValue: {
+                    required: e + "请输入商品规格序列化"
+                },
+                alarm: {
+                    required: e + "请输入预警值"
+                },
+                sku: {
+                    required: e + "请输入sku"
+                },
+                image: {
+                    required: e + "请输入商品首图"
+                },
+                images: {
+                    required: e + "请输入商品图片"
+                },
+            },
+            submitHandler: function() {
+              asyncSubmitForm($("#form"));
+            }
+        });
+
+    });
+
+
+    function contain(array, obj){
+        for (var i = 0; i < array.length; i++){
+            if (array[i] == obj)//如果要求数据类型也一致，这里可使用恒等号===
+                return true;
+        }
+        return false;
+    }
+</script>
+
+{% endblock %}

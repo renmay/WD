@@ -1,0 +1,268 @@
+{% extends "_layout.html" %}
+{% import "component/forms.njk" as forms %}
+
+{# 样式代码 #}
+{% block style %}
+<link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+<style>
+    /*.product table {*/
+    /*color: #333333;*/
+    /*border-collapse: collapse;*/
+    /*border: 1px solid #e7eaec;*/
+    /*width: 100%;*/
+    /*}*/
+
+    /*.product table td {*/
+    /*padding: 8px;*/
+    /*border: 1px solid #e7eaec;*/
+    /*}*/
+
+    .words-split {
+        vertical-align: middle;
+    }
+
+    .words-split a {
+        display: inline-block;
+        padding: 0 20px 0 8px;
+        position: relative;
+        margin: 0 4px;
+    }
+
+    .words-split a em {
+        display: none;
+        width: 16px;
+        height: 100%;
+        position: absolute;
+        background: #f60;
+        right: 0;
+        top: 0;
+    }
+
+    .words-split a:hover i {
+        color: #a63e3c;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .words-split a:hover {
+        color: #23527c;
+    }
+
+    .key, .value {
+        text-indent: .2em;
+        width: 20%;
+        float: left;
+        margin-right: 20px;
+    }
+</style>
+{% endblock %}
+
+{# bodyd代码#}
+{% block body %}
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加产品</h5>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t from" id="form" action="/product/edit" method="post"
+                          data-href="/product">
+                        {{ forms.hidden('id', data.id) }}
+                        {{ forms.text('商品名称', 'name', data.name, '请输入商品名称', 'required') }}
+                        {{ forms.select('商品分类', 'productCategoryId', productCategory, data.productCategoryId) }}
+                        {{ forms.textarea('商品库存', 'inventory', data.inventory, '请输入商品库存', 'required') }}
+                        {{ forms.textarea('简单描述', 'brief', data.brief, '请输入产品简单描述', 'required') }}
+                        {{ forms.number('销售价', 'fixPrice', data.fixPrice, '请输入商品销售价', 'required') }}
+                        {{ forms.number('市场价', 'marketPrice', data.marketPrice, '请输入商品市场价', 'required') }}
+                        {{ forms.text('买家须知', 'buyingIntro', data.buyingIntro, '请输入买家购买注意事项') }}
+                        {{ forms.text('规格描述', 'specDetailDescription', data.specDetailDescription, '请输入规格描述') }}
+                        {{ forms.text('售后描述', 'afterSaleService', data.afterSaleService, '请输入售后描述') }}
+
+                        {{ forms.images(
+                        label = '产品首图',
+                        fileList = [{
+                        name: 'url',
+                        value: data.url,
+                        url: ctx.helper.showImage(data.url, 160, 160, 'fixed'),
+                        text: '标题图'
+                        }]
+                        )}}
+
+                        {{ forms.images(
+                        label = '产品图片',
+                        fileList = [{
+                        name: 'images',
+                        value: data.images[0],
+                        url: ctx.helper.showImage(data.images[0], 160, 160, 'fixed')
+                        },
+                        {
+                        name: 'images',
+                        value: data.images[1],
+                        url: ctx.helper.showImage(data.images[1], 160, 160, 'fixed')
+                        },
+                        {
+                        name: 'images',
+                        value: data.images[2],
+                        url: ctx.helper.showImage(data.images[2], 160, 160, 'fixed')
+                        },
+                        {
+                        name: 'images',
+                        value: data.images[3],
+                        url: ctx.helper.showImage(data.images[3], 160, 160, 'fixed')
+                        },
+                        {
+                        name: 'images',
+                        value: data.images[4],
+                        url: ctx.helper.showImage(data.images[3], 160, 160, 'fixed')
+                        },
+                        {
+                        name: 'images',
+                        value: data.images[5],
+                        url: ctx.helper.showImage(data.images[3], 160, 160, 'fixed')
+                        }]
+                        )}}
+
+                        {{ forms.editer('详情描述', 'intro', data.intro) }}
+                        {{ forms.keyvalue('附属设施', data.productType, 'tagJson', data.tagJson) }}
+
+                        {{ forms.submit() }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {#js代码#}
+    {% block js %}
+    <script>
+        $(function () {
+            var e = "";
+            $("#form").validate({
+                rules: {
+                    name: "required",
+                    jingle: "required",
+                    price: "required",
+                    promotionPrice: "required",
+                    marketPrice: "required",
+                    serial: "required",
+                    spec: "required",
+                    storage: "required",
+                    createTime: "required",
+                    specValue: "required",
+                    alarm: "required",
+                    sku: "required",
+                    image: "required",
+                    images: "required",
+                },
+                messages: {
+                    name: {
+                        required: e + "请输入商品名称（+规格名称）"
+                    },
+                    jingle: {
+                        required: e + "请输入商品广告词"
+                    },
+                    price: {
+                        required: e + "请输入商品价格"
+                    },
+                    promotionPrice: {
+                        required: e + "请输入商品促销价格"
+                    },
+                    marketPrice: {
+                        required: e + "请输入市场价"
+                    },
+                    serial: {
+                        required: e + "请输入商家编号"
+                    },
+                    spec: {
+                        required: e + "请输入商品规格序列化"
+                    },
+                    storage: {
+                        required: e + "请输入商品库存"
+                    },
+                    createTime: {
+                        required: e + "请输入商品添加时间"
+                    },
+                    specValue: {
+                        required: e + "请输入商品规格序列化"
+                    },
+                    alarm: {
+                        required: e + "请输入预警值"
+                    },
+                    sku: {
+                        required: e + "请输入sku"
+                    },
+                    image: {
+                        required: e + "请输入商品首图"
+                    },
+                    images: {
+                        required: e + "请输入商品图片"
+                    },
+                },
+                submitHandler: function () {
+                    asyncSubmitForm($("#form"));
+                }
+            });
+
+        });
+    </script>
+    <script>
+        $(function () {
+            holder = $('<span class="words-split"></span>');
+            hashtable = new Array();
+            el = $("#result");
+            el.after(holder);
+            list = el.val();
+
+            if (list) {
+                let facility = JSON.parse(list);
+                facility.filter(f => {
+                    key = f.key;
+                    value = f.value;
+                    holder.append($('<a href="javascript:void(0)">' + key + " :" + value + '<span name="' + key + '"></span>&nbsp;&nbsp;<i class="fa fa-trash dbicon" aria-hidden="true"></i></a>'));
+                    var object = {};
+                    object['key'] = key;
+                    object['value'] = value;
+                    hashtable.push(object);
+                });
+            }
+            holder.on('click', 'a>i', function () {	//刪除
+                resultKey = $(this).parent().find('span').attr('name');
+                hashtable.filter(e => {
+                    if (e.key == resultKey) {
+                        hashtable.splice(hashtable.indexOf(e), 1);
+                    }
+                });
+                $(this).parent().remove();
+                $("#result").val(JSON.stringify(hashtable));
+            });
+
+            $("#btn").on('click', function () {
+                key = $("#key").val();
+                value = $("#value").val();
+
+                hashtable.filter(e => {
+                    if (e.key == key) {
+                        alert("设施已存在，请删除后重新添加");
+                        return;
+                    }
+                });
+
+                if (key != "" && value != "") {
+                    holder.append($('<a href="javascript:void(0)">' + key + " :" + value + '<span name="' + key + '"></span>&nbsp;&nbsp;<i class="fa fa-trash dbicon" aria-hidden="true"></i></a>'));
+                    var object = {};
+                    object['key'] = key;
+                    object['value'] = value;
+                    hashtable.push(object);
+                    $("#result").val(JSON.stringify(hashtable));
+                    $("#key").val("");
+                    $("#value").val("");
+                }
+            });
+        });
+    </script>
+    {% endblock %}

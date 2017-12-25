@@ -22,36 +22,32 @@ module.exports =  {
             ]
         },
         {
-            url: '/product',
+            url: '/module/system',
             icon: 'fa fa-bar-chart-o',
-            name: '产品',
+            name: '模块',
             children: [
                 {
-                    url: '/product',
-                    name: '产品列表'
+                    url: '/module/system',
+                    name: '系统模块'
                 },
                 {
-                    url: '/product/category',
-                    name: '产品类型'
+                    url: '/module/store',
+                    name: '店铺模块'
                 }
             ]
         },
         {
-            url: '/merchant',
+            url: '/merchant/auth',
             icon: 'fa fa-bar-chart-o',
             name: '商户',
             children: [
                 {
-                    url: '/merchant',
-                    name: '店员'
+                    url: '/merchant/auth',
+                    name: '全部'
                 },
                 {
-                    url: '/store',
-                    name: '店铺信息'
-                },
-                {
-                    url: '/printer',
-                    name: '打印机'
+                    url: '/merchant/auth',
+                    name: '待审核'
                 }
             ]
         },
