@@ -113,7 +113,6 @@ module.exports = app => {
                 let data = await this.service.product.get({id: id});
 
                 let images = data.images.split(",");
-                this.app.logger.info(images);
                 data.images = images;
                 for (var i = 0; i < 4 - images.length; i++) {//将数组长度补足为4
                     images.push('');
@@ -123,9 +122,8 @@ module.exports = app => {
             }
 
             let data = {
-                "productType": this.ctx.session.member.productType
+                "productType": this.ctx.session.member.type
             };
-
             await this.ctx.render("product/edit.html", {data, params,"productCategory":productCategory});
 
         };
@@ -150,10 +148,10 @@ module.exports = app => {
                     imgs.push(images[i]);
                 }
             }
-
-            this.app.logger.info(imgs);
             params.images = imgs;
+            this.app.logger.info(imgs);
             this.app.logger.info(params);
+            this.app.logger.info(this.ctx.session.member);
             let data = await this.service.product.edit(params);
             this.ctx.body = data;
         };

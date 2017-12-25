@@ -5,31 +5,19 @@
 {% block style %}
 <link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
 <style>
-    .product table {
-        color: #333333;
-        border-collapse: collapse;
-        border: 1px solid #e7eaec;
-        width: 100%;
-    }
+    /*.product table {*/
+    /*color: #333333;*/
+    /*border-collapse: collapse;*/
+    /*border: 1px solid #e7eaec;*/
+    /*width: 100%;*/
+    /*}*/
 
-    .product table td {
-        padding: 8px;
-        border: 1px solid #e7eaec;
-    }
+    /*.product table td {*/
+    /*padding: 8px;*/
+    /*border: 1px solid #e7eaec;*/
+    /*}*/
 
     .words-split {
-        vertical-align: middle;
-    }
-
-    .lbl-input {
-        display: inline-block;
-        width: 120px;
-        height: 26px;
-        line-height: 26px;
-        min-height: 26px;
-        text-indent: 1em;
-        border: 1px solid #ddd;
-        border-radius: 5px;
         vertical-align: middle;
     }
 
@@ -50,40 +38,24 @@
         top: 0;
     }
 
-    .words-split a em:after {
-        content: "-";
-        color: #fff;
-        font: bold 20px 'Microsoft Yahei';
-    }
-
-    .words-split a:hover em {
-        display: block;
-    }
-
-    a.words-split-add {
-        display: inline-block;
-        font: bold 20px 'Microsoft Yahei';
-        color: #2cac93
-    }
-
-    .fm-button {
-        display: inline-block;
-        text-align: center;
-        color: #fff;
-        height: 28px;
-        line-height: 28px;
-        font-size: 14px;
-        padding: 0 1em;
-        border-radius: 3px;
-        opacity: .9;
-        filter: alpha(opacity=90);
-        background: #2cac93;
+    .words-split a:hover i {
+        color: #a63e3c;
     }
 
     a {
         text-decoration: none;
     }
 
+    .words-split a:hover {
+        color: #23527c;
+    }
+
+    .key, .value {
+        text-indent: .2em;
+        width: 20%;
+        float: left;
+        margin-right: 20px;
+    }
 </style>
 {% endblock %}
 
@@ -100,16 +72,6 @@
                     <form class="form-horizontal m-t from" id="form" action="/product/edit" method="post"
                           data-href="/product">
                         {{ forms.hidden('id', data.id) }}
-
-                        <!--<div class="form-group">-->
-                        <!--<label class="col-sm-2 control-label">产品类型</label>-->
-                        <!--<div class="col-sm-8">-->
-                        <!--<select class="form-control m-b" name="type">-->
-                        <!--<option value="1" {{ 'selected' if data.type == 1 }}>单品</option>-->
-                        <!--<option value="2" {{ 'selected' if data.type == 2 }}>套餐</option>-->
-                        <!--</select>-->
-                        <!--</div>-->
-                        <!--</div>-->
                         {{ forms.text('商品名称', 'name', data.name, '请输入商品名称', 'required') }}
                         {{ forms.select('商品分类', 'productCategoryId', productCategory, data.productCategoryId) }}
                         {{ forms.textarea('商品库存', 'inventory', data.inventory, '请输入商品库存', 'required') }}
@@ -165,20 +127,8 @@
                         )}}
 
                         {{ forms.editer('详情描述', 'intro', data.intro) }}
-                        <!--{{ forms.keyvalue('附属设施', data.productType, 'facility', data.facility) }}-->
-                        {% if 1 == data.productType %}
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">附属设施：</label>
-                            <div class="col-sm-10">
+                        {{ forms.keyvalue('附属设施', data.productType, 'tagJson', data.tagJson) }}
 
-                                <input type="text" id="key" placeholder="请输入设施，如：上网"/>
-                                <input type="text" id="value" placeholder="简单说明，如：WiFi和宽带"/>
-                                <input class="btn" type="button" id="btn" value="添加"/><br>
-                                <input type="hidden" name="tagJson" value="{{ data.tagJson }}" id="result"/>
-
-                            </div>
-                        </div>
-                        {% endif %}
                         {{ forms.submit() }}
                     </form>
                 </div>
@@ -265,40 +215,50 @@
             holder = $('<span class="words-split"></span>');
             hashtable = new Array();
             el = $("#result");
-            el.after( holder );
+            el.after(holder);
             list = el.val();
+
             if (list) {
                 let facility = JSON.parse(list);
-                for (var item in facility) {
-                    key = facility[item].key;
-                    value = facility[item].value;
-                    v = key + ":" + value;
-                    holder.append($('<a href="javascript:void(0)" class="fm-button">' + v + '<span value="'+key+'"></span><em></em></a>'));
-                    $("ol").append("<li>" + key + ":" + value + "</li>");
+                facility.filter(f => {
+                    key = f.key;
+                    value = f.value;
+                    holder.append($('<a href="javascript:void(0)">' + key + " :" + value + '<span name="' + key + '"></span>&nbsp;&nbsp;<i class="fa fa-trash dbicon" aria-hidden="true"></i></a>'));
                     var object = {};
                     object['key'] = key;
                     object['value'] = value;
-                    hashtable.push(JSON.stringify(object));
-                }
+                    hashtable.push(object);
+                });
             }
-            holder.on('click','a>em',function(){	//刪除
-                console.log($(this).val());
+            holder.on('click', 'a>i', function () {	//刪除
+                resultKey = $(this).parent().find('span').attr('name');
+                hashtable.filter(e => {
+                    if (e.key == resultKey) {
+                        hashtable.splice(hashtable.indexOf(e), 1);
+                    }
+                });
                 $(this).parent().remove();
-
+                $("#result").val(JSON.stringify(hashtable));
             });
 
             $("#btn").on('click', function () {
                 key = $("#key").val();
                 value = $("#value").val();
+
+                hashtable.filter(e => {
+                    if (e.key == key) {
+                        alert("设施已存在，请删除后重新添加");
+                        return;
+                    }
+                });
+
                 if (key != "" && value != "") {
-                    v = key + ":" + value;
-                    holder.append($('<a href="javascript:void(0)" class="fm-button">' + v + '<span value="'+key+'"></span><em></em></a>'));
+                    holder.append($('<a href="javascript:void(0)">' + key + " :" + value + '<span name="' + key + '"></span>&nbsp;&nbsp;<i class="fa fa-trash dbicon" aria-hidden="true"></i></a>'));
                     var object = {};
                     object['key'] = key;
                     object['value'] = value;
-                    hashtable.push(JSON.stringify(object));
-                    $("ol").append("<li>" + key + ":" + value + "</li>");
-                    $("#result").val("[" + hashtable + "]");
+                    hashtable.push(object);
+                    $("#result").val(JSON.stringify(hashtable));
                     $("#key").val("");
                     $("#value").val("");
                 }
