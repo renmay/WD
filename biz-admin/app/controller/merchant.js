@@ -17,7 +17,7 @@ module.exports = app => {
          * @param ctx
          */
 
-        async list(ctx) {
+        async list() {
             let params = this.ctx.request.query;
             this.app.logger.info(params);
             let data = await this.service.merchant.list(params);
@@ -30,7 +30,7 @@ module.exports = app => {
          * 批量删除时使用','将id分隔开，却最好id的数量不要超过10条
          * @param ctx
          */
-        async delete(ctx) {
+        async delete() {
             let params = this.ctx.request.body;
             let id = params.id;
 
@@ -66,7 +66,7 @@ module.exports = app => {
          * @param ctx
          * @returns {Promise.<*>}
          */
-        async edit(ctx) {
+        async edit() {
             let params = this.ctx.request.query;
             let id = params.id;
 
@@ -84,11 +84,31 @@ module.exports = app => {
         };
 
         /**
+         * 审核
+         * @returns {Promise.<*>}
+         */
+        async audit() {
+            let params = this.ctx.request.query;
+            let id = params.id;
+
+            if (id == '') {
+                return this.ctx.redirect('/error');
+            }
+
+            if (id) {
+                let data = await this.service.merchant.audit({id: id});
+                await this.ctx.render("merchant/audit.html", {data, params});
+                return;
+            }
+        };
+
+
+        /**
          * 编辑数据
          * @param ctx
          * @private
          */
-        async edit_(ctx) {
+        async edit_() {
             //this.validate(rule);
             let params = this.ctx.request.body;
             let data = await this.service.merchant.edit(params);
@@ -99,7 +119,7 @@ module.exports = app => {
          * 判断用户名是否存在
          * @param ctx
          */
-        async usernameIsExist(ctx) {
+        async usernameIsExist() {
             let params = this.ctx.request.body;
             //如果用户名为空
             if (!params.username) {
@@ -114,7 +134,7 @@ module.exports = app => {
          * 判断手机号是否存在
          * @param ctx
          */
-        async mobileIsExist(ctx) {
+        async mobileIsExist() {
             let params = this.ctx.request.body;
             //如果用户名为空
             if (!params.mobile) {
@@ -129,7 +149,7 @@ module.exports = app => {
          * 修改密码
          * @param ctx
          */
-        async modifyPassword(ctx) {
+        async modifyPassword() {
             await this.ctx.render("merchant/modify_password_dialog.html");
         }
 
@@ -138,7 +158,7 @@ module.exports = app => {
          * @param ctx
          * @private
          */
-        async modifyPassword_(ctx) {
+        async modifyPassword_() {
             let member = this.ctx.session.member;
 
             const params = this.ctx.request.body;

@@ -67,7 +67,7 @@ module.exports = app => {
             this.body = data;
         };
 
-        async edit(ctx) {
+        async edit() {
             let params = this.ctx.request.query;
             let id = params.id;
 
@@ -83,6 +83,7 @@ module.exports = app => {
             await this.ctx.render("member/edit.html", {params});
 
         };
+
 
         /**
          * 编辑数据

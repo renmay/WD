@@ -87,6 +87,8 @@ module.exports = app => {
     app.get('/merchant/edit', 'merchant.edit');
     app.post('/merchant/edit', 'merchant.edit_');
     app.post('/merchant/delete', 'merchant.delete');
+    app.get('/merchant/audit', 'merchant.audit');
+
     app.post('/merchant/username/exist', 'merchant.usernameIsExist');
     app.post('/merchant/mobile/exist', 'merchant.mobileIsExist');
     app.get('/merchant/modify/password', 'merchant.modifyPassword');
@@ -121,8 +123,5 @@ module.exports = app => {
     // app.get('/sms/send', 'sms.send');
     // app.post('/sms/send', 'sms.send');
 
-    //merchant auth audit
-    app.get('/merchant/auth', 'merchantAuth.list');
-    app.get('/merchant/auth/audit', 'merchantAuth.audit');
 
 };

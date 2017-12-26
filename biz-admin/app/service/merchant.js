@@ -159,6 +159,22 @@ module.exports = app => {
             return data.data;
         }
 
+        async audit(params) {
+            this.app.logger.info(params);
+
+            const result = await this.ctx.fetch(`/admin/merchant/auth/info`, {
+                method: 'get',
+                dataType: 'json',
+            });
+
+            let data = result.data;
+            if (data.code != 200){
+                throw new Error(data.message ? data.message : 'error');
+            }
+
+            return data.data;
+        }
+
 
     }
     return MerchantService;
