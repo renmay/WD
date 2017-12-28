@@ -23,7 +23,6 @@ module.exports = app => {
                 //放回json数据
                 this.success();
             }
-
         };
 
         async logout() {

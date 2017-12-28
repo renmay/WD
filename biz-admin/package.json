@@ -11,7 +11,9 @@
     "egg-static": "^2.0.0",
     "egg-validate": "^1.0.0",
     "egg-view-nunjucks": "^2.1.4",
-    "moment": "^2.19.4"
+    "ioredis": "^3.2.2",
+    "moment": "^2.19.4",
+    "nunjucks": "^3.0.1"
   },
   "devDependencies": {
     "autod": "^3.0.1",
