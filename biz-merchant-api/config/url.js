@@ -28,7 +28,13 @@ module.exports =  {
     addGuestbook:'/guestbook',
     // 留言本
     guestbook: '/guestbook',
+
+    // 店铺
+    store: '/store',
     join:'/join/us',
+
+    //打印机
+    printer: '/printer',
 
     //商品
     goods: '/goods',

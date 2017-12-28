@@ -24,6 +24,19 @@ module.exports = app => {
     app.post('/member/info', 'member.edit');
     app.get('/member/rank', 'member.rank');
 
+    // 店铺管理
+    app.get('/store/info', 'store.get');
+    app.post('/member/edit', 'store.edit');
+
+    // 打印机管理
+    app.get('/printer/list', 'printer.list');
+    app.get('/printer/get', 'printer.get');
+    app.post('/printer/add', 'printer.add');
+    app.post('/printer/edit', 'printer.edit');
+    app.post('/printer/delete', 'printer.delete');
+    app.post('/printer/print', 'printer.print');
+    app.post('/printer/print/all', 'printer.printAll');
+
     app.post('/address/add', 'address.create');
     app.post('/address/edit','address.edit');
     app.post('/address/delete','address.del');
