@@ -30,7 +30,7 @@ module.exports = app => {
       params.storeId = this.ctx.session.member.storeId;
       this.app.logger.info(params);
       const data = await this.service.module.list(params);
-      this.app.logger.info(data);
+
       await this.ctx.render('module/list.html', { data });
     }
 

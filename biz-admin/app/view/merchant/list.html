@@ -51,11 +51,12 @@
                                 <tr>
                                     <th></th>
                                     <th>姓名</th>
-                                    <th>审核状态</th>
                                     <th>用户名</th>
+                                    <th>审核状态</th>
                                     <th>手机号</th>
                                     <th>性别</th>
                                     <th>行业分类</th>
+                                    <th>员工类型</th>
                                     <th>最后登录时间</th>
                                     <th>操作</th>
                                 </tr>
@@ -66,17 +67,19 @@
                                     <td>
                                         <input type="checkbox" value="{{ item.id }}" class="i-checks" name="check">
                                     </td>
-                                    <td>{{item.name}}</td>
+                                    <td>{{item.linkName}}</td>
+                                    <td>{{item.username}}</td>
                                     <td>
                                         {% if item.status == 1 %}
                                         正常
                                         {% elif item.status == 2 %}
-                                        禁用
+                                        补充资料
+                                        {% elif item.status == 3 %}
+                                        待审核
                                         {% else %}
-                                        未知
+                                        审核不通过
                                         {% endif %}
                                     </td>
-                                    <td>{{item.username}}</td>
                                     <td>{{item.mobile}}</td>
                                     <td>
                                         {% if item.sex == 1 %}
@@ -87,15 +90,24 @@
                                         未知
                                         {% endif %}
                                     </td>
+                                    <!--行业分类-->
+                                    <td>
+                                        {% if item.status == 1 %}
+                                        正常
+                                        {% elif item.status == 2 %}
+                                        禁用
+                                        {% else %}
+                                        未知
+                                        {% endif %}
+                                    </td>
                                     <td>
                                         {% if item.userType == 1 %}
-                                        老板
+                                        管理员
                                         {% elif item.userType == 2 %}
                                         员工
                                         {% else %}
                                         未知
                                         {% endif %}
-
                                     </td>
                                     <td>{{item.lastLoginTime}}</td>
                                     <td data-id="{{ item.id }}">

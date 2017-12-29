@@ -37,14 +37,14 @@ module.exports = app => {
         data: params,
       });
 
-      this.app.logger.info(result.data);
-      const data = result.data;
+        this.app.logger.info(result.data);
+        const data = result.data;
 
-      if (data.code !== 200) {
-        throw new Error(data.message ? data.message : 'error');
-      }
+        if (result.data.code !== 200) {
+            throw new Error(data.message ? data.message : 'error');
+        }
 
-      return data;
+        return result.data.data;
     }
 
     /**

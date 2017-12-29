@@ -35,7 +35,7 @@ module.exports = {
     {
       url: '/merchant',
       icon: 'fa fa-bar-chart-o',
-      name: '商户',
+      name: '商家',
       children: [
         {
           url: '/merchant',
