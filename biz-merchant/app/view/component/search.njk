@@ -12,8 +12,8 @@
                         {% endfor %}
                     </select>
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-sm btn-primary page-reset-btn">重置</button>
-                        <button type="button" class="btn btn-sm btn-primary page-search-btn"><i class="fa fa-search"></i>搜索</button>
+                        <button type="button" class="btn btn-sm btn-info page-reset-btn">重置</button>
+                        <button type="button" class="btn btn-sm btn-info page-search-btn"><i class="fa fa-search"></i>&nbsp;搜索</button>
                     </span>
                     {% else %}
                     <span class="input-group-addon">{{ item.label }}</span>
@@ -31,8 +31,8 @@
                     <input type="text" name="{{ item.name }}" value="{{ params.mobile }}" placeholder="{{ item.label }}" class="input-sm form-control" />
                     {% if loop.last %}
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-sm btn-primary page-reset-btn">重置</button>
-                        <button type="button" class="btn btn-sm btn-primary page-search-btn"><i class="fa fa-search"></i>搜索</button>
+                        <button type="button" class="btn btn-sm btn-info page-reset-btn">重置</button>
+                        <button type="button" class="btn btn-sm btn-info page-search-btn"><i class="fa fa-search"></i>&nbsp;搜索</button>
                     </span>
                     {% endif %}
                 </div>
@@ -49,8 +49,8 @@
             <input type="text" name="{{ name }}" value="{{ value }}" placeholder="{{ label }}" class="input-sm form-control" />
             {% if last %}
             <span class="input-group-btn">
-                <button type="button" class="btn btn-sm btn-primary page-reset-btn">重置</button>
-                <button type="button" class="btn btn-sm btn-primary page-search-btn"><i class="fa fa-search"></i>搜索</button>
+                <button type="button" class="btn btn-sm btn-info page-reset-btn">重置</button>
+                <button type="button" class="btn btn-sm btn-info page-search-btn"><i class="fa fa-search"></i>&nbsp;搜索</button>
             </span>
             {% endif %}
         </div>
@@ -68,8 +68,8 @@
                     {% endfor %}
                 </select>
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-sm btn-primary page-reset-btn">重置</button>
-                    <button type="button" class="btn btn-sm btn-primary page-search-btn"><i class="fa fa-search"></i>搜索</button>
+                    <button type="button" class="btn btn-sm btn-info page-reset-btn">重置</button>
+                    <button type="button" class="btn btn-sm btn-info page-search-btn"><i class="fa fa-search"></i>&nbsp;搜索</button>
                 </span>
             {% else %}
                 <span class="input-group-addon">{{ label }}</span>

@@ -20,7 +20,6 @@
                     <form class="form-horizontal m-t from" id="form" action="/product/category/edit" method="post" data-href="/product/category">
                     	{{ forms.hidden('id', data.id) }}
 						{{ forms.text('名称', 'name', data.name, '请输入名称', 'required') }}
-s
 						{{ forms.text('排序', 'sort', data.sort, '请输入排序', 'required') }}
 
                         {{ forms.images(
