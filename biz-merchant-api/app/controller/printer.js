@@ -43,6 +43,16 @@ module.exports = app => {
         }
 
         /**
+         * 获取打印机数量
+         * @returns {Promise<*>}
+         */
+        async getQuantity(){
+            let params = this.ctx.request.query;
+            const data = await this.ctx.service.printer.getQuantity(params);
+            return this.success(data);
+        }
+
+        /**
          * 修改打印机
          * @returns {Promise<void>}
          */

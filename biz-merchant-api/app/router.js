@@ -31,6 +31,7 @@ module.exports = app => {
     // 打印机管理
     app.get('/printer/list', 'printer.list');
     app.get('/printer/get', 'printer.get');
+    app.get('/printer/getQuantity', 'printer.getQuantity');
     app.post('/printer/add', 'printer.add');
     app.post('/printer/edit', 'printer.edit');
     app.post('/printer/delete', 'printer.delete');

@@ -31,7 +31,6 @@ module.exports = app => {
          * @param params
          */
         async get(params) {
-            this.app.logger.info("service:"+params);
             const result = await this.ctx.fetch(this.app.urls('printer')+'/get', {
                 method: 'get',
                 timeout: 30000,
@@ -48,6 +47,26 @@ module.exports = app => {
             return data.data;
         }
 
+        /**
+         * 获取打印机数量
+         * @param params
+         */
+        async getQuantity(params) {
+            const result = await this.ctx.fetch(this.app.urls('printer')+'/getQuantity', {
+                method: 'get',
+                timeout: 30000,
+                dataType: 'json',
+                data: params
+            });
+            this.app.logger.info(result.data);
+            let data = result.data;
+
+            if (data.code != 200) {
+                throw new Error(data.message ? data.message : 'error');
+            }
+
+            return data.data;
+        }
 
         /**
          * 添加
