@@ -2,7 +2,7 @@
 
 module.exports = app => {
     const exports = {
-        baseUrl: 'http://127.0.0.1:8080',
+        baseUrl: 'http://127.0.0.1:9084',
         outerPrefix: '/v1',
     };
 
