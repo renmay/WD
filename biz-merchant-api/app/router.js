@@ -25,8 +25,8 @@ module.exports = app => {
     app.get('/member/rank', 'member.rank');
 
     // 店铺管理
-    app.get('/store/info', 'store.get');
-    app.post('/member/edit', 'store.edit');
+    app.get('/store/get', 'store.get');
+    app.post('/store/edit', 'store.edit_');
 
     // 打印机管理
     app.get('/printer/list', 'printer.list');

@@ -15,9 +15,10 @@ module.exports = app => {
          * 修改店铺
          * @returns {Promise<void>}
          */
-        async edit() {
-            let params = this.ctx.request.query;
-            const data = await this.ctx.service.store.edit(params);
+        async edit_() {
+            let params = this.ctx.request.body;
+            this.app.logger.info(params);
+            const data = await this.ctx.service.store.edit_(params);
             return this.success(data);
         }
     }

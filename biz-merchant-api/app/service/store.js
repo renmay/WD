@@ -8,10 +8,10 @@ module.exports = app => {
 
         /**
          * 获取数据
-         * @param params
+         * @returns {Promise<void>}
          */
-        async get(params) {
-            const result = await this.ctx.fetch(this.app.urls('store' + "/info"), {
+        async get() {
+            const result = await this.ctx.fetch(this.app.urls('store'), {
                 method: 'get',
                 timeout: 30000,
                 dataType: 'json'
@@ -32,11 +32,13 @@ module.exports = app => {
          * @param params
          * @returns {{}}
          */
-        async edit(params) {
+        async edit_(params) {
+            this.app.logger.info(params);
+
             /**
              * 请求后台接口
              */
-            const result = await this.ctx.fetch(this.app.urls('store'), params, {
+            const result = await this.ctx.fetch(this.app.urls('store'), {
                 method: 'put',
                 dataType: 'json',
                 data: params

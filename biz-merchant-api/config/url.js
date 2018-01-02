@@ -30,7 +30,8 @@ module.exports =  {
     guestbook: '/guestbook',
 
     // 店铺
-    store: '/store',
+    store: '/merchant/store',
+
     join:'/join/us',
 
     //打印机
