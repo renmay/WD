@@ -24,6 +24,41 @@ module.exports = app => {
             return result.data.data;
         }
 
+        /**
+         * 修改密码
+         * @param params
+         */
+        async info(params) {
+            const result = await this.ctx.fetch(`${this.app.urls('merchant')}/password`, {
+                method: 'post',
+                dataType: 'json',
+                data: params
+            });
+            this.app.logger.info(result.data);
+            if (result.data.code != 200){
+                throw new Error(data.message ? data.message : 'error');
+            }
+
+            return result.data.data;
+        }
+
+        /**
+         * 重置密码
+         * @param params
+         */
+        async info(params) {
+            const result = await this.ctx.fetch(`${this.app.urls('merchant')}/reset/password`, {
+                method: 'post',
+                dataType: 'json',
+                data: params
+            });
+            this.app.logger.info(result.data);
+            if (result.data.code != 200){
+                throw new Error(data.message ? data.message : 'error');
+            }
+
+            return result.data.data;
+        }
 
 
     }

@@ -35,8 +35,25 @@ module.exports = app => {
             this.success(data);
         }
 
+        /**
+         * 修改密码
+         * @returns {Promise<void>}
+         */
+        async changePassword(){
+            let params = this.ctx.request.body;
+            const data = await this.ctx.service.merchant.changePassword(params);
+            this.success(data);
+        }
 
-
+        /**
+         * 重置密码
+         * @returns {Promise<*|{code, message, data}>}
+         */
+        async resetPassword(){
+            let params = this.ctx.request.body;
+            const data = await this.ctx.service.merchant.resetPassword(params);
+            this.success(data);
+        }
     }
     return MerchantController;
 };

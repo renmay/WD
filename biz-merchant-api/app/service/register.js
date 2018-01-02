@@ -34,7 +34,7 @@ module.exports = app => {
             /**
              * 补充信息
              */
-            const result = await this.ctx.curl(`${this.app.urls('register')}/info`, {
+            const result = await this.ctx.fetch(`${this.app.urls('register')}/info`, {
                 method: 'post',
                 data: params,
                 dataType: 'json',

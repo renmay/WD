@@ -6,6 +6,7 @@ module.exports =  {
     getUserInfo: '/user/get/{{id}}',   //参数使用{{params}}
     merchant: '/merchant',
 
+    module: '/store/module',
     login: '/login',
     register: '/register',
     sendCode:'/send/code',

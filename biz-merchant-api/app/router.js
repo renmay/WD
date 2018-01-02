@@ -38,6 +38,10 @@ module.exports = app => {
     app.post('/printer/print', 'printer.print');
     app.post('/printer/print/all', 'printer.printAll');
 
+    //密码相关
+    app.post('/merchant/password','merchant.changePassword');
+    app.post('/merchant/reset/password','merchant.resetPassword');
+
     app.post('/address/add', 'address.create');
     app.post('/address/edit','address.edit');
     app.post('/address/delete','address.del');
