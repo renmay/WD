@@ -5,57 +5,8 @@
 {% block style %}
 <link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
 <style>
-    /*.module table {*/
-    /*color: #333333;*/
-    /*border-collapse: collapse;*/
-    /*border: 1px solid #e7eaec;*/
-    /*width: 100%;*/
-    /*}*/
 
-    /*.module table td {*/
-    /*padding: 8px;*/
-    /*border: 1px solid #e7eaec;*/
-    /*}*/
 
-    .words-split {
-        vertical-align: middle;
-    }
-
-    .words-split a {
-        display: inline-block;
-        padding: 0 20px 0 8px;
-        position: relative;
-        margin: 0 4px;
-    }
-
-    .words-split a em {
-        display: none;
-        width: 16px;
-        height: 100%;
-        position: absolute;
-        background: #f60;
-        right: 0;
-        top: 0;
-    }
-
-    .words-split a:hover i {
-        color: #a63e3c;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    .words-split a:hover {
-        color: #23527c;
-    }
-
-    .key, .value {
-        text-indent: .2em;
-        width: 20%;
-        float: left;
-        margin-right: 20px;
-    }
 </style>
 {% endblock %}
 
@@ -66,26 +17,52 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>添加模块</h5>
+                    <h5>模块管理</h5>
                 </div>
                 <div class="ibox-content">
                     <form class="form-horizontal m-t from" id="form" action="/module/edit" method="post"
                           data-href="/module">
                         {{ forms.hidden('id', data.id) }}
                         {{ forms.text('模块名称', 'name', data.name, '请输入模块名称', 'required') }}
-                        {{ forms.text('模块key', 'key', data.key, '请输入模块key', 'required') }}
+                        {{ forms.text('模块拼音', 'key', data.key, '请输入模块key', 'required') }}
                         <div class="form-group">
                             <label class="col-sm-2 control-label">适用行业(可多选):</label>
                             <div class="col-sm-10">
-                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry" value="1" >酒店</label>
-                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry" value="2" >餐饮</label>
-                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry" value="3" >娱乐</label>
-                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry" value="4" >旅游</label>
-                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry" value="5" >特产</label>
-                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry" value="0" >全部</label>
+                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
+                                                                               value="1">酒店</label>
+                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
+                                                                               value="2">餐饮</label>
+                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
+                                                                               value="3">娱乐</label>
+                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
+                                                                               value="4">旅游</label>
+                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
+                                                                               value="5">特产</label>
+                                <label class="checkbox-inline"><input type="checkbox" name="industry"
+                                                                      value="0">全部</label>
                             </div>
                         </div>
-                        {{ forms.select('类型', 'type', data.type, 'required') }}
+                        <!--{{ forms.select('类型', 'type', data.type, 'required') }}-->
+                        <!--&lt;!&ndash;* 模块的类型 如： 1.免费 2.一次性付费 3. 按月付费 4. 按年付费&ndash;&gt;-->
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">类型</label>
+                            <div class="col-sm-8">
+                                <select class="form-control m-b" name="type">
+                                    <option value="1" {{
+                                    'selected' if data.status == 1 }}>免费</option>
+                                    <option value="2" {{
+                                    'selected' if data.status == 2 }}>一次性付费</option>
+                                    <option value="3" {{
+                                    'selected' if data.status == 1 }}>按月付费</option>
+                                    <option value="4" {{
+                                    'selected' if data.status == 2 }}>按年付费</option>
+                                </select>
+                            </div>
+                        </div>
+
+
                         {{ forms.text('价格', 'price', data.price, '请输入模块定价', 'required') }}
 
                         {{ forms.images(
