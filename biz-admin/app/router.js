@@ -14,7 +14,7 @@ module.exports = app => {
   app.get('/upload', 'upload.get');
 
   // 首页
-  // app.get('/', 'home.index');
+  app.get('/', 'home.index');
   app.get('/index', 'home.index');
   // app.get('/remote', 'home.remote');
 

@@ -29,9 +29,9 @@ module.exports = app => {
   app.post('/product/edit', 'product.edit_');
   app.post('/product/delete', 'product.delete');
   app.post('/product/data', 'product.data');
-  app.get('/product/recommend', 'product.recommend');
-  app.post('/product/recommend', 'product.recommend');
-  app.post('/product/recommend/cancel', 'product.recommendCancel');
+  // app.get('/product/recommend', 'product.recommend');
+  // app.post('/product/recommend', 'product.recommend');
+  // app.post('/product/recommend/cancel', 'product.recommendCancel');
   //
   // app.get('/product/group', 'product.group');
   // app.post('/product/group', 'product.group');

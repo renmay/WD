@@ -25,19 +25,6 @@
                                 id: '0',
                                 name: '否'
                                 }], params.isRecommend) }}
-                                <div class="col-sm-3">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">产品分类</span>
-                                        <select class="form-control m-b" name="moduleCategoryId">
-                                            <option value="">全部</option>
-                                            {% for item in moduleCategory %}
-                                            <option value="{{ item.value }}" {{
-                                            'selected' if item.value == params.moduleCategoryId else ''}}>{{ item.text
-                                            }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                </div>
                                 {{ search.text('名称', 'name', params.name, true) }}
                             </form>
                             <div class="col-sm-2">
@@ -60,7 +47,7 @@
                                     <th>图片</th>
                                     <th>图标</th>
                                     <th>价格</th>
-                                    <!--<th>库存</th>-->
+                                    <th>类型</th>
                                     <th>状态</th>
                                     <!--<th>是否新品</th>-->
                                     <th>添加时间</th>
@@ -100,31 +87,40 @@
                                         <input type="checkbox" value="{{ item.id }}" class="i-checks" name="check">
                                     </td>
                                     <td width="100">{{ item.name }}</td>
-                                    <td>{{ item.key}}</td>
+                                    <td width="100">{{ item.key}}</td>
                                     <td class="image">
                                         <a href="/module/edit?id={{ item.icon }}"><img alt="image" class="image"
-                                                                                     src="{{ ctx.helper.showImage(item.url, 50, 50, 'fixed') }}"></a>
+                                                                                       src="{{ ctx.helper.showImage(item.icon, 50, 50, 'fixed') }}"></a>
                                     </td>
                                     <td class="image">
-                                        <a href="/module/edit?id={{ item.id }}"><img alt="image" class="image"
-                                                                                     src="{{ ctx.helper.showImage(item.url, 50, 50, 'fixed') }}"></a>
+                                        <a href="/module/edit?id={{ item.icon2 }}"><img alt="image" class="image"
+                                                                                     src="{{ ctx.helper.showImage(item.icon2, 50, 50, 'fixed') }}"></a>
                                     </td>
-                                    <td>￥{{ item.price }}</td>
+                                    <td>¥{{ item.price }}</td>
 
                                     <!--<td>{{ item.inventory }}</td>-->
                                     <!--<td>-->
-                                        <!--{% if item.isRecommend %}-->
-                                        <!--<span style="color: red;">是</span><a class="ajax"-->
-                                                                             <!--data-href="/module/recommend/cancel?id={{item.id}}">[关闭]</a>-->
-                                        <!--{% else%}-->
-                                        <!--<span style="color: green;">否</span><a href="/module/recommend?id={{item.id}}">[开启]</a>-->
-                                        <!--{% endif %}-->
+                                    <!--{% if item.isRecommend %}-->
+                                    <!--<span style="color: red;">是</span><a class="ajax"-->
+                                    <!--data-href="/module/recommend/cancel?id={{item.id}}">[关闭]</a>-->
+                                    <!--{% else%}-->
+                                    <!--<span style="color: green;">否</span><a href="/module/recommend?id={{item.id}}">[开启]</a>-->
+                                    <!--{% endif %}-->
                                     <!--</td>-->
+                                    <!--* 模块的类型 如： 1.免费 2.一次性付费 3. 按月付费 4. 按年付费-->
+                                    <td>
+                                        {% if item.type %}
+                                        <span>免费</span>
+                                        {% else%}
+                                        <span style="color: #290000;">一次性付费</span>
+                                        <!--<a href="/module/recommend?id={{item.id}}">[开启]</a>-->
+                                        {% endif %}
+                                    </td>
                                     <td>
                                         {% if item.status %}
                                         <span>正常</span>
                                         {% else%}
-                                        <span style="color: red;">删除</span>
+                                        <span style="color: #290000;">已删除</span>
                                         <!--<a href="/module/recommend?id={{item.id}}">[开启]</a>-->
                                         {% endif %}
                                     </td>

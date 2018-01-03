@@ -25,21 +25,22 @@
                         {{ forms.hidden('id', data.id) }}
                         {{ forms.text('模块名称', 'name', data.name, '请输入模块名称', 'required') }}
                         {{ forms.text('模块拼音', 'key', data.key, '请输入模块key', 'required') }}
+
                         <div class="form-group">
                             <label class="col-sm-2 control-label">适用行业(可多选):</label>
                             <div class="col-sm-10">
                                 <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
-                                                                               value="1">酒店</label>
+                                                                               value="1"> 酒店</label>
                                 <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
-                                                                               value="2">餐饮</label>
+                                                                               value="2"> 餐饮</label>
                                 <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
-                                                                               value="3">娱乐</label>
+                                                                               value="3"> 娱乐</label>
                                 <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
-                                                                               value="4">旅游</label>
+                                                                               value="4"> 旅游</label>
                                 <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
-                                                                               value="5">特产</label>
-                                <label class="checkbox-inline"><input type="checkbox" name="industry"
-                                                                      value="0">全部</label>
+                                                                               value="5"> 特产</label>
+                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
+                                                                      value="0"> 全部</label>
                             </div>
                         </div>
                         <!--{{ forms.select('类型', 'type', data.type, 'required') }}-->
