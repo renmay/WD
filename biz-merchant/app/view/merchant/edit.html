@@ -20,7 +20,7 @@
                     <form class="form-horizontal m-t from" id="form" action="/merchant/edit" method="post" data-href="/merchant">
                     	{{ forms.hidden('id', data.id) }}
 						{{ forms.text('姓名', 'linkName', data.linkName, '请输入姓名', 'required') }}
-						{{ forms.text('用户名', 'username', data.username, '请输入用户名', 'required') }}
+						{{ forms.tet('用户名', 'username', data.username, '请输入用户名', 'required') }}
 						{{ forms.text('手机号', 'mobile', data.mobile, '请输入手机号', 'required') }}
 						{{ forms.password('密码', 'password', '', '留空表示不修改') }}
 						{{ forms.radios('员工类型', 'type', [{text: '管理员', value: 1}, {text: '员工', value: 2}], data.type) }}
@@ -28,7 +28,7 @@
 
                         <!--{% if data.id != 1 %}-->
 						<!--<div class="form-group">-->
-						    <!--<label class="col-sm-2 control-label">用户权限</label>-->
+						    <!--<lxabel class="col-sm-2 control-label">用户权限</label>-->
                             <!--<div class="col-sm-8">-->
                                 <!--<div class="checkbox">-->
                                     <!--{% for item in menus %}-->

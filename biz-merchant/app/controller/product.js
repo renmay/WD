@@ -128,33 +128,33 @@ module.exports = app => {
 
     }
 
-    /**
-         * 编辑数据
-         * @param ctx
-         * @private
-         */
-
-    async edit_(ctx) {
-      // this.validate(rule);
-      const params = this.ctx.request.body;
-      params.productType = this.ctx.session.member.type;
-      params.storeId = this.ctx.session.member.storeId;
-
-      const images = params.images;
-      const imgs = new Array();
-      // 去掉空图片
-      for (let i = 0; i < images.length; i++) {
-        if (images[i] != '') {
-          imgs.push(images[i]);
-        }
-      }
-      params.images = imgs;
-      this.app.logger.info(imgs);
-      this.app.logger.info(params);
-      this.app.logger.info(this.ctx.session.member);
-      const data = await this.service.product.edit(params);
-      this.ctx.body = data;
-    }
+    // /**
+    //      * 编辑数据
+    //      * @param ctx
+    //      * @private
+    //      */
+    //
+    // async edit_(ctx) {
+    //   // this.validate(rule);
+    //   const params = this.ctx.request.body;
+    //   params.productType = this.ctx.session.member.type;
+    //   params.storeId = this.ctx.session.member.storeId;
+    //
+    //   const images = params.images;
+    //   const imgs = new Array();
+    //   // 去掉空图片
+    //   for (let i = 0; i < images.length; i++) {
+    //     if (images[i] != '') {
+    //       imgs.push(images[i]);
+    //     }
+    //   }
+    //   params.images = imgs;
+    //   this.app.logger.info(imgs);
+    //   this.app.logger.info(params);
+    //   this.app.logger.info(this.ctx.session.member);
+    //   const data = await this.service.product.edit(params);
+    //   this.ctx.body = data;
+    // }
 
     async recommend(ctx) {
 

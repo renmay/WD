@@ -52,18 +52,18 @@ module.exports = app => {
          * @param params
          * @returns {{}}
          */
-    async edit(params) {
-      let method = 'post';
-      if (params.id && params.id !== '') {
-        method = 'put';
-      }
-      const result = await this.ctx.fetch(this.app.urls('module'), {
-        method,
-        dataType: 'json',
-        data: params,
-      });
-      return result.data;
-    }
+    // async edit(params) {
+    //   let method = 'post';
+    //   if (params.id && params.id !== '') {
+    //     method = 'put';
+    //   }
+    //   const result = await this.ctx.fetch(this.app.urls('module'), {
+    //     method,
+    //     dataType: 'json',
+    //     data: params,
+    //   });
+    //   return result.data;
+    // }
 
     /**
          * 删除

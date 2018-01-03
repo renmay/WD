@@ -31,6 +31,7 @@ module.exports = app => {
       this.app.logger.info(params);
       const data = await this.service.module.list(params);
 
+
       await this.ctx.render('module/list.html', { data });
     }
 
@@ -64,36 +65,48 @@ module.exports = app => {
 
       this.ctx.body = data;
     }
+    //
+    // /**
+    //      * 编辑数据
+    //      * @param ctx
+    //      * @returns {Promise.<*>}
+    //      */
+    // async edit() {
+    //   const params = this.ctx.request.query;
+    //   const id = params.id;
+    //   if (id === '') {
+    //     return this.redirect('/error');
+    //   }
+    //   params.storeId = this.ctx.session.member.storeId;
+    //   params.id = null;
+    //   if (id) {
+    //     const data = await this.service.module.get({ id });
+    //     this.app.logger.info(data);
+    //     await this.ctx.render('module/edit.html', { data });
+    //     return;
+    //   }
+    //   await this.ctx.render('module/edit.html');
+    // }
 
     /**
-         * 编辑数据
-         * @param ctx
-         * @returns {Promise.<*>}
-         */
+       * 编辑数据
+       * @param ctx
+       * @returns {Promise.<*>}
+       */
     async edit() {
       const params = this.ctx.request.query;
       const id = params.id;
+
       if (id === '') {
-        return this.redirect('/error');
+        return this.ctx.redirect('/error');
       }
-      params.storeId = this.ctx.session.member.storeId;
-      params.id = null;
+
       if (id) {
         const data = await this.service.module.get({ id });
-
-        const images = data.images.split(',');
-        data.images = images;
-        for (let i = 0; i < 4 - images.length; i++) { // 将数组长度补足为4
-          images.push('');
-        }
         await this.ctx.render('module/edit.html', { data, params });
         return;
       }
-
-      const data = {
-        moduleType: this.ctx.session.member.type,
-      };
-      await this.ctx.render('module/edit.html', { data, params });
+      await this.ctx.render('module/edit.html', params);
 
     }
 
