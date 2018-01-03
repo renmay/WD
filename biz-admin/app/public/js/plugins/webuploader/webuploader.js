@@ -99,7 +99,7 @@
         makeExport = function( dollar ) {
             root.__dollar = dollar;
 
-            // exports every module.
+            // exports every sysModule.
             return exportsTo( factory( root, _define, _require ) );
         },
 
@@ -111,7 +111,7 @@
         module.exports = makeExport();
     } else if ( typeof define === 'function' && define.amd ) {
 
-        // Allow using this built library as an AMD module
+        // Allow using this built library as an AMD sysModule
         // in another project. That other project will only
         // see this AMD call, not the internal modules in
         // the closure below.

@@ -38,9 +38,6 @@ module.exports = {
   constellation: '/constellation',
 
   chef: '/chef',
-
-  systemModule: '/admin/module/system',
-
   merchantAuthAudit: '/admin/merchant/auth',
   merchantAuthAuditInfo: '/admin/merchant/auth/info',
   merchantAuthAuditSuccess: '/admin/merchant/auth/success',

@@ -96,7 +96,7 @@ return (function( root, factory ) {
         makeExport = function( dollar ) {
             root.__dollar = dollar;
 
-            // exports every module.
+            // exports every sysModule.
             return exportsTo( factory( root, _define, _require ) );
         };
 

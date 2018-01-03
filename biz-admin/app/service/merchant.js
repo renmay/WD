@@ -153,6 +153,11 @@ module.exports = app => {
       return data.data;
     }
 
+      /**
+       * 获取审核资料
+       * @param params
+       * @returns {Promise<void>}
+       */
     async audit(params) {
       const result = await this.ctx.fetch(this.app.urls('merchantAuth.id', params), {
         method: 'get',

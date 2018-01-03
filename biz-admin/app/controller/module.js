@@ -34,33 +34,6 @@ module.exports = app => {
       await this.ctx.render('module/list.html', { data });
     }
 
-    /**
-         * 显示列表
-         * @param ctx
-         */
-    async data() {
-      const params = this.ctx.request.body;
-      this.app.logger.info(params);
-      params.moduleType = this.ctx.session.member.type;
-
-      const data = await this.service.module.list(params);
-      this.app.logger.info(data);
-      const list = data.list;
-      const items = [];
-
-      for (let i = 0; i < list.length; i++) {
-        const item = {
-          id: list[i].id,
-          type: list[i].moduleType.name,
-          name: list[i].name,
-        };
-        items.push(item);
-      }
-
-      data.list = items;
-      this.ctx.body = this.ctx.helper.res('', 200, { lastPage: data.lastPage, list: items });
-    }
-
 
     /**
          * 删除
@@ -93,6 +66,21 @@ module.exports = app => {
       this.ctx.body = data;
     }
 
+    async get() {
+      const params = this.ctx.request.query;
+      const id = params.id;
+      this.app.logger.info('id is'.concat(id));
+      if (id === '') {
+        return this.ctx.redirect('/error');
+      }
+      if (id) {
+        const data = await this.service.module.get({ id });
+        this.app.logger.info(data);
+        await this.ctx.render('module/audit.html',{data});
+        return;
+      }
+    }
+
     /**
          * 编辑数据
          * @param ctx
@@ -101,21 +89,16 @@ module.exports = app => {
     async edit() {
       const params = this.ctx.request.query;
       const id = params.id;
-      if (id == '') {
+      if (id === '') {
         return this.redirect('/error');
       }
-      params.storeId = this.ctx.session.member.storeId;
-      params.id = null;
       if (id) {
         const data = await this.service.module.get({ id });
-        await this.ctx.render('module/edit.html', { data, params });
+        this.app.logger.info(data);
+        await this.ctx.render('module/edit.html', { data });
         return;
       }
-
-      const data = {
-        moduleType: this.ctx.session.member.type,
-      };
-      await this.ctx.render('module/edit.html', { data, params });
+      await this.ctx.render('module/edit.html');
 
     }
 
@@ -137,137 +120,6 @@ module.exports = app => {
       this.ctx.body = data;
     }
 
-    async recommend() {
-
-      if (this.ctx.request.method ==='GET') { // get请求
-        const params = this.ctx.request.query;
-        const id = params.id;
-        console.log(this.ctx.request.ip);
-        if (id === '') {
-          return this.ctx.redirect('/error');
-        }
-
-        const data = await this.service.module.get({ id });
-
-        await this.render('module/recommend.html', { data, params });
-      } else { // post
-        const params = this.ctx.request.body;
-        params.isRecommend = true;
-        this.logger.info(params);
-        // 调用service中的login接口登录
-        await this.service.module.recommend(params);
-
-        // 放回json数据
-        this.ctx.body = {
-          code: 200,
-          message: 'success',
-        };
-      }
-
-    }
-
-    async pre() {
-
-      if (this.ctx.request.method == 'GET') { // get请求
-        const params = this.ctx.request.query;
-        const id = params.id;
-        console.log(this.ctx.request.ip);
-        if (id == '') {
-          return this.ctx.redirect('/error');
-        }
-
-        const data = await this.service.module.get({ id });
-
-        await this.ctx.render('module/pre.html', { data, params });
-      } else { // post
-        const params = this.ctx.request.body;
-        params.isPreShow = true;
-        this.app.logger.info(params);
-        // 调用service中的login接口登录
-        await this.service.module.pre(params);
-
-        // 放回json数据
-        this.ctx.body = {
-          code: 200,
-          message: 'success',
-        };
-      }
-
-    }
-
-    async recommendCancel() {
-      const params = this.ctx.request.query;
-      this.logger.info(params);
-      params.isRecommend = false;
-      // 调用service中的login接口登录
-      await this.service.module.recommend(params);
-
-      // 放回json数据
-      this.ctx.body = {
-        code: 200,
-        message: 'success',
-      };
-
-    }
-
-
-    async preCancel() {
-      const params = this.ctx.request.query;
-      this.logger.info(params);
-      // 调用service中的login接口登录
-      params.isPreShow = false;
-      await this.service.module.pre(params);
-
-      // 放回json数据
-      this.ctx.body = {
-        code: 200,
-        message: 'success',
-      };
-
-    }
-
-    async group() {
-      if (this.ctx.request.method == 'GET') { // get请求
-        const params = this.ctx.request.query;
-        const id = params.id;
-        console.log(this.ctx.request.ip);
-        if (id == '') {
-          return this.ctx.redirect('/error');
-        }
-
-
-        const data = await this.service.module.get({ id });
-
-        // 商品
-        const module = [];
-        const list = await this.service.moduleGroup.list({
-          moduleGroupId: id,
-        });
-
-        for (let i = 0; i < list.length; i++) {
-          const item = {
-            id: list[i].moduleId,
-            name: list[i].name,
-            type: list[i].typeName,
-          };
-          module.push(item);
-        }
-
-
-        const moduleCategory = await this.service.moduleCategory.listSelectJsonString();
-
-        await this.render('module/group.html', { data, moduleCategory, module, params });
-      } else { // post
-        const params = this.ctx.request.body;
-        this.logger.info(params);
-        // 调用service中的login接口登录
-        const data = await this.service.moduleGroup.edit(params);
-
-        // 放回json数据
-        this.ctx.body = data;
-      }
-
-    }
   }
 
   return ModuleController;
