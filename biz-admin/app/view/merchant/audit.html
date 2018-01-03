@@ -34,7 +34,6 @@
 
                         {{ forms.radios('审核意见', 'authCode', [{text: '通过', value: 1}, {text: '拒绝', value: 0}]) }}
                         {{ forms.text('审核结果', 'authResult', data.authResult, '如果审核未通过，请输入拒绝原因') }}
-
                         {{ forms.submit() }}
 
                     </form>

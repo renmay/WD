@@ -136,9 +136,9 @@ module.exports = app => {
 
     async edit_(ctx) {
       // this.validate(rule);
-      const params = this.ctx.request.body;
-      params.productType = this.ctx.session.member.type;
-      params.storeId = this.ctx.session.member.storeId;
+      // const params = this.ctx.request.body;
+      // params.productType = this.ctx.session.member.type;
+      // params.storeId = this.ctx.session.member.storeId;
 
       const images = params.images;
       const imgs = new Array();
@@ -182,7 +182,6 @@ module.exports = app => {
           message: 'success',
         };
       }
-
 
     }
 

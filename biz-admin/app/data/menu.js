@@ -9,15 +9,7 @@ module.exports = {
       children: [
         {
           url: '/index',
-          name: '消息通知',
-        },
-        {
-          url: '/order/config',
-          name: '财务报表',
-        },
-        {
-          url: '/constellation',
-          name: '待办事项',
+          name: '快捷操作',
         },
       ],
     },
@@ -35,7 +27,7 @@ module.exports = {
     {
       url: '/merchant',
       icon: 'fa fa-bar-chart-o',
-      name: '商户',
+      name: '店铺',
       children: [
         {
           url: '/merchant',
@@ -43,52 +35,52 @@ module.exports = {
         },
       ],
     },
-    {
-      url: '/order',
-      icon: 'fa fa-bar-chart-o',
-      name: '订单',
-      children: [
-        {
-          url: '/order',
-          name: '订单列表',
-        },
-        {
-          url: '/order/unpaid',
-          name: '待支付',
-        },
-        {
-          url: '/order/paid',
-          name: '已支付',
-        },
-        {
-          url: '/order/deliver',
-          name: '待配送',
-        },
-        {
-          url: '/order/receive',
-          name: '待收货',
-        },
-        {
-          url: '/order/refund',
-          name: '待退款',
-        },
-        {
-          url: '/pay/order',
-          name: '交易记录',
-        },
-      ],
-    },
-    {
-      url: '/member',
-      icon: 'fa fa-bar-chart-o',
-      name: '会员',
-      children: [
-        {
-          url: '/member',
-          name: '会员',
-        },
-      ],
-    },
+    // {
+    //   url: '/order',
+    //   icon: 'fa fa-bar-chart-o',
+    //   name: '订单',
+    //   children: [
+    //     {
+    //       url: '/order',
+    //       name: '订单列表',
+    //     },
+    //     {
+    //       url: '/order/unpaid',
+    //       name: '待支付',
+    //     },
+    //     {
+    //       url: '/order/paid',
+    //       name: '已支付',
+    //     },
+    //     {
+    //       url: '/order/deliver',
+    //       name: '待配送',
+    //     },
+    //     {
+    //       url: '/order/receive',
+    //       name: '待收货',
+    //     },
+    //     {
+    //       url: '/order/refund',
+    //       name: '待退款',
+    //     },
+    //     {
+    //       url: '/pay/order',
+    //       name: '交易记录',
+    //     },
+    //   ],
+    // },
+    // {
+    //   url: '/member',
+    //   icon: 'fa fa-bar-chart-o',
+    //   name: '会员',
+    //   children: [
+    //     {
+    //       url: '/member',
+    //       name: '会员',
+    //     },
+    //   ],
+    // },
   ],
   getMenu(url) {
     const menu = this.menu;

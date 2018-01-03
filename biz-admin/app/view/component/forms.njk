@@ -200,7 +200,7 @@
     </div>
 {% endmacro %}
 
-{% macro submit(label = '提交', id = '', type='submit', class = 'btn-primary') %}
+{% macro submit(label = '提交', id = '', type='submit', class = 'btn-info') %}
     <div class="form-group">
         <div class="col-sm-8 col-sm-offset-3">
             <button class="btn {{ class }}" id="{{ id }}" type="{{ type }}">{{ label }}</button>
@@ -258,8 +258,8 @@
                 </div>
                 <h4></h4>
                 <div class="btn-group">
-                    <label title="上传图片" class="btn btn-primary image-upload-btn">上传图片</label>
-                    <label title="删除图片" class="btn btn-primary image-del-btn">删除图片</label>
+                    <label title="上传图片" class="btn btn-info image-upload-btn">上传图片</label>
+                    <label title="删除图片" class="btn btn-info image-del-btn">删除图片</label>
                 </div>
             </div>
         </div>
@@ -281,8 +281,8 @@
                     </div>
                     <h4></h4>
                     <div class="btn-group">
-                        <label title="上传图片" class="btn btn-primary image-upload-btn">上传图片</label>
-                        <label title="删除图片" class="btn btn-primary image-del-btn">删除图片</label>
+                        <label title="上传图片" class="btn btn-info image-upload-btn">上传图片</label>
+                        <label title="删除图片" class="btn btn-info image-del-btn">删除图片</label>
                     </div>
                 </div>
                 {% endfor %}
@@ -305,8 +305,8 @@
                     </div>
                     <h4></h4>
                     <div class="btn-group">
-                        <label title="上传图片" class="btn btn-primary image-upload-btn">上传图片</label>
-                        <label title="删除图片" class="btn btn-primary image-del-btn">删除图片</label>
+                        <label title="上传图片" class="btn btn-info image-upload-btn">上传图片</label>
+                        <label title="删除图片" class="btn btn-info image-del-btn">删除图片</label>
                     </div>
                     <div style="padding: 8px 0 0 20px;">{{ item.text }}</div>
                 </div>

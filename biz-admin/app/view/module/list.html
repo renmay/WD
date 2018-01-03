@@ -11,110 +11,150 @@
 {# bodyd代码#}
 {% block body %}
 <div class="wrapper wrapper-content">
-<div class="row">
-    <div class="col-sm-12">
-        <div class="ibox float-e-margins">
-            <div class="ibox-content">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <form class="page-search-form">
-                            {{ search.select('是否推荐', 'isRecommend', [{
-                            id: '1',
-                            name: '是'
-                            },{
-                            id: '0',
-                            name: '否'
-                            }], params.isRecommend) }}
-                            <div class="col-sm-3">
-                                <div class="input-group">
-                                    <span class="input-group-addon">产品分类</span>
-                                    <select class="form-control m-b" name="moduleCategoryId">
-                                        <option value="">全部</option>
-                                        {% for item in moduleCategory %}
-                                        <option value="{{ item.value }}" {{ 'selected' if item.value == params.moduleCategoryId else ''}}>{{ item.text }}</option>
-                                        {% endfor %}
-                                    </select>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form class="page-search-form">
+                                {{ search.select('是否推荐', 'isRecommend', [{
+                                id: '1',
+                                name: '是'
+                                },{
+                                id: '0',
+                                name: '否'
+                                }], params.isRecommend) }}
+                                {{ search.text('名称', 'name', params.name, true) }}
+                            </form>
+                            <div class="col-sm-2">
+                                <div class="ibox-tools">
+                                    <a href="/module/edit" class="btn btn-info btn-xm">添加模块</a>
                                 </div>
                             </div>
-                            {{ search.text('名称', 'name', params.name, true) }}
+                        </div>
+
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="table-responsive">
+                        <form id="table-form">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>模块名称</th>
+                                    <th>模块拼音</th>
+                                    <th>图片</th>
+                                    <th>图标</th>
+                                    <th>价格</th>
+                                    <th>类型</th>
+                                    <th>状态</th>
+                                    <!--<th>是否新品</th>-->
+                                    <th>添加时间</th>
+                                    <th>操作</th>
+                                </tr>
+
+
+                                <!--/**-->
+                                <!--* key-->
+                                <!--*-->
+                                <!--*/-->
+                                <!--@Column(name = "unique_key", length = 64)-->
+                                <!--private String key;-->
+
+                                <!--/**-->
+                                <!--* 模块的类型 如： 1.免费 2.一次性付费 3. 按月付费 4. 按年付费-->
+                                <!--*-->
+                                <!--*/-->
+                                <!--@Column(name = "type", columnDefinition = M.NUM_COLUM)-->
+                                <!--private Integer type;-->
+
+
+                                <!--public static final String ALL_INDUSTRY = "0";-->
+
+                                <!--/**-->
+                                <!--* 适用行业 保存适用行业的type 1,2,3,  如果为0表示所有行业通用-->
+                                <!--* 如果只适用一个行业必须设置为 1, 必须使用 "," 结尾-->
+                                <!--*/-->
+
+
+
+                                </thead>
+                                <tbody>
+                                {% for item in data.list %}
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" value="{{ item.id }}" class="i-checks" name="check">
+                                    </td>
+                                    <td width="100">{{ item.name }}</td>
+                                    <td width="100">{{ item.key}}</td>
+                                    <td class="image">
+                                        <a href="/module/edit?id={{ item.icon }}"><img alt="image" class="image"
+                                                                                       src="{{ ctx.helper.showImage(item.icon, 50, 50, 'fixed') }}"></a>
+                                    </td>
+                                    <td class="image">
+                                        <a href="/module/edit?id={{ item.icon2 }}"><img alt="image" class="image"
+                                                                                     src="{{ ctx.helper.showImage(item.icon2, 50, 50, 'fixed') }}"></a>
+                                    </td>
+                                    <td>¥{{ item.price }}</td>
+
+                                    <!--<td>{{ item.inventory }}</td>-->
+                                    <!--<td>-->
+                                    <!--{% if item.isRecommend %}-->
+                                    <!--<span style="color: red;">是</span><a class="ajax"-->
+                                    <!--data-href="/module/recommend/cancel?id={{item.id}}">[关闭]</a>-->
+                                    <!--{% else%}-->
+                                    <!--<span style="color: green;">否</span><a href="/module/recommend?id={{item.id}}">[开启]</a>-->
+                                    <!--{% endif %}-->
+                                    <!--</td>-->
+                                    <!--* 模块的类型 如： 1.免费 2.一次性付费 3. 按月付费 4. 按年付费-->
+                                    <td>
+                                        {% if item.type %}
+                                        <span>免费</span>
+                                        {% else%}
+                                        <span style="color: #290000;">一次性付费</span>
+                                        <!--<a href="/module/recommend?id={{item.id}}">[开启]</a>-->
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if item.status %}
+                                        <span>正常</span>
+                                        {% else%}
+                                        <span style="color: #290000;">已删除</span>
+                                        <!--<a href="/module/recommend?id={{item.id}}">[开启]</a>-->
+                                        {% endif %}
+                                    </td>
+
+                                    <td>{{ item.createTime }}</td>
+                                    <td data-id="{{ item.id }}">
+                                        <a href="/module/edit?id={{item.id}}">编辑</a>
+                                        <a class="del" data-id="{{ item.id }}" data-href="/module/delete">删除</a>
+                                    </td>
+                                </tr>
+                                {% else %}
+                                暂无数据
+                                {% endfor %}
+                                </tbody>
+                            </table>
                         </form>
                     </div>
-                    <div class="col-sm-2">
-                        <div class="ibox-tools">
-                            <a href="/module/edit" class="btn btn-primary btn-xm">添加商品</a>
+                    <div class="hr-line-dashed"></div>
+                    <div class="btn-region clearfix">
+                        <div class="pull-left">
+                            <button href="" id="batch-del-btn" class="btn btn-danger btn-sm js-batch"
+                                    data-url="/module/delete" data-confirm="确定删除选中的桌台吗?" data-original-title=""
+                                    title="">批量删除
+                            </button>
                         </div>
-                    </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="table-responsive">
-                   <form id="table-form">
-                       <table class="table table-striped">
-                           <thead>
-                           <tr>
-                               <th></th>
-                               <th>图片</th>
-                               <th>产品名称</th>
-                               <th>库存</th>
-                               <th>价格</th>
-                               <th>是否推荐</th>
-                               <th>是否新品</th>
-                               <th>添加时间</th>
-                               <th>操作</th>
-                           </tr>
-                           </thead>
-                           <tbody>
-                           {% for item in data.list %}
-                               <tr>
-                                   <td>
-                                       <input type="checkbox" value="{{ item.id }}" class="i-checks" name="check">
-                                   </td>
-                                   <td class="image">
-                                       <a href="/module/edit?id={{ item.id }}"><img alt="image" class="image" src="{{ ctx.helper.showImage(item.url, 50, 50, 'fixed') }}"></a>
-                                   </td>
-                                   <td width="260">{{ item.name }}</td>
-                                   <td>{{ item.inventory }}</td>
-                                   <td>￥{{ item.fixPrice }}</td>
-                                   <td>
-                                       {% if item.isRecommend %}
-                                       <span style="color: red;">是</span><a class="ajax" data-href="/module/recommend/cancel?id={{item.id}}">[关闭]</a>
-                                       {% else%}
-                                       <span style="color: green;">否</span><a href="/module/recommend?id={{item.id}}">[开启]</a>
-                                       {% endif %}
-                                   </td>
-                                   <td>
-                                       {% if item.isPreShow %}
-                                       <span style="color: red;">是</span><a class="ajax" data-href="/module/pre/cancel?id={{item.id}}">[关闭]</a>
-                                       {% else%}
-                                       <span style="color: green;">否</span><a href="/module/pre?id={{item.id}}">[开启]</a>
-                                       {% endif %}
-                                   </td>
-                                   <td>{{ item.createTime }}</td>
-                                   <td data-id="{{ item.id }}">
-                                       <a href="/module/edit?id={{item.id}}">编辑</a>
-                                       <a class="del" data-id="{{ item.id }}" data-href="/module/delete">删除</a>
-                                   </td>
-                               </tr>
-                           {% else %}
-                               暂无数据
-                           {% endfor %}
-                           </tbody>
-                       </table>
-                   </form>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="btn-region clearfix">
-                    <div class="pull-left">
-                        <button href="" id="batch-del-btn" class="btn btn-danger btn-sm js-batch" data-url="/module/delete" data-confirm="确定删除选中的桌台吗?" data-original-title="" title="">批量删除</button>
-                    </div>
-                    <div class="pull-right">
-                        {{ pagination.pagination(data, params, '/module') }}
+                        <div class="pull-right">
+                            {{ pagination.pagination(data, params, '/module') }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 </div>
 {% endblock %}
 
@@ -122,7 +162,7 @@
 {% block js %}
 <script>
 
- 
+
 </script>
 
 {% endblock %}

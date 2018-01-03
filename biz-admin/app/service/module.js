@@ -18,7 +18,7 @@ module.exports = app => {
       if (data.code !== 200) {
         throw new Error(data.message ? data.message : 'error');
       }
-
+      this.app.logger.info(result.data);
       return data;
     }
 
@@ -40,11 +40,11 @@ module.exports = app => {
       this.app.logger.info(result.data);
       const data = result.data;
 
-      if (data.code !== 200) {
+      if (result.data.code !== 200) {
         throw new Error(data.message ? data.message : 'error');
       }
 
-      return data;
+      return result.data.data;
     }
 
     /**
@@ -52,18 +52,18 @@ module.exports = app => {
          * @param params
          * @returns {{}}
          */
-    async edit(params) {
-      let method = 'post';
-      if (params.id && params.id !== '') {
-        method = 'put';
-      }
-      const result = await this.ctx.fetch(this.app.urls('module'), {
-        method,
-        dataType: 'json',
-        data: params,
-      });
-      return result.data;
-    }
+    // async edit(params) {
+    //   let method = 'post';
+    //   if (params.id && params.id !== '') {
+    //     method = 'put';
+    //   }
+    //   const result = await this.ctx.fetch(this.app.urls('module'), {
+    //     method,
+    //     dataType: 'json',
+    //     data: params,
+    //   });
+    //   return result.data;
+    // }
 
     /**
          * 删除

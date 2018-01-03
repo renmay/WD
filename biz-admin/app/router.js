@@ -16,7 +16,7 @@ module.exports = app => {
   // 首页
   app.get('/', 'home.index');
   app.get('/index', 'home.index');
-  app.get('/remote', 'home.remote');
+  // app.get('/remote', 'home.remote');
 
   // 登陆
   app.get('/login', 'login.login');
@@ -54,8 +54,8 @@ module.exports = app => {
 
   //
 
-  // order
-  app.get('/order', 'order.list');
+  // order（renmay第一行）
+  // app.get('/order', 'order.list');
   // app.get('/order/remind', 'order.remind');
   // app.get('/order/unpaid', 'order.unpaid');
   // app.get('/order/paid', 'order.paid');
