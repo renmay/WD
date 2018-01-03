@@ -17,9 +17,15 @@ module.exports = app => {
     // //发送验证码
     app.post('/send/code', 'sms.sendCode');
     app.post('/merchant/type', 'merchant.type');
-    app.get('/merchant/auth/info', 'merchant.info');
 
-    // // 个人中心
+    // 用户认证信息
+    app.get('/merchant/auth/info', 'merchant.info');
+    app.get('/merchant/auth/info/result', 'merchant.authResult');
+    app.get('/merchant/userinfo', 'merchant.userinfo');
+    app.post('/merchant/changeAvatar', 'merchant.changeAvatar');
+    app.post('/merchant/changeUsername', 'merchant.changeUsername');
+
+    // 个人中心
     app.get('/member/info', 'member.info');
     app.post('/member/info', 'member.edit');
     app.get('/member/rank', 'member.rank');
@@ -27,6 +33,9 @@ module.exports = app => {
     // 店铺管理
     app.get('/store/get', 'store.get');
     app.post('/store/edit', 'store.edit_');
+
+    // 系统模块
+    app.get('/module/get','module.get');
 
     // 打印机管理
     app.get('/printer/list', 'printer.list');
@@ -38,7 +47,7 @@ module.exports = app => {
     app.post('/printer/print', 'printer.print');
     app.post('/printer/print/all', 'printer.printAll');
 
-    //密码相关
+    // 密码相关
     app.post('/merchant/password','merchant.changePassword');
     app.post('/merchant/reset/password','merchant.resetPassword');
 
