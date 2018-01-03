@@ -28,7 +28,7 @@ module.exports = app => {
          * 修改密码
          * @param params
          */
-        async info(params) {
+        async changePassword(params) {
             const result = await this.ctx.fetch(`${this.app.urls('merchant')}/password`, {
                 method: 'post',
                 dataType: 'json',
@@ -46,7 +46,7 @@ module.exports = app => {
          * 重置密码
          * @param params
          */
-        async info(params) {
+        async resetPassword(params) {
             const result = await this.ctx.fetch(`${this.app.urls('merchant')}/reset/password`, {
                 method: 'post',
                 dataType: 'json',

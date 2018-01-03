@@ -17,6 +17,9 @@ module.exports = app => {
             this.ctx.token.member = member;
 
             this.success({
+                name: member.name,
+                mobile: member.mobile,
+                userType: member.userType,
                 status: member.status,
                 progress: member.progress
             }, "登录成功");
