@@ -66,21 +66,6 @@ module.exports = app => {
       this.ctx.body = data;
     }
 
-    async get() {
-      const params = this.ctx.request.query;
-      const id = params.id;
-      this.app.logger.info('id is'.concat(id));
-      if (id === '') {
-        return this.ctx.redirect('/error');
-      }
-      if (id) {
-        const data = await this.service.module.get({ id });
-        this.app.logger.info(data);
-        await this.ctx.render('module/audit.html',{data});
-        return;
-      }
-    }
-
     /**
          * 编辑数据
          * @param ctx
@@ -115,8 +100,7 @@ module.exports = app => {
       params.storeId = this.ctx.session.member.storeId;
 
       this.app.logger.info(params);
-      this.app.logger.info(this.ctx.session.member);
-      const data = await this.service.module.edit(params);
+      const data = await this.service.module.edit_(params);
       this.ctx.body = data;
     }
 

@@ -18,7 +18,7 @@ module.exports = app => {
       if (data.code !== 200) {
         throw new Error(data.message ? data.message : 'error');
       }
-      return data;
+      return data.data;
     }
 
 
@@ -51,15 +51,15 @@ module.exports = app => {
          * @param params
          * @returns {{}}
          */
-    async edit(params) {
-      let method = 'post';
+    async edit_(params) {
+      let mtd = 'post';
       if (params.id && params.id !== '') {
-        method = 'put';
+        mtd = 'put';
       }
       const result = await this.ctx.fetch(this.app.urls('module'), {
-        method,
         dataType: 'json',
         data: params,
+        method: mtd,
       });
       this.app.logger.info(result.data);
       const data = result.data;
@@ -68,7 +68,7 @@ module.exports = app => {
         throw new Error(data.message ? data.message : 'error');
       }
 
-      return result.data.data;
+      return result.data;
     }
 
     /**

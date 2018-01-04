@@ -32,10 +32,13 @@ module.exports = app => {
   app.get('/product/recommend', 'product.recommend');
   app.post('/product/recommend', 'product.recommend');
   app.post('/product/recommend/cancel', 'product.recommendCancel');
-  //
-  // app.get('/product/group', 'product.group');
-  // app.post('/product/group', 'product.group');
-  //
+
+  // module
+  app.get('/module', 'module.list');
+  app.get('/module/edit', 'module.edit');
+  app.post('/module/edit', 'module.edit_'); // 如果是post方法修改数据 在后面加 '_' 区分
+  app.post('/module/delete', 'module.delete');
+
   // member
   app.get('/member', 'member.list');
   app.get('/member/edit', 'member.edit');
@@ -122,9 +125,4 @@ module.exports = app => {
   // app.get('/sms/send', 'sms.send');
   // app.post('/sms/send', 'sms.send');
 
-  // module
-  app.get('/module', 'module.list');
-  app.get('/module/edit', 'module.edit');
-  app.post('/module/edit', 'module.edit_'); // 如果是post方法修改数据 在后面加 '_' 区分
-  app.post('/module/delete', 'module.delete');
 };

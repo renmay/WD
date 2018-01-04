@@ -52,13 +52,13 @@
                             <div class="col-sm-8">
                                 <select class="form-control m-b" name="type">
                                     <option value="1" {{
-                                    'selected' if data.status == 1 }}>免费</option>
+                                    'selected' if data.type == 1 }}>免费</option>
                                     <option value="2" {{
-                                    'selected' if data.status == 2 }}>一次性付费</option>
+                                    'selected' if data.type == 2 }}>一次性付费</option>
                                     <option value="3" {{
-                                    'selected' if data.status == 1 }}>按月付费</option>
+                                    'selected' if data.type == 3 }}>按月付费</option>
                                     <option value="4" {{
-                                    'selected' if data.status == 2 }}>按年付费</option>
+                                    'selected' if data.type == 4 }}>按年付费</option>
                                 </select>
                             </div>
                         </div>
