@@ -5,6 +5,7 @@ module.exports =  {
     oss: '/oss',
     getUserInfo: '/user/get/{{id}}',   //参数使用{{params}}
     merchant: '/merchant',
+    account: '/merchant/account',
 
     module: '/store/module',
     login: '/login',
