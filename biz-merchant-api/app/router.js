@@ -22,8 +22,8 @@ module.exports = app => {
     app.get('/merchant/auth/info', 'merchant.info');
     app.get('/merchant/auth/info/result', 'merchant.authResult');
     app.get('/merchant/userinfo', 'merchant.userinfo');
-    app.post('/merchant/changeAvatar', 'merchant.changeAvatar');
-    app.post('/merchant/changeUsername', 'merchant.changeUsername');
+    app.post('/merchant/avatar', 'merchant.changeAvatar');
+    app.post('/merchant/username', 'merchant.changeUsername');
 
     // 个人中心
     app.get('/member/info', 'member.info');

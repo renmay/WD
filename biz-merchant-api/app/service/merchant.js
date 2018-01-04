@@ -100,7 +100,7 @@ module.exports = app => {
          * 修改用户名
          * @param params
          */
-        async changeAvatar(params) {
+        async changeUsername(params) {
             const result = await this.ctx.fetch(`${this.app.urls('merchant')}/username`, {
                 method: 'post',
                 dataType: 'json',
@@ -110,7 +110,6 @@ module.exports = app => {
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
-
             return result.data.data;
         }
 
@@ -118,7 +117,7 @@ module.exports = app => {
          * 获取个人信息
          * @param params
          */
-        async changeAvatar() {
+        async userinfo() {
             const result = await this.ctx.fetch(`${this.app.urls('merchant')}/userinfo`, {
                 method: 'get',
                 dataType: 'json'
