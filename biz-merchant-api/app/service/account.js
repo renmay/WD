@@ -35,7 +35,6 @@ module.exports = app => {
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
-
             return result.data.data;
         }
         /**
@@ -68,6 +67,23 @@ module.exports = app => {
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
+            return result.data.data;
+        }
+
+        /**
+         * 获取银行卡数量
+         * @param params
+         */
+        async add() {
+            const result = await this.ctx.fetch(this.app.urls('account')+'/quantity', {
+                method: 'post',
+                dataType: 'json',
+            });
+            this.app.logger.info(result.data);
+            if (result.data.code != 200){
+                throw new Error(data.message ? data.message : 'error');
+            }
+
             return result.data.data;
         }
 

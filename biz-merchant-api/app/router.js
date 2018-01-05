@@ -54,6 +54,7 @@ module.exports = app => {
     // 用户账户
     app.get('/account/list', 'account.list');
     app.get('/account/get', 'account.get');
+    app.get('/account/quantity', 'account.quantity');
     app.post('/account/add', 'account.add');
     app.post('/account/delete', 'account.delete');
 

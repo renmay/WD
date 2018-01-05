@@ -43,6 +43,14 @@ module.exports = app => {
             this.success(data);
         }
 
+        /**
+         * 获取银行卡数量
+         * @returns {Promise<void>}
+         */
+        async quantity(){
+            const data = await this.ctx.service.account.quantity();
+            this.success(data);
+        }
     }
     return AccountController;
 };
