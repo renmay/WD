@@ -51,7 +51,6 @@ module.exports = app => {
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
-
             return result.data.data;
         }
         /**
@@ -74,7 +73,7 @@ module.exports = app => {
          * 获取银行卡数量
          * @param params
          */
-        async add() {
+        async quantity() {
             const result = await this.ctx.fetch(this.app.urls('account')+'/quantity', {
                 method: 'post',
                 dataType: 'json',
