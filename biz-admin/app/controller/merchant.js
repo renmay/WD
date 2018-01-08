@@ -112,6 +112,7 @@ module.exports = app => {
       // this.validate(rule);
       const params = this.ctx.request.body;
       const data = await this.service.merchant.audit_(params);
+      this.app.logger.info(data);
       this.ctx.body = data;
     }
 
