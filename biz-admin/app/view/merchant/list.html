@@ -101,15 +101,15 @@
                                         {% endif %}
                                     </td>
                                     <td>
-                                        {% if item.userType == 1 %}
+                                        {% if item.managerType == 1 %}
                                         管理员
-                                        {% elif item.userType == 2 %}
+                                        {% elif item.managerType == 2 %}
                                         员工
                                         {% else %}
                                         未知
                                         {% endif %}
                                     </td>
-                                    <td>{{item.lastLoginTime}}</td>
+                                    <td>{{item.createTime}}</td>
                                     <td data-id="{{ item.id }}">
                                         <a href="/merchant/audit?id={{item.id}}">查看</a>
                                     </td>
