@@ -16,6 +16,7 @@ module.exports = app => {
             await this.ctx.render("remote.html");
         };
 
+        
         async user() {
             //从session中获取用户信息
             const user = this.ctx.session.user;
