@@ -33,6 +33,7 @@ module.exports = app => {
       const productCategory = await this.service.productCategory.listSelectJsonString(params);
 
       this.app.logger.info(data);
+      this.app.logger.info(productCategory);
       await this.ctx.render('product/list.html', { data, productCategory });
     }
 
@@ -124,6 +125,7 @@ module.exports = app => {
       const data = {
         productType: this.ctx.session.member.type,
       };
+
       await this.ctx.render('product/edit.html', { data, params, productCategory });
 
     }
@@ -136,9 +138,9 @@ module.exports = app => {
 
     async edit_(ctx) {
       // this.validate(rule);
-      // const params = this.ctx.request.body;
-      // params.productType = this.ctx.session.member.type;
-      // params.storeId = this.ctx.session.member.storeId;
+      const params = this.ctx.request.body;
+      params.productType = this.ctx.session.member.type;
+      params.storeId = this.ctx.session.member.storeId;
 
       const images = params.images;
       const imgs = new Array();
@@ -184,7 +186,6 @@ module.exports = app => {
       }
 
     }
-
     async pre(ctx) {
 
       if (this.ctx.request.method == 'GET') { // get请求
