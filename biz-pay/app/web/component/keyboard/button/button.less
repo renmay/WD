@@ -1,0 +1,98 @@
+@fill-tap: #ddd;
+// 组件默认背景 - 按下
+@brand-primary-tap: #1284d6;
+// keyboard
+@keyboard-confirm-color: #26a2ff;
+@keyboard-confirm-tap-color: #1284d6;
+
+.keyboard-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 200px;
+  z-index: 10000;
+  font-family: 'PingFang SC';
+  background-color: #f6f6f7;
+  transition-duration: 0.2s;
+  transform: translateZ(0);
+
+  table {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+    border-top: .5PX solid #ccc;
+
+    tr {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+
+      .keyboard-item {
+        width: 25%;
+        padding: 0;
+        margin: 0;
+        height: 50px;
+        text-align: center;
+        border-left: .5PX solid #ccc;
+        border-bottom: .5PX solid #ccc;
+        font-size: 25.5px;
+        color: #2a2b2c;
+        position: relative;
+
+        &.keyboard-item:active {
+          background-color: @fill-tap;
+        }
+
+        &.confirm {
+          color: #fff;
+          font-size: 21px;
+          background-color: @keyboard-confirm-color;
+
+          &.keyboard-item:active {
+            background-color: @keyboard-confirm-tap-color;
+          }
+
+          &.disabled {
+            background-color: @keyboard-confirm-tap-color;
+            color: rgba(255, 255, 255, 0.45);
+          }
+        }
+
+        .del {
+          font-size: 30px;
+        }
+        .keyboard {
+           font-size: 30px;
+         }
+      }
+    }
+  }
+}
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 100%, 0);
+    display: none;
+  }
+}
+@keyframes slideInUp {
+  from {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+.slide-enter-active {
+  animation-name: slideInUp;
+}
+.slide-leave-active {
+  animation-name: slideInDown;
+}
