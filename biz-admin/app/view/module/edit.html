@@ -26,7 +26,7 @@
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label">适用行业(可多选):</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10 lablebox">
                                 <label class="checkbox-inline i-checks">
                                     <input type="checkbox" name="industry"
                                            value="1"> 酒店</label>
@@ -45,7 +45,7 @@
                                 <label class="checkbox-inline i-checks" id="checkAll">
                                     <input type="checkbox"
                                            name="industry"
-                                           value="0"> 全部</label>
+                                           value="0"> 全选</label>
                             </div>
                         </div>
                         <!--{{ forms.select('类型', 'type', data.type, 'required') }}-->
@@ -172,31 +172,28 @@
         });
     </script>
 
-    <!--全选和全不选功能-->
+    <!--全选功能-->
     <script>
         $(function () {
+            // alert($(".i-checks:last-child").html());
+            $(".i-checks:last-child").click(function () {
+                // alert("啊啊哈");
+                    var pre = $(this).prevAll().find('.checked');
+                    if (pre.length < 4) {
+                        $('.icheckbox_square-green').addClass("checked");
 
-            $("#checkAll").click(function () {
-                    // alert($(".icheckbox_square-green").html());
-                    // if($(".icheckbox_square-green").checked()){
-                    //     alert("啊哈哈哈");
-                    // }
-
-                    alert($(this).prevAll().find('div').html());
-
-                    $(this).prevAll().find('div').addClass("checked");
+                    } else {
+                        $('.icheckbox_square-green').removeClass("checked");
+                    }
                 }
             );
 
+            if ($('.checked').length < 4) {
+                $("#checkAll").removeClass("checked");
+            } else {
+                $("#checkAll").addClass("checked");
+            }
+
         });
-        
-        
-        // function checkAll() {
-        //     alert($(".icheckbox_square-green").html());
-        //
-        //
-        //
-        //     $("img").attr("width","500");
-        // }
     </script>
     {% endblock %}

@@ -107,7 +107,6 @@ module.exports = app => {
       }
       return productCategory;
     }
-
   }
 
   return ProductCategoryService;
