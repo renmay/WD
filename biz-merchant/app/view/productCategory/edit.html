@@ -23,13 +23,13 @@
 						{{ forms.text('排序', 'sort', data.sort, '请输入排序', 'required') }}
 
                         {{ forms.images(
-                            label = '图标',
-                            fileList = [{
-                            name: 'icon',
-                            value: data.icon,
-                            url: ctx.helper.showImage(data.icon, 160, 160, 'fixed'),
-                            text: ''
-                            }]
+                        label = '图标',
+                        fileList = [{
+                        name: 'icon',
+                        value: data.icon,
+                        url: ctx.helper.showImage(data.icon, 160, 160, 'fixed'),
+                        text: ''
+                        }]
                         )}}
 
 						{{ forms.textarea('备注', 'remark', data.remark, '请输入备注') }}
