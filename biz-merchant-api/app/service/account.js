@@ -11,7 +11,7 @@ module.exports = app => {
          * @param params
          */
         async list() {
-            const result = await this.ctx.fetch(this.app.urls('account'), {
+            const result = await this.ctx.fetch(this.app.urls('account')+'/list', {
                 method: 'get',
                 dataType: 'json',
             });
