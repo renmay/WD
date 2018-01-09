@@ -31,9 +31,20 @@ module.exports = app => {
       this.app.logger.info(params);
       const data = await this.service.product.list(params);
       const productCategory = await this.service.productCategory.listSelectJsonString(params);
-
       this.app.logger.info(data);
       this.app.logger.info(productCategory);
+
+
+      //renmay
+      for (let i = 0; i<data.list.length; i++){
+        for (let j = 0; j<productCategory.length; j++){
+            // this.app.logger.info(productCategory[j]);
+            if (data.list[i].productCategoryId == productCategory[j].value);
+              data.list[i].productCategoryName = productCategory[j].text;
+            }
+      }
+
+
       await this.ctx.render('product/list.html', { data, productCategory });
     }
 
@@ -127,7 +138,7 @@ module.exports = app => {
       };
 
       await this.ctx.render('product/edit.html', { data, params, productCategory });
-
+      // this.app.logger.info(data);
     }
 
     /**

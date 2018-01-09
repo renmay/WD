@@ -58,10 +58,57 @@
                        {{ table.base(data.list, columns) }}
                    </form>
                 </div>
+
+
+                <!--<div class="table-responsive">-->
+                    <!--<form id="table-form">-->
+                        <!--<table class="table table-striped">-->
+                            <!--<thead>-->
+                            <!--<tr>-->
+                                <!--<th></th>-->
+                                <!--<th>图标</th>-->
+                                <!--<th>类型名称</th>-->
+                                <!--<th>排序</th>-->
+                                <!--<th>添加时间</th>-->
+                                <!--<th>备注</th>-->
+                                <!--<th>操作</th>-->
+                            <!--</tr>-->
+
+                            <!--</thead>-->
+                            <!--<tbody>-->
+                            <!--{% for item in data.list %}-->
+
+                            <!--<tr>-->
+                                <!--<td>-->
+                                    <!--<input type="checkbox" value="{{ item.id }}" class="i-checks" name="check">-->
+                                <!--</td>-->
+                                <!--<td class="image">-->
+                                    <!--<a href="/product/edit?id={{ item.icon }}"><img alt="image" class="image"-->
+                                                                                  <!--src="{{ ctx.helper.showImage(item.url, 50, 50, 'fixed') }}"></a>-->
+                                <!--</td>-->
+                                <!--<td>{{ item.name }}</td>-->
+                                <!--<td>{{ item.sort }}</td>-->
+                                <!--<td>{{ item.createTime }}</td>-->
+                                <!--<td>{{ item.remark }}</td>-->
+
+                                <!--<td data-id="{{ item.id }}">-->
+                                    <!--<a href="/product/edit?id={{item.id}}">编辑</a>-->
+                                    <!--<a class="del" data-id="{{ item.id }}" data-href="/product/delete">删除</a>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--{% else %}-->
+                            <!--暂无数据-->
+                            <!--{% endfor %}-->
+                            <!--</tbody>-->
+                        <!--</table>-->
+                    <!--</form>-->
+                <!--</div>-->
+
+
                 <div class="hr-line-dashed"></div>
                 <div class="btn-region clearfix">
                     <div class="pull-left">
-                        <button href="" id="batch-del-btn" class="btn btn-danger btn-sm js-batch" data-url="/product/category/delete" data-confirm="确定删除选中的产品类型吗?" data-original-title="" title="">批量删除</button>
+                        <button href="" id="batch-del-btn" class="btn btn-danger btn-sm js-batch" data-url="/product/category/delete" data-confirm="确定删除选中的商品类型吗?" data-original-title="" title="">批量删除</button>
                     </div>
                     <div class="pull-right">
                         {{ pagination.pagination(data, params, '/product/category') }}
