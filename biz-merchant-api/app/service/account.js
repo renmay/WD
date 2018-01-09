@@ -62,7 +62,7 @@ module.exports = app => {
          */
         async delete(params) {
             const result = await this.ctx.fetch(this.app.urls('account.id', params), {
-                method: 'delete',
+                method: 'post',
                 dataType: 'json'
             });
             this.app.logger.info(result.data);
