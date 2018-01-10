@@ -11,5 +11,9 @@ module.exports = app => {
     //二维码扫码进入的界面 如果没有别上面的路由匹配将被此路由匹配
     app.get('/:no', 'qr.scan');
 
+    app.get('/common/weixin/auth2/authorize', 'weixin.login');
+    app.get('/common/alipay/auth2/authorize', 'alipay.login');
+
+
 
 };

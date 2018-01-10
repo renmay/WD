@@ -11,8 +11,19 @@ module.exports = app => {
                 return this.ctx.body = 'error';
             }
             params.code = params.auth_code;
+
+
+            let data = {
+                code: params.auth_code,
+                appId: params.app_id,
+                source: params.source,
+                scope: params.scope,
+                state: params.state
+            };
+
+
             //通过code获取到token和用户的openid
-            let result = await this.ctx.service.alipay.openid(params);
+            let result = await this.ctx.service.alipay.openid(data);
 
             //注意大小写
             let openId = result.openId;
