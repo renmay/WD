@@ -68,11 +68,12 @@
                           data-href="/product">
                         {{ forms.hidden('id', data.id) }}
                         {{ forms.text('商品名称', 'name', data.name, '请输入商品名称', 'required') }}
-                        {{ forms.select('商品分类', 'productCategoryId', productCategory, data.productCategoryId) }}
-                        {{ forms.textarea('商品库存', 'inventory', data.inventory, '请输入商品库存', 'required') }}
-                        {{ forms.textarea('简单描述', 'brief', data.brief, '请输入产品简单描述', 'required') }}
+
                         {{ forms.number('销售价', 'fixPrice', data.fixPrice, '请输入商品销售价', 'required') }}
                         {{ forms.number('市场价', 'marketPrice', data.marketPrice, '请输入商品市场价', 'required') }}
+                        {{ forms.number('库存', 'inventory', data.inventory, '请输入商品库存', 'required') }}
+                        {{ forms.select('商品分类', 'productCategoryId', productCategory, data.productCategoryId) }}
+                        {{ forms.textarea('简单描述', 'brief', data.brief, '请输入产品简单描述', 'required') }}
                         {{ forms.text('买家须知', 'buyingIntro', data.buyingIntro, '请输入买家购买注意事项') }}
                         {{ forms.text('规格描述', 'specDetailDescription', data.specDetailDescription, '请输入规格描述') }}
                         {{ forms.text('售后描述', 'afterSaleService', data.afterSaleService, '请输入售后描述') }}
@@ -86,6 +87,7 @@
                         text: '标题图'
                         }]
                         )}}
+
 
                         {{ forms.images(
                         label = '产品图片',
@@ -235,6 +237,9 @@
                 $(this).parent().remove();
                 $("#result").val(JSON.stringify(hashtable));
             });
+
+
+
 
             $("#btn").on('click', function () {
                 key = $("#key").val();

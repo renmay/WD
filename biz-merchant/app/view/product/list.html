@@ -27,13 +27,11 @@
                                 }], params.isRecommend) }}
                                 <div class="col-sm-3">
                                     <div class="input-group">
-                                        <span class="input-group-addon">产品分类</span>
-                                        <select class="form-control m-b" name="moduleCategoryId">
+                                        <span class="input-group-addon">商品分类</span>
+                                        <select class="form-control m-b" name="productCategoryId">
                                             <option value="">全部</option>
-                                            {% for item in moduleCategory %}
-                                            <option value="{{ item.value }}" {{
-                                            'selected' if item.value == params.moduleCategoryId else ''}}>{{ item.text
-                                            }}</option>
+                                            {% for item in productCategory %}
+                                            <option value="{{ item.value }}" {{'selected' if item.value == params.productCategoryId else ''}}>{{ item.text }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -55,79 +53,45 @@
                                 <thead>
                                 <tr>
                                     <th></th>
-                                    <th>模块名称</th>
-                                    <th>模块拼音</th>
+                                    <th>产品名称</th>
                                     <th>图片</th>
                                     <th>图标</th>
-                                    <th>价格</th>
-                                    <!--<th>库存</th>-->
-                                    <th>状态</th>
-                                    <!--<th>是否新品</th>-->
+                                    <th>销售价格</th>
+                                    <th>市场价格</th>
+                                    <th>库存</th>
+                                    <th>商品分类</th>
                                     <th>添加时间</th>
                                     <th>操作</th>
                                 </tr>
 
-
-                                <!--/**-->
-                                <!--* key-->
-                                <!--*-->
-                                <!--*/-->
-                                <!--@Column(name = "unique_key", length = 64)-->
-                                <!--private String key;-->
-
-                                <!--/**-->
-                                <!--* 模块的类型 如： 1.免费 2.一次性付费 3. 按月付费 4. 按年付费-->
-                                <!--*-->
-                                <!--*/-->
-                                <!--@Column(name = "type", columnDefinition = M.NUM_COLUM)-->
-                                <!--private Integer type;-->
-
-
-                                <!--public static final String ALL_INDUSTRY = "0";-->
-
-                                <!--/**-->
-                                <!--* 适用行业 保存适用行业的type 1,2,3,  如果为0表示所有行业通用-->
-                                <!--* 如果只适用一个行业必须设置为 1, 必须使用 "," 结尾-->
-                                <!--*/-->
-
-
-
                                 </thead>
                                 <tbody>
                                 {% for item in data.list %}
+
                                 <tr>
                                     <td>
                                         <input type="checkbox" value="{{ item.id }}" class="i-checks" name="check">
                                     </td>
                                     <td width="100">{{ item.name }}</td>
-                                    <td>{{ item.key}}</td>
+
+
+
                                     <td class="image">
                                         <a href="/product/edit?id={{ item.icon }}"><img alt="image" class="image"
-                                                                                       src="{{ ctx.helper.showImage(item.url, 50, 50, 'fixed') }}"></a>
+                                                                                        src="{{ ctx.helper.showImage(item.url, 50, 50, 'fixed') }}"></a>
                                     </td>
+
                                     <td class="image">
                                         <a href="/product/edit?id={{ item.id }}"><img alt="image" class="image"
-                                                                                     src="{{ ctx.helper.showImage(item.url, 50, 50, 'fixed') }}"></a>
+                                                                                      src="{{ ctx.helper.showImage(item.url, 50, 50, 'fixed') }}"></a>
                                     </td>
-                                    <td>￥{{ item.price }}</td>
+                                    <td>￥{{ item.fixPrice }}</td>
+                                    <td>￥{{ item.marketPrice }}</td>
 
-                                    <!--<td>{{ item.inventory }}</td>-->
-                                    <!--<td>-->
-                                    <!--{% if item.isRecommend %}-->
-                                    <!--<span style="color: red;">是</span><a class="ajax"-->
-                                    <!--data-href="/module/recommend/cancel?id={{item.id}}">[关闭]</a>-->
-                                    <!--{% else%}-->
-                                    <!--<span style="color: green;">否</span><a href="/module/recommend?id={{item.id}}">[开启]</a>-->
-                                    <!--{% endif %}-->
-                                    <!--</td>-->
-                                    <td>
-                                        {% if item.status %}
-                                        <span>正常</span>
-                                        {% else%}
-                                        <span style="color: red;">删除</span>
-                                        <!--<a href="/module/recommend?id={{item.id}}">[开启]</a>-->
-                                        {% endif %}
-                                    </td>
+
+                                    <td>{{ item.inventory }}</td>
+                                    <td width="100">{{ item.productCategoryName }}</td>
+
 
                                     <td>{{ item.createTime }}</td>
                                     <td data-id="{{ item.id }}">
@@ -146,7 +110,7 @@
                     <div class="btn-region clearfix">
                         <div class="pull-left">
                             <button href="" id="batch-del-btn" class="btn btn-danger btn-sm js-batch"
-                                    data-url="/module/delete" data-confirm="确定删除选中的桌台吗?" data-original-title=""
+                                    data-url="/module/delete" data-confirm="确定删除选中的商品吗?" data-original-title=""
                                     title="">批量删除
                             </button>
                         </div>

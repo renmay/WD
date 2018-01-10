@@ -5,8 +5,6 @@
 {% block style %}
 <link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
 <style>
-
-
 </style>
 {% endblock %}
 
@@ -28,19 +26,26 @@
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label">适用行业(可多选):</label>
-                            <div class="col-sm-10">
-                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
-                                                                               value="1"> 酒店</label>
-                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
-                                                                               value="2"> 餐饮</label>
-                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
-                                                                               value="3"> 娱乐</label>
-                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
-                                                                               value="4"> 旅游</label>
-                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
-                                                                               value="5"> 特产</label>
-                                <label class="checkbox-inline i-checks"><input type="checkbox" name="industry"
-                                                                      value="0"> 全部</label>
+                            <div class="col-sm-10 lablebox">
+                                <label class="checkbox-inline i-checks">
+                                    <input type="checkbox" name="industry"
+                                           value="1" {{ 'checked' if data.industry1 }}> 酒店</label>
+                                <label class="checkbox-inline i-checks">
+                                    <input type="checkbox" name="industry"
+                                           value="2" {{ 'checked' if data.industry2}}> 餐饮</label>
+                                <label class="checkbox-inline i-checks">
+                                    <input type="checkbox" name="industry"
+                                           value="3" {{ 'checked' if data.industry3}}> 娱乐</label>
+                                <label class="checkbox-inline i-checks">
+                                    <input type="checkbox" name="industry"
+                                           value="4" {{ 'checked' if data.industry4}}> 旅游</label>
+                                <label class="checkbox-inline i-checks">
+                                    <input type="checkbox" name="industry"
+                                           value="5" {{ 'checked' if data.industry5}}> 特产</label>
+                                <label class="checkbox-inline i-checks" id="checkAll">
+                                    <input type="checkbox"
+                                           name="industry"
+                                           value="0" {{ 'checked' if data.industry0 }}> 全选</label>
                             </div>
                         </div>
                         <!--{{ forms.select('类型', 'type', data.type, 'required') }}-->
@@ -164,62 +169,40 @@
                     asyncSubmitForm($("#form"));
                 }
             });
-
         });
     </script>
+
+    <!--全选功能-->
     <script>
         $(function () {
-            holder = $('<span class="words-split"></span>');
-            hashtable = new Array();
-            el = $("#result");
-            el.after(holder);
-            list = el.val();
+            // if ($('#checkAll').val() == 0){
+            //     $('.icheckbox_square-green').addClass("checked");
+            // }
 
-            if (list) {
-                let facility = JSON.parse(list);
-                facility.filter(f => {
-                    key = f.key;
-                    value = f.value;
-                    holder.append($('<a href="javascript:void(0)">' + key + " :" + value + '<span name="' + key + '"></span>&nbsp;&nbsp;<i class="fa fa-trash dbicon" aria-hidden="true"></i></a>'));
-                    var object = {};
-                    object['key'] = key;
-                    object['value'] = value;
-                    hashtable.push(object);
-                });
-            }
-            holder.on('click', 'a>i', function () {	//刪除
-                resultKey = $(this).parent().find('span').attr('name');
-                hashtable.filter(e => {
-                    if (e.key == resultKey) {
-                        hashtable.splice(hashtable.indexOf(e), 1);
+            $("#checkAll").click(function () {
+                    var precheck = $(this).prevAll().find('.checked');
+                    var checkd = $("#checkAll").children().html();
+                    if (precheck.length < 5) {
+                        $('.icheckbox_square-green').addClass("checked");
+                    } else {
+                        $('.icheckbox_square-green').removeClass("checked");
                     }
-                });
-                $(this).parent().remove();
-                $("#result").val(JSON.stringify(hashtable));
-            });
-
-            $("#btn").on('click', function () {
-                key = $("#key").val();
-                value = $("#value").val();
-
-                hashtable.filter(e => {
-                    if (e.key == key) {
-                        alert("设施已存在，请删除后重新添加");
-                        return;
-                    }
-                });
-
-                if (key != "" && value != "") {
-                    holder.append($('<a href="javascript:void(0)">' + key + " :" + value + '<span name="' + key + '"></span>&nbsp;&nbsp;<i class="fa fa-trash dbicon" aria-hidden="true"></i></a>'));
-                    var object = {};
-                    object['key'] = key;
-                    object['value'] = value;
-                    hashtable.push(object);
-                    $("#result").val(JSON.stringify(hashtable));
-                    $("#key").val("");
-                    $("#value").val("");
+                }
+            );
+            $('#checkAll').prevAll().click(function () {
+                if ($('.checked').length < 6) {
+                    // $("#checkAll").removeClass("checked");
+                    $("#checkAll").children().removeClass("checked");
+                }
+                if ($('.checked').length == 5) {
+                    $("#checkAll").children().addClass("checked");
                 }
             });
+
+            $(":checked").hide();
         });
+
+        alert($("#checkAll").children().attr());
+        // if($("#checkAll").children())
     </script>
     {% endblock %}

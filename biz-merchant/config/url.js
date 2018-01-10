@@ -37,6 +37,4 @@ module.exports =  {
     constellation: '/constellation',
 
     chef: '/chef'
-
-
 };

@@ -25,28 +25,6 @@
 						{{ forms.password('密码', 'password', '', '留空表示不修改') }}
 						{{ forms.radios('员工类型', 'userType', [{text: '管理员', value: 1}, {text: '员工', value: 2}], data.userType) }}
 						{{ forms.radios('性别', 'sex', [{text: '男', value: 1}, {text: '女', value: 0}], data.sex) }}
-
-                        <!--{% if data.id != 1 %}-->
-						<!--<div class="form-group">-->
-						    <!--<label class="col-sm-2 control-label">用户权限</label>-->
-                            <!--<div class="col-sm-8">-->
-                                <!--<div class="checkbox">-->
-                                    <!--{% for item in menus %}-->
-                                        <!--{% set isCheck = false %}-->
-                                        <!--{% for id in data.menuIds %}-->
-                                            <!--{% if item.id == id %}-->
-                                                <!--{% set isCheck = true %}-->
-                                            <!--{% endif %}-->
-                                        <!--{% endfor %}-->
-                                    <!--<label style="width: 120px;">-->
-                                        <!--<input type="checkbox" class="i-checks" {{ 'checked' if isCheck else '' }} name="menuIds" value="{{ item.id }}">{{ item.name }}-->
-                                    <!--</label>-->
-                                    <!--{% endfor %}-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--{% endif %}-->
-
                         {{ forms.submit() }}
 
                     </form>
