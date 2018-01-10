@@ -4,10 +4,10 @@ module.exports = app => {
 
         async index() {
             const { ctx } = this;
-            // await ctx.render('index/index.js');
+            await ctx.render('alipay/alipay.js');
 
 
-            await ctx.redirect("http://www.baidu.com");
+            // await ctx.redirect("http://www.baid/**/u.com");
 
         }
 
