@@ -17,6 +17,7 @@ module.exports = app => {
                 data: params
             });
             this.app.logger.info(result.data);
+            const data = result.data;
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
@@ -35,6 +36,7 @@ module.exports = app => {
                 data: params
             });
             this.app.logger.info(result.data);
+            const data = result.data;
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
@@ -53,6 +55,7 @@ module.exports = app => {
                 data: params
             });
             this.app.logger.info(result.data);
+            const data = result.data;
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
@@ -71,6 +74,7 @@ module.exports = app => {
                 data: params
             });
             this.app.logger.info(result.data);
+            const data = result.data;
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
@@ -89,6 +93,7 @@ module.exports = app => {
                 data: params
             });
             this.app.logger.info(result.data);
+            const data = result.data;
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
@@ -107,6 +112,7 @@ module.exports = app => {
                 data: params
             });
             this.app.logger.info(result.data);
+            const data = result.data;
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
@@ -123,6 +129,7 @@ module.exports = app => {
                 dataType: 'json'
             });
             this.app.logger.info(result.data);
+            const data = result.data;
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
