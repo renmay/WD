@@ -27,13 +27,13 @@
                             <div class="col-sm-8">
                                 <select class="form-control m-b" name="status">
                                     <option value="1" {{
-                                    'selected' if data.type == 1 }}>正常</option>
+                                    'selected' if data.status == 1 }}>正常</option>
                                     <option value="2" {{
-                                    'selected' if data.type == 2 }}>补充资料</option>
+                                    'selected' if data.status == 2 }}>补充资料</option>
                                     <option value="3" {{
-                                    'selected' if data.type == 2 }}>待审核</option>
+                                    'selected' if data.status == 3 }}>待审核</option>
                                     <option value="4" {{
-                                    'selected' if data.type == 2 }}>审核不通过</option>
+                                    'selected' if data.status == 4 }}>审核不通过</option>
                                 </select>
                             </div>
                         </div>
@@ -123,5 +123,7 @@
 
     });
 </script>
+    <script>
 
+    </script>
 {% endblock %}
