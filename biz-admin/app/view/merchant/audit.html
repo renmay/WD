@@ -59,13 +59,13 @@
 
 
                         <label class="col-sm-2 control-label">身份证正面：&nbsp;</label>
-                        <img class="img-responsive" src="{{ ctx.helper.showImage(data.idCard) }}">
+                        <img class="img-responsive" src="{{ ctx.helper.showImage(data.idCard, 100, 100, 'fixed') }}">
                         <label class="col-sm-2 control-label">身份证正面：&nbsp;</label>
-                        <img class="img-responsive" src=" {{ ctx.helper.showImage(data.idCardNegative) }}">
+                        <img class="img-responsive" src=" {{ ctx.helper.showImage(data.idCardNegative, 100, 100, 'fixed') }}">
                         <label class="col-sm-2 control-label">营业执照：&nbsp;</label>
-                        <img class="img-responsive" src="{{ ctx.helper.showImage(data.businessLicense) }}">
+                        <img class="img-responsive" src="{{ ctx.helper.showImage(data.businessLicense, 100, 100, 'fixed') }}">
                         <label class="col-sm-2 control-label">店铺照片：&nbsp;</label>
-                        <img class="img-responsive" src="{{ ctx.helper.showImage(data.storeImage) }}">
+                        <img class="img-responsive" src="{{ ctx.helper.showImage(data.storeImage, 100, 100, 'fixed') }}">
 
                         {{ forms.radios('审核意见:', 'authCode', [{text: '通过', value: 1}, {text: '拒绝', value: 0}]) }}
                         {{ forms.text('审核结果', 'authResult', data.authResult, '如果审核未通过，请输入拒绝原因') }}
