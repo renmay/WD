@@ -19,6 +19,7 @@ module.exports = app => {
         },
       });
       this.app.logger.info(result.data);
+        this.app.logger.info('=================');
       if (result.data.code != 200) {
         throw new Error(result.data.message ? result.data.message : 'error');
       }
@@ -43,6 +44,7 @@ module.exports = app => {
 
       const data = result.data;
       this.app.logger.info(result);
+
 
       if (data.code !== 200) {
         throw new Error(data.message ? data.message : 'error');

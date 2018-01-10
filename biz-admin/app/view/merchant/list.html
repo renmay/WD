@@ -19,26 +19,27 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <form class="page-search-form">
-                                {{ search.select('审核状态', 'isRecommend', [{
+                                {{ search.select('审核状态', 'status', [{
                                 id: '1',
-                                name: '未审核'
+                                name: '正常'
                                 },{
-                                id: '0',
+                                id: '2',
                                 name: '已审核'
-                                }], params.isRecommend) }}
+                                }], params.status) }}
                                 <div class="col-sm-3">
                                     <div class="input-group">
                                         <span class="input-group-addon">行业分类</span>
-                                        <select class="form-control m-b" name="productCategoryId">
+                                        <select class="form-control m-b" name="type">
                                             <option value="">全部</option>
-                                            {% for item in productCategory %}
+                                            {% for item in type %}
                                             <option value="{{ item.value }}" {{
-                                            'selected' if item.value == params.productCategoryId else ''}}>{{ item.text
+                                            'selected' if item.value == params.type else ''}}>{{ item.text
                                             }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
                                 </div>
+
                                 {{ search.text('商户姓名', 'name', params.name, true) }}
                             </form>
                         </div>
@@ -72,9 +73,9 @@
                                     <td>
                                         {% if item.status == 1 %}
                                         正常
-                                        {% elif item.status == 2 %}
+                                        {% elseif item.status == 2 %}
                                         补充资料
-                                        {% elif item.status == 3 %}
+                                        {% elseif item.status == 3 %}
                                         待审核
                                         {% else %}
                                         审核不通过
@@ -92,14 +93,22 @@
                                     </td>
                                     <!--行业分类-->
                                     <td>
-                                        {% if item.status == 1 %}
-                                        正常
-                                        {% elif item.status == 2 %}
-                                        禁用
+                                        {% if item.type == 1 %}
+                                        酒店
+                                        {% elif item.type == 2 %}
+                                        餐饮
+                                        {% elif item.type == 3 %}
+                                        娱乐
+                                        {% elif item.type == 4 %}
+                                        旅游
+                                        {% elif item.type == 5 %}
+                                        特产
                                         {% else %}
-                                        未知
+                                        酒店 餐饮 娱乐 旅游 特产
                                         {% endif %}
                                     </td>
+
+
                                     <td>
                                         {% if item.managerType == 1 %}
                                         管理员
@@ -110,9 +119,13 @@
                                         {% endif %}
                                     </td>
                                     <td>{{item.createTime}}</td>
+
+
                                     <td data-id="{{ item.id }}">
                                         <a href="/merchant/audit?id={{item.id}}">查看</a>
                                     </td>
+
+
                                 </tr>
                                 {% else %}
                                 暂无数据

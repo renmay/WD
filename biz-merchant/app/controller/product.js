@@ -138,7 +138,7 @@ module.exports = app => {
       };
 
       await this.ctx.render('product/edit.html', { data, params, productCategory });
-      // this.app.logger.info(data);
+      this.app.logger.info(data);
     }
 
     /**
