@@ -169,6 +169,7 @@ module.exports = app => {
       this.ctx.body = data;
     }
 
+    //是否推荐
     async recommend(ctx) {
 
       if (this.ctx.request.method == 'GET') { // get请求

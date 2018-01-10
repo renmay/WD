@@ -99,6 +99,8 @@ module.exports = app => {
       const productCategory = [];
 
       this.app.logger.info(data.data.list);
+
+      //renmay
       for (let i = 0; i < data.data.list.length; i++) {
         const item = {};
         item.text = data.data.list[i].name;
