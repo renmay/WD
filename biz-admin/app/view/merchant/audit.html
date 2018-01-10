@@ -17,60 +17,77 @@
 
                 </div>
                 <div class="ibox-content">
-                    <form class="form-horizontal m-t from" id="form" action="/merchant/audit" method="post" data-href="/merchant">
-                    	{{ forms.hidden('id', data.id) }}
+                    <form class="form-horizontal m-t from" id="form" action="/merchant/audit" method="post"
+                          data-href="/merchant">
+                        {{ forms.hidden('id', data.id) }}
                         {{ forms.readonly('姓名', data.name) }}
                         {{ forms.readonly('店铺名称',data.storeName) }}
 
+
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">状态 :&nbsp;</label>
-                            <div class="col-sm-8">
-                                <select class="form-control m-b" name="status">
-                                    <option value="1" {{
-                                    'selected' if data.status == 1 }}>正常</option>
-                                    <option value="2" {{
-                                    'selected' if data.status == 2 }}>补充资料</option>
-                                    <option value="3" {{
-                                    'selected' if data.status == 3 }}>待审核</option>
-                                    <option value="4" {{
-                                    'selected' if data.status == 4 }}>审核不通过</option>
-                                </select>
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">状态：</label>
+                            <div class="col-sm-8 col-xs-12">
+                                <input id="statusvalue" class="form-control" value="{{ data.status }}"
+                                       readonly="readonly" type="hidden">
+                                <input id="status" class="form-control" value="未知" readonly="readonly" type="text">
+
                             </div>
                         </div>
 
 
+
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">所属行业:&nbsp;</label>
-                            <div class="col-sm-8">
-                                <select class="form-control m-b" name="type">
-                                    <option value="1" {{
-                                    'selected' if data.type == 1 }}>酒店</option>
-                                    <option value="2" {{
-                                    'selected' if data.type == 2 }}>餐饮</option>
-                                    <option value="3" {{
-                                    'selected' if data.type == 3 }}>娱乐</option>
-                                    <option value="4" {{
-                                    'selected' if data.type == 4 }}>旅游</option>
-                                    <option value="5" {{
-                                    'selected' if data.type == 4 }}>特产</option>
-                                </select>
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">所属行业：</label>
+                            <div class="col-sm-8 col-xs-12">
+                                <input id="indvalue" class="form-control" value="{{ data.type }}"
+                                       readonly="readonly" type="hidden">
+                                <input id="ind" class="form-control" value="未知" readonly="readonly" type="text">
+
                             </div>
                         </div>
 
 
-                        <label class="col-sm-2 control-label">身份证正面：&nbsp;</label>
-                        <img class="img-responsive" src="{{ ctx.helper.showImage(data.idCard, 100, 100, 'fixed') }}">
-                        <label class="col-sm-2 control-label">身份证正面：&nbsp;</label>
-                        <img class="img-responsive" src=" {{ ctx.helper.showImage(data.idCardNegative, 100, 100, 'fixed') }}">
-                        <label class="col-sm-2 control-label">营业执照：&nbsp;</label>
-                        <img class="img-responsive" src="{{ ctx.helper.showImage(data.businessLicense, 100, 100, 'fixed') }}">
-                        <label class="col-sm-2 control-label">店铺照片：&nbsp;</label>
-                        <img class="img-responsive" src="{{ ctx.helper.showImage(data.storeImage, 100, 100, 'fixed') }}">
 
+
+
+
+                        <!--{{ forms.readonly('所属行业',data.type) }}-->
+                        <!--{{ forms.readonly('状态',data.status) }}-->
+
+
+                        <div class="formimg" style="padding-left: 20px;">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">身份证正面：&nbsp;</label>
+                                <img class="img-responsive"
+                                     src="{{ ctx.helper.showImage(data.idCard, 100, 100, 'fixed') }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">身份证正面：&nbsp;</label>
+                                <img class="img-responsive"
+                                     src=" {{ ctx.helper.showImage(data.idCardNegative, 100, 100, 'fixed') }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">营业执照：&nbsp;</label>
+                                <img class="img-responsive"
+                                     src="{{ ctx.helper.showImage(data.businessLicense, 100, 100, 'fixed') }}">
+                            </div>
+                            <div class="from-group" style="padding-right: 60px;">
+                                <label class="col-sm-2 control-label">店铺照片：&nbsp;</label>
+                                <img class="img-responsive"
+                                     src="{{ ctx.helper.showImage(data.storeImage, 100, 100, 'fixed') }}">
+                            </div>
+                        </div>
+
+
+                        {% if 3 == data.status %}
                         {{ forms.radios('审核意见:', 'authCode', [{text: '通过', value: 1}, {text: '拒绝', value: 0}]) }}
                         {{ forms.text('审核结果', 'authResult', data.authResult, '如果审核未通过，请输入拒绝原因') }}
-                        {{ forms.submit() }}
-
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button class="btn {{ class }}" id="{{ id }}" type="{{ type }}">{{ 提交 }}</button>
+                            </div>
+                        </div>
+                        {% endif %}
 
 
                     </form>
@@ -79,51 +96,98 @@
         </div>
 
     </div>
-{% endblock %}
+    {% endblock %}
 
-{#js代码#}
-{% block js %}
-<script>
-    $(function () {
-        var e = "";
-        $("#form").validate({
-            rules: {
-                linkName: "required",
-                username: {
-                    required: true
-                },
-                mobile: {
-                    required: true
-                },
-                userType: "required",
-                sex: "required",
-            },
-            messages: {
-                linkName: {
-                    required: e + "请输入姓名"
-                },
-                username: {
-                    required: e + "请输入用户名",
-                    remote: '用户已经存在'
-                },
-                mobile: {
-                    required: e + "请输入手机号"
-                },
-                userType: {
-                    required: e + "请输入类型 1.管理员 2.员工 "
-                },
-                sex: {
-                    required: e + "请输入性别"
-                },
-            },
-            submitHandler: function() {
-              asyncSubmitForm($("#form"));
-            }
-        });
-
-    });
-</script>
+    {#js代码#}
+    {% block js %}
     <script>
+        $(function () {
+            var e = "";
+            $("#form").validate({
+                rules: {
+                    linkName: "required",
+                    username: {
+                        required: true
+                    },
+                    mobile: {
+                        required: true
+                    },
+                    userType: "required",
+                    sex: "required",
+                },
+                messages: {
+                    linkName: {
+                        required: e + "请输入姓名"
+                    },
+                    username: {
+                        required: e + "请输入用户名",
+                        remote: '用户已经存在'
+                    },
+                    mobile: {
+                        required: e + "请输入手机号"
+                    },
+                    userType: {
+                        required: e + "请输入类型 1.管理员 2.员工 "
+                    },
+                    sex: {
+                        required: e + "请输入性别"
+                    },
+                },
+                submitHandler: function () {
+                    asyncSubmitForm($("#form"));
+                }
+            });
 
+        });
     </script>
-{% endblock %}
+
+
+
+    <script>
+        <!--判断状态和所属行业-->
+        $(function () {
+            if ($("#statusvalue").val() == 1) {
+                $("#status").val('正常');
+            } else if ($("#statusvalue").val() == 2) {
+                $("#status").val('补充资料');
+            } else if ($("#statusvalue").val() == 3){
+                $("#status").val('待审核');
+            }else{
+                $("#status").val('审核不通过');
+            }
+            if($("#indvalue").val()==0){
+                // $("#ind").val('酒店 餐饮 娱乐 旅游 特产');
+                $("#ind").val('多种');
+            }else if($("#indvalue").val()==1){
+                $("#ind").val('酒店');
+            }else if($("#indvalue").val()==2){
+                $("#ind").val('餐饮');
+            }else if($("#indvalue").val()==3){
+                $("#ind").val('娱乐');
+            }else if($("#indvalue").val()==4){
+                $("#ind").val('旅游');
+            }else{
+                $("#ind").val('特产');
+            }
+        })
+    </script>
+    {% endblock %}
+
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">所属行业:&nbsp;</label>
+        <div class="col-sm-8">
+            <select class="form-control m-b" name="type">
+                <option value="1" {{
+                'selected' if data.type == 1 }}>酒店</option>
+                <option value="2" {{
+                'selected' if data.type == 2 }}>餐饮</option>
+                <option value="3" {{
+                'selected' if data.type == 3 }}>娱乐</option>
+                <option value="4" {{
+                'selected' if data.type == 4 }}>旅游</option>
+                <option value="5" {{
+                'selected' if data.type == 5 }}>特产</option>
+            </select>
+        </div>
+    </div>
