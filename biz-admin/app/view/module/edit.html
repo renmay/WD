@@ -42,10 +42,7 @@
                                 <label class="checkbox-inline i-checks">
                                     <input type="checkbox" name="industry"
                                            value="5" {{ 'checked' if data.industry5}}> 特产</label>
-                                <label class="checkbox-inline i-checks" id="checkAll">
-                                    <input type="checkbox"
-                                           name="industry"
-                                           value="0" {{ 'checked' if data.industry0 }}> 全选</label>
+                                <label class="checkbox-inline i-checks" id="checkAll" style="font-size: 14px;padding-bottom: 5px;">全选</label>
                             </div>
                         </div>
                         <!--{{ forms.select('类型', 'type', data.type, 'required') }}-->
@@ -198,11 +195,7 @@
                     $("#checkAll").children().addClass("checked");
                 }
             });
-
-            $(":checked").hide();
         });
 
-        alert($("#checkAll").children().attr());
-        // if($("#checkAll").children())
     </script>
     {% endblock %}
