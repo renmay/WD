@@ -89,6 +89,7 @@ module.exports = app => {
         method: 'delete',
         dataType: 'json',
       });
+      this.app.logger.info(result);
       return result.data;
     }
 

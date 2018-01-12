@@ -45,10 +45,10 @@ module.exports = app => {
             }
 
 
-            for (let i = 0; i < data.list.length; i++) {
+            for (let i = 0; i < data.list[i].length; i++) {
                 const images = data.list[i].images.split(',');
-                images.push('');
-            }
+                data.list[i].images=images;
+                }
 
 
             await this.ctx.render('product/list.html', {data, productCategory});
@@ -108,7 +108,11 @@ module.exports = app => {
             }
 
             this.app.logger.info(params);
-            const data = await this.service.productCategory.delete(params);
+            this.app.logger.info('==============');
+
+            const data = await this.service.product.delete(params);
+
+
 
             this.ctx.body = data;
         }
