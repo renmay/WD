@@ -3,9 +3,12 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+<<<<<<< HEAD
       <excludeFolder url="file://$MODULE_DIR$/biz-admin/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/biz-merchant-vue/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/biz-merchant/node_modules" />
+=======
+>>>>>>> ryan
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>

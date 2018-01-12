@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="9b8ac6e0-1228-43bd-b17b-9e536f4a37f6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/biz-merchant/app/controller/product.js" afterPath="$PROJECT_DIR$/biz-merchant/app/controller/product.js" />
       <change beforePath="$PROJECT_DIR$/biz-merchant/app/controller/product_category.js" afterPath="$PROJECT_DIR$/biz-merchant/app/controller/product_category.js" />
@@ -8,6 +9,11 @@
       <change beforePath="$PROJECT_DIR$/biz-merchant/app/view/product/list.html" afterPath="$PROJECT_DIR$/biz-merchant/app/view/product/list.html" />
       <change beforePath="$PROJECT_DIR$/biz-merchant/app/view/productCategory/edit.html" afterPath="$PROJECT_DIR$/biz-merchant/app/view/productCategory/edit.html" />
       <change beforePath="$PROJECT_DIR$/biz-merchant/app/view/productCategory/list.html" afterPath="$PROJECT_DIR$/biz-merchant/app/view/productCategory/list.html" />
+=======
+    <list default="true" id="08399ae5-b63c-47d5-abf0-2d31f86c364e" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/biz-merchant-api/app/router.js" afterPath="$PROJECT_DIR$/biz-merchant-api/app/router.js" />
+      <change beforePath="$PROJECT_DIR$/biz-merchant-api/config/url.js" afterPath="$PROJECT_DIR$/biz-merchant-api/config/url.js" />
+>>>>>>> ryan
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,6 +26,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf>
       <file leaf-file-name="order.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/controller/order.js">
@@ -41,30 +48,56 @@
                 <marker date="1515684174907" expanded="true" signature="1465:1587" ph="{...}" />
                 <marker date="1515684174907" expanded="true" signature="1495:1577" ph="{&quot;message&quot;: 'edit success'...}" />
               </folding>
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/router.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="481">
+              <caret line="60" column="37" lean-forward="false" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
+              <folding />
+>>>>>>> ryan
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/web/view/layout.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+      <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/controller/login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+>>>>>>> ryan
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="order.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/web/page/app/order/order.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/middleware/auth.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+>>>>>>> ryan
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="order.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/web/page/app/order/order.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -74,10 +107,19 @@
                 <marker date="1515684174920" expanded="true" signature="7:154" ph="..." />
                 <marker date="1515684174920" expanded="true" signature="202:239" ph="{&quot;router&quot;: router...}" />
               </folding>
+=======
+      <file leaf-file-name="error_handler.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/middleware/error_handler.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+>>>>>>> ryan
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="actions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/web/page/app/order/store/actions.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -99,10 +141,19 @@
                 <marker date="1515684174921" expanded="true" signature="1538:1701" ph="{...}" />
                 <marker date="1515684174921" expanded="true" signature="1615:1693" ph="{...}" />
               </folding>
+=======
+      <file leaf-file-name="jwt.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/middleware/jwt.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
+              <caret line="61" column="16" lean-forward="true" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+              <folding />
+>>>>>>> ryan
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/web/page/app/order/store/index.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -114,30 +165,55 @@
                 <marker date="1515684174921" expanded="true" signature="442:545" ph="{...}" />
                 <marker date="1515684174921" expanded="true" signature="578:632" ph="{&quot;state&quot;: state...}" />
               </folding>
+=======
+      <file leaf-file-name="chef.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/controller/chef.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+>>>>>>> ryan
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="mutation-type.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/web/page/app/order/store/mutation-type.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+      <file leaf-file-name="food.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/controller/food.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+>>>>>>> ryan
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="form.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/web/page/app/order/component/form.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
               <caret line="53" column="49" lean-forward="true" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+=======
+      <file leaf-file-name="food.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/service/food.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="146">
+              <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+>>>>>>> ryan
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="router.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/web/page/app/order/router.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -154,26 +230,72 @@
                 <marker date="1515684174920" expanded="true" signature="577:650" ph="{&quot;path&quot;: '/order/table'...}" />
                 <marker date="1515684174920" expanded="true" signature="660:732" ph="{&quot;path&quot;: '/order/form'...}" />
               </folding>
+=======
+      <file leaf-file-name="url.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/biz-merchant-api/config/url.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+              <folding />
+>>>>>>> ryan
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+<<<<<<< HEAD
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+=======
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>login</find>
+      <find>ood</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/biz-merchant-api/app/controller/login.js" />
+        <option value="$PROJECT_DIR$/biz-merchant-api/app/router.js" />
+        <option value="$PROJECT_DIR$/biz-merchant-api/config/url.js" />
+        <option value="$PROJECT_DIR$/biz-merchant-api/app/controller/food.js" />
+        <option value="$PROJECT_DIR$/biz-merchant-api/app/service/food.js" />
+      </list>
+    </option>
+  </component>
+>>>>>>> ryan
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+<<<<<<< HEAD
   <component name="ProjectFrameBounds">
     <option name="x" value="351" />
     <option name="y" value="146" />
     <option name="width" value="1400" />
     <option name="height" value="757" />
+=======
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/biz-merchant-api/node_modules" />
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="40" />
+    <option name="y" value="83" />
+    <option name="width" value="1400" />
+    <option name="height" value="837" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+>>>>>>> ryan
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -190,6 +312,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
+      <pane id="Scope" />
+>>>>>>> ryan
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -200,22 +326,74 @@
             <path>
               <item name="biz-node" type="b2602c69:ProjectViewProjectNode" />
               <item name="biz-node" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="biz-web" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="biz-merchant-api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biz-node" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biz-node" type="462c0819:PsiDirectoryNode" />
+              <item name="biz-merchant-api" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biz-node" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biz-node" type="462c0819:PsiDirectoryNode" />
+              <item name="biz-merchant-api" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biz-node" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biz-node" type="462c0819:PsiDirectoryNode" />
+              <item name="biz-merchant-api" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="middleware" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biz-node" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biz-node" type="462c0819:PsiDirectoryNode" />
+              <item name="biz-merchant-api" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biz-node" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biz-node" type="462c0819:PsiDirectoryNode" />
+              <item name="biz-merchant-api" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+>>>>>>> ryan
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
       <pane id="Scope" />
+=======
+>>>>>>> ryan
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+<<<<<<< HEAD
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+=======
+>>>>>>> ryan
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/biz-merchant-api/app/service" />
+      <recent name="$PROJECT_DIR$/biz-merchant-api/app/controller" />
+    </key>
+  </component>
+>>>>>>> ryan
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -228,9 +406,15 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="npm.vue">
     <configuration name="merchant" type="js.build_tools.npm" factoryName="npm">
       <package-json value="$PROJECT_DIR$/biz-merchant/package.json" />
+=======
+  <component name="RunManager">
+    <configuration name="merchantapi" type="js.build_tools.npm" factoryName="npm">
+      <package-json value="$PROJECT_DIR$/biz-merchant-api/package.json" />
+>>>>>>> ryan
       <command value="run" />
       <scripts>
         <script value="dev" />
@@ -238,6 +422,7 @@
       <node-interpreter value="project" />
       <envs />
     </configuration>
+<<<<<<< HEAD
     <configuration name="vue" type="js.build_tools.npm" factoryName="npm">
       <package-json value="$PROJECT_DIR$/biz-merchant-vue/package.json" />
       <command value="run" />
@@ -251,6 +436,8 @@
       <item index="0" class="java.lang.String" itemvalue="npm.merchant" />
       <item index="1" class="java.lang.String" itemvalue="npm.vue" />
     </list>
+=======
+>>>>>>> ryan
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -260,16 +447,28 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="9b8ac6e0-1228-43bd-b17b-9e536f4a37f6" name="Default" comment="" />
       <created>1515751126001</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1515751126001</updated>
       <workItem from="1515751239773" duration="372000" />
+=======
+      <changelist id="08399ae5-b63c-47d5-abf0-2d31f86c364e" name="Default" comment="" />
+      <created>1515651808878</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1515651808878</updated>
+      <workItem from="1515651811130" duration="15000" />
+      <workItem from="1515652795937" duration="4251000" />
+      <workItem from="1515751076543" duration="3541000" />
+>>>>>>> ryan
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="372000" />
   </component>
   <component name="ToolWindowManager">
@@ -292,6 +491,30 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+=======
+    <option name="totallyTimeSpent" value="7807000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25486112" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31304348" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+>>>>>>> ryan
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -306,6 +529,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/controller/order.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -332,10 +556,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1530">
+          <caret line="102" column="43" lean-forward="false" selection-start-line="102" selection-start-column="38" selection-end-line="102" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/middleware/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+>>>>>>> ryan
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/web/page/app/order/router.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -358,10 +597,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/middleware/error_handler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/middleware/jwt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="69" column="3" lean-forward="true" selection-start-line="69" selection-start-column="3" selection-end-line="69" selection-end-column="3" />
+>>>>>>> ryan
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/web/page/app/order/order.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -410,6 +664,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/web/page/app/order/store/mutation-type.js">
+=======
+    <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/middleware/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/middleware/error_handler.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -417,10 +681,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/controller/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/middleware/jwt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="61" column="16" lean-forward="true" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/controller/chef.js">
+>>>>>>> ryan
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/biz-merchant-vue/app/web/page/app/order/component/form.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="53" column="49" lean-forward="true" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+=======
+    <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="60" column="37" lean-forward="false" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-merchant-api/config/url.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/controller/food.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biz-merchant-api/app/service/food.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+>>>>>>> ryan
           <folding />
         </state>
       </provider>
