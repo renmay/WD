@@ -55,7 +55,7 @@
                                     <th></th>
                                     <th>产品名称</th>
                                     <th>图片</th>
-                                    <th>图标</th>
+                                    <th>产品图片</th>
                                     <th>销售价格</th>
                                     <th>市场价格</th>
                                     <th>库存</th>
@@ -82,8 +82,8 @@
                                     </td>
 
                                     <td class="image">
-                                        <a href="/product/edit?id={{ item.id }}"><img alt="image" class="image"
-                                                                                      src="{{ ctx.helper.showImage(item.url, 50, 50, 'fixed') }}"></a>
+                                        <a href="/product/edit?id={{ item.icon2 }}"><img alt="image" class="image"
+                                                                                      src="{{ ctx.helper.showImage(item.images, 50, 50, 'fixed') }}"></a>
                                     </td>
                                     <td>￥{{ item.fixPrice }}</td>
                                     <td>￥{{ item.marketPrice }}</td>
