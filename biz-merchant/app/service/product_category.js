@@ -75,6 +75,8 @@ module.exports = app => {
         dataType: 'json',
       });
       return result.data;
+      this.app.logger.info(result.data);
+      this.app.logger.info('===============');
     }
 
     /**
