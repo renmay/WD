@@ -7,6 +7,8 @@ module.exports =  {
     merchant: '/merchant',
     account: '/merchant/account',
 
+    food: '/product/restaurant',
+
     module: '/store/module',
     login: '/login',
     register: '/register',
