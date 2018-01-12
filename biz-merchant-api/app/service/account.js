@@ -11,11 +11,12 @@ module.exports = app => {
          * @param params
          */
         async list() {
-            const result = await this.ctx.fetch(this.app.urls('account'), {
+            const result = await this.ctx.fetch(this.app.urls('account')+'/list', {
                 method: 'get',
                 dataType: 'json',
             });
             this.app.logger.info(result.data);
+            const data = result.data;
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
@@ -32,6 +33,7 @@ module.exports = app => {
                 dataType: 'json'
             });
             this.app.logger.info(result.data);
+            const data = result.data;
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
@@ -48,10 +50,10 @@ module.exports = app => {
                 data: params
             });
             this.app.logger.info(result.data);
+            const data = result.data;
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
-
             return result.data.data;
         }
         /**
@@ -64,6 +66,7 @@ module.exports = app => {
                 dataType: 'json'
             });
             this.app.logger.info(result.data);
+            const data = result.data;
             if (result.data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
@@ -74,13 +77,15 @@ module.exports = app => {
          * 获取银行卡数量
          * @param params
          */
-        async add() {
+        async quantity() {
             const result = await this.ctx.fetch(this.app.urls('account')+'/quantity', {
                 method: 'post',
                 dataType: 'json',
             });
             this.app.logger.info(result.data);
-            if (result.data.code != 200){
+            const data = result.data;
+
+            if (data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
             }
 
