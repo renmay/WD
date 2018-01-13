@@ -15,6 +15,8 @@ module.exports = app => {
             params.storeId = this.ctx.session.member.storeId;
             this.app.logger.info(params);
             const data = await this.service.productCategory.list(params);
+
+
             this.logger.info(data);
             await this.ctx.render('productCategory/list.html', {data, params});
         }
@@ -27,12 +29,10 @@ module.exports = app => {
         async delete(ctx) {
             const params = this.ctx.request.body;
             const id = params.id;
-
             if (!id) {
                 this.ctx.body = this.ctx.helper.res('请选择要删除的记录', 500);
                 return;
             }
-
             // 判断是批量删除还是单个删除
             if (id instanceof Array) {
                 if (id.length > 10) {
@@ -41,10 +41,8 @@ module.exports = app => {
                 }
                 params.id = id.join(',');
             }
-
             this.app.logger.info(params);
             const data = await this.service.productCategory.delete(params);
-
             this.ctx.body = data;
         }
 

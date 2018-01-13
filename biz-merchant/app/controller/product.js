@@ -34,22 +34,22 @@ module.exports = app => {
             this.app.logger.info(data);
             this.app.logger.info(productCategory);
 
-
+            //
             //renmay
             for (let i = 0; i < data.list.length; i++) {
                 for (let j = 0; j < productCategory.length; j++) {
                     // this.app.logger.info(productCategory[j]);
-                    if (data.list[i].productCategoryId == productCategory[j].value) ;
-                    data.list[i].productCategoryName = productCategory[j].text;
+                    if (data.list[i].productCategoryId == productCategory[j].value){
+                        data.list[i].productCategoryName = productCategory[j].text;
+                    }
                 }
             }
 
 
-            for (let i = 0; i < data.list[i].length; i++) {
-                const images = data.list[i].images.split(',');
-                data.list[i].images=images;
-                }
-
+            // for (let i = 0; i < data.list.length; i++) {
+            //     const images = data.list[i].images.split(',');
+            //     data.list[i].images = images;
+            // }
 
             await this.ctx.render('product/list.html', {data, productCategory});
         }
@@ -89,15 +89,12 @@ module.exports = app => {
          */
         async delete(ctx) {
             const params = this.ctx.request.body;
-
             const id = params.id;
             params.productType = this.ctx.session.member.type;
-
             if (!id) {
                 this.ctx.body = this.ctx.helper.res('请选择要删除的记录', 500);
                 return;
             }
-
             // 判断是批量删除还是单个删除
             if (id instanceof Array) {
                 if (id.length > 10) {
@@ -106,14 +103,8 @@ module.exports = app => {
                 }
                 params.id = id.join(',');
             }
-
             this.app.logger.info(params);
-            this.app.logger.info('==============');
-
             const data = await this.service.product.delete(params);
-
-
-
             this.ctx.body = data;
         }
 

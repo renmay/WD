@@ -4,7 +4,8 @@ module.exports = app => {
   };
 
   exports.api = {
-    base: 'http://111.230.45.77:8080',
+    // base: 'http://111.230.45.77:8080',
+    base: 'http://192.168.0.30:8080',
     common: 'http://common.zzyuu.com',
     static: '',
     image: 'http://img-test.zzyuu.com',
