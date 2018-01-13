@@ -15,8 +15,8 @@ module.exports = app => {
                 data: params,
                 dataType: 'json',
             });
-
-            let data = result.data;
+            this.app.logger.info(result);
+            const data = result.data;
 
             if (data.code != 200){
                 throw new Error(data.message ? data.message : 'error');
