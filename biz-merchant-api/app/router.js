@@ -58,6 +58,8 @@ module.exports = app => {
     app.post('/account/add', 'account.add');
     app.post('/account/delete', 'account.delete');
 
+    app.get('/food/all','food.list');
+
     app.post('/address/add', 'address.create');
     app.post('/address/edit','address.edit');
     app.post('/address/delete','address.del');
